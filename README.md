@@ -1,4 +1,4 @@
-# CBC-analisis
+# CBC_analisis
 
 ## Repo para subir los avances en los apuntes de análisis 2
 
