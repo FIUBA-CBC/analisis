@@ -18,12 +18,13 @@
 2) Ir a github y, desde el boton verde que dice "code", copiar la url 
 3) desde la terminal poner "git clone [copiar la url]"
 4) Una carpeta va a aparecer con el contenido del repo "master"
---
+
+
 5) Para cambiar de branch poner "git checkout nombre-de-la-branch"
 6) En el caso de querer crear una IR A LA BRANCH MASTER y poner "git checkout -b nombre-nueva-branch"
 7) Al estar trabajando en una branch, en el caso de querer saber si hace falta pushear algo poner "git status" Eso nos va a decir los archivos que hace faltan que subamos.
---
-Al comezar el trabajo (y antes de pushear), siempre bajar posibles avances de compañerxs poninedo "git pull"
+
+*Al comezar el trabajo (y antes de pushear), siempre bajar posibles avances de compañerxs poninedo "git pull"*
 --
 Cuando terminamos de trabajar, siempre pushear el avance:
 1) poner "git status" (va a aparecer en rojo los archivos que modificamos)
