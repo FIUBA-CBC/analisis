@@ -23,6 +23,7 @@
 5) Para cambiar de branch poner "git checkout nombre-de-la-branch"
 6) En el caso de querer crear una IR A LA BRANCH MASTER y poner "git checkout -b nombre-nueva-branch"
 7) Al estar trabajando en una branch, en el caso de querer saber si hace falta pushear algo poner "git status" Eso nos va a decir los archivos que hace faltan que subamos.
+
 **Al comezar el trabajo (y antes de pushear), siempre bajar posibles avances de compañerxs poniendo "git pull"**
 
 Cuando terminamos de trabajar, siempre pushear el avance:
