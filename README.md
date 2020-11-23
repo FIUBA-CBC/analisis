@@ -1,8 +1,8 @@
 # CBC-analisis
 
-Repo para subir los avances en los apuntes de análisis 2
+## Repo para subir los avances en los apuntes de análisis 2
 
-Reglas IMPORTANTES:
+### Reglas IMPORTANTES:
 
 1) NUNCA pushear a master 
 2) Siempre trabajar en la branch asignada
@@ -11,9 +11,9 @@ Reglas IMPORTANTES:
 5) Simpre hacer commit -m "mensaje aclarando qué se hizo" 
 6) Nunca mergear sin que otra persona haya revisado el PR
 
-Pipeline para trabajar con github
+### Pipeline para trabajar con github
 
-Para bajarse el repo (clonarlo):
+*Para bajarse el repo (clonarlo):*
 1) Ir a la carpeta que queramos desde la terminal
 2) Ir a github y, desde el boton verde que dice "code", copiar la url 
 3) desde la terminal poner "git clone [copiar la url]"
