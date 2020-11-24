@@ -32,4 +32,5 @@ Cuando terminamos de trabajar, siempre pushear el avance:
 (si acá volvemos a poner git status vamos a ver esos archivos en verde)
 3) git commit -m "explicación corta de qué es lo que se hizo"
 4) git push
+-
 
