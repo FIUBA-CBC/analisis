@@ -55,8 +55,6 @@ i=t.(u)
 plot(u,i, color=:red, lw=2, lab="f", m=:circle, ms=2)
 end
 
-
-
 # ╔═╡ 3a3a7fec-2d96-11eb-3d74-35d60a54140c
 md"""
 Vuelvo a plotear
@@ -420,8 +418,186 @@ begin
 	w=collect(-2π:0.1:2π)
 	plot(w, cos.(z*w).*a,label="Coseno")
 	plot!(w, sin.(z*w).*a,label="Seno")
+	
 
 end
+
+# ╔═╡ 874d4204-2ebf-11eb-1c6b-ad22770483e0
+md" ### Acá deberia ser otro notebook
+El tema es que me quede sin letras para hacer las funciones y hay conflictos cuando
+las vuelvo usar asi que para no tener varios archivos lo que hice fue apagarlas con  #"
+
+# ╔═╡ 8e789286-2ebf-11eb-159e-13b4bf70d45a
+md"""
+### Traslaciones de la funcion 
+
+Supongamos que tenemos un c > 1 . Veremos como se puede modificar la funcion f(x)
+
+- `y = A f(x+b) + c` 
+
+"""
+
+# ╔═╡ 924d6ca6-2ebf-11eb-3763-afaed7e0f1a1
+#begin
+#	Aslider = @bind  A html"<input type=range min=-2 max=10>"
+#	bslider = @bind  b html"<input type=range min=-2 max=10>"
+#	cslider = @bind  c html"<input type=range min=-2 max=10>"
+#	md"""A:  $(Aslider)
+#	b:  $(bslider)
+#	c:  $(cslider)
+#"""
+#end
+
+# ╔═╡ a95c21c6-2ebf-11eb-2942-09f06d224a08
+#md"El valor de `A` es:  $(A)
+#El valor de `b` es:  $(b)
+#El valor de `c` es:  $(c)"
+
+# ╔═╡ 902ed70c-2ebf-11eb-14c0-4d049071e1ef
+
+
+# ╔═╡ ac3266b2-2ebf-11eb-0dfc-9df94a896157
+#begin
+#x=collect(-10:0.1:20)
+#plot(x,((((x).+b).^2)*A).+c,label="f(x)²")
+#xlims!(-10,10)
+#ylims!(-10,10)
+#end
+
+# ╔═╡ afeb4bf4-2ebf-11eb-14d9-2797a15c8750
+md" #### Un ejemplo de funcion cuatratica 
+
+Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `450m` de altura y la altura de la misma `h` es sensada en intervalos de `1 segundo` . Como se sultado observan los datos representados en la siguiente tabla
+
+| Tiempo | Metros |
+|--------|--------|
+| 0      | 450    |
+| 1      | 445    |
+| 2      | 431    |
+| 3      | 408    |
+| 4      | 375    |
+| 5      | 332    |
+| 6      | 279    |
+| 7      | 216    |
+| 8      | 143    |
+| 9      | 61     |
+
+Vamos a tratar de encontrar el mejor modelo para tratar de precedir el tiempo en el cual la pelota tocara el suelo"
+
+# ╔═╡ b446075a-2ebf-11eb-0df6-85d83fd28163
+md" 
+Primero vamos a graficar los puntos obtenidos"
+
+# ╔═╡ b720c172-2ebf-11eb-0547-5d57a6e6f7e1
+#begin
+#	t=collect(0:1:9)
+#	h=[450,445,431,408,375,332,279,216,143,61]
+#	scatter(t,h,label="Altura")
+#	plot!(t,h,label="curva interpolada")
+
+#end
+
+# ╔═╡ ba2862f8-2ebf-11eb-08d0-6122d70e5704
+md"
+Se puede inferir que tiene forma de media parabola. Utilizando la técnica de [`cuadrados minimos`](https://es.wikipedia.org/wiki/M%C3%ADnimos_cuadrados) (no te preocupes esto lo vas a ver más adelante, por ahora solo nos interesa lo que nos devuelve) podemos obtener la siguiente forma cuadratica del modelo 
+`h = 449,36 + 0.96 t -4.90t²`
+Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.90t²+0.96t+449,39`. Utizando la formula cuadratica $-b \pm \sqrt{b^2 - 4ac} \over 2a$ vamos a obtener que el tiempo aproximado, es decir la raiz es `t~9.96`
+"
+
+# ╔═╡ 9f706d16-2ebf-11eb-35ec-092df17986d7
+md" #### Funciones logaritmicas
+es una coleccion de funciones cuyas ecuaciones estan relacionadas "
+
+# ╔═╡ 8f6c3ad4-3032-11eb-14cf-417be136e1e7
+#begin
+#u=collect(0.01:0.01:10)
+#plot(u,log.(10,u),label="log 10 x")
+#plot!(u,log.(3,u),label="log 3 x")
+#plot!(u,log.(5,u),label="log 5 x")
+#plot!(u,log.(2,u),label="log 2 x")
+#xlims!(0,5)
+#ylims!(-8,3.1)
+
+#end
+	
+
+# ╔═╡ 94485f88-3032-11eb-11ea-5fa742fd57d0
+md" ### El numero *e*
+(lo apago porque despues llamo igual a unas funciones y la variable)"
+
+# ╔═╡ 9f9017e2-2ebf-11eb-2ad7-ad4492f5e8d0
+#begin
+
+#f(x)= 2^x 
+#x = collect(-2:0.1:2)
+#y=f.(x)
+#g(x)= exp(x) 
+#y2=g.(x)
+#h(x)=3^x
+#y3=h.(x)
+#i(x)=exp(-x)	
+#y4=i.(x)
+#plot(x,y,lab="2^x")
+#plot!(x,y2,lab="exp(x)")
+#plot!(x,y3,lab="3^x")
+#plot!(x,y4,lab="exp(-x)")
+#end
+
+# ╔═╡ 9fa790a2-2ebf-11eb-004d-af25c428736b
+md" ### Inversas
+Quiero hacer un grafico piola pero si defino exp(x) con x<0 y log(x) tengo error porque no existe el logaritmo de numeros negativos, tengo que ver como hacer para que quede un grafico mas lindo"
+
+# ╔═╡ afeede4c-3032-11eb-01e5-3b2ed1efe056
+#begin
+
+#f(x)= exp(x) 
+#x = collect(0:0.1:5)
+#y=f.(x)
+#g(x)= log(x) 
+#y2=g.(x)
+#h(x)=x
+#y3=h.(x)
+
+#plot(x,y,lab="2^x")
+#plot!(x,y2,lab="exp(x)")
+#plot!(x,y3,lab="x")
+#xlims!(0,5)
+#ylims!(-3,8)
+
+#end
+
+# ╔═╡ b0fe3fee-3032-11eb-0ff1-27eb016aa605
+md" ### Funciones hiperbolicas "
+
+# ╔═╡ b602d310-3032-11eb-370d-cb8b90364b98
+#begin
+#f1(z)= sinh(z) 
+#z = collect(-5:0.1:5)
+#h1=f1.(z)
+#f11(z)= (exp(z) - exp(-z))/2	#Como se escribe seno hiperbolico con exponenciales
+#h11=f11.(z)
+#f2(z)= cosh(z) 
+#h2=f2.(z)
+#f22(z)= (exp(z) + exp(-z))/2	#Como se escribe coseno hiperbolico con exponenciales
+#h22=f22.(z)
+
+#f3(z)=tanh(z)
+#h3=f3.(z)	
+#f33(z)= (exp(z) - exp(-z))/(exp(z) + exp(-z))	#Como se escribe coseno hiperbolico con exponenciales
+#h33=f33.(z)
+
+	
+#plot(z,h1,lab="sinh")
+#plot!(z,h11,lab="exp(x)")
+#plot!(z,h2,lab="cosh(x)")
+#plot!(z,h3,lab="tanh(x)")
+#plot!(z,h3,lab="x")
+#xlims!(-5,5)	
+#ylims!(-5,5)	
+	
+	
+	
+#end
 
 # ╔═╡ Cell order:
 # ╠═2861d22e-2e4b-11eb-0dff-315e2defde09
@@ -434,7 +610,7 @@ end
 # ╟─3a3a7fec-2d96-11eb-3d74-35d60a54140c
 # ╟─1b4b829c-2d97-11eb-2b6e-4bb26c36fc75
 # ╠═51735a70-2dc2-11eb-2d52-95460a85b1ce
-# ╟─8658e3f6-2dcc-11eb-3208-7d9321d246ec
+# ╠═8658e3f6-2dcc-11eb-3208-7d9321d246ec
 # ╟─28efd220-2dd0-11eb-2369-790e6695662b
 # ╠═d31cb54a-2da0-11eb-2a48-3955ced0f035
 # ╟─f8a9f880-2dc7-11eb-025b-3d95c7d64866
@@ -474,3 +650,21 @@ end
 # ╟─b9a538f2-2e6c-11eb-1cd6-c90410483895
 # ╟─bc9800c8-2e6c-11eb-2758-73b1b2e5f991
 # ╠═54973ca6-2e6b-11eb-02f0-2de109392772
+# ╠═874d4204-2ebf-11eb-1c6b-ad22770483e0
+# ╠═8e789286-2ebf-11eb-159e-13b4bf70d45a
+# ╠═924d6ca6-2ebf-11eb-3763-afaed7e0f1a1
+# ╠═a95c21c6-2ebf-11eb-2942-09f06d224a08
+# ╠═902ed70c-2ebf-11eb-14c0-4d049071e1ef
+# ╠═ac3266b2-2ebf-11eb-0dfc-9df94a896157
+# ╠═afeb4bf4-2ebf-11eb-14d9-2797a15c8750
+# ╠═b446075a-2ebf-11eb-0df6-85d83fd28163
+# ╠═b720c172-2ebf-11eb-0547-5d57a6e6f7e1
+# ╠═ba2862f8-2ebf-11eb-08d0-6122d70e5704
+# ╠═9f706d16-2ebf-11eb-35ec-092df17986d7
+# ╠═8f6c3ad4-3032-11eb-14cf-417be136e1e7
+# ╠═94485f88-3032-11eb-11ea-5fa742fd57d0
+# ╠═9f9017e2-2ebf-11eb-2ad7-ad4492f5e8d0
+# ╠═9fa790a2-2ebf-11eb-004d-af25c428736b
+# ╠═afeede4c-3032-11eb-01e5-3b2ed1efe056
+# ╠═b0fe3fee-3032-11eb-0ff1-27eb016aa605
+# ╠═b602d310-3032-11eb-370d-cb8b90364b98
