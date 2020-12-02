@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.11
+# v0.12.12
 
 using Markdown
 using InteractiveUtils
@@ -15,6 +15,9 @@ end
 
 # ╔═╡ 2861d22e-2e4b-11eb-0dff-315e2defde09
 using Plots
+
+# ╔═╡ 5876811a-3442-11eb-11bb-a1903e28e7b6
+using PlutoUI
 
 # ╔═╡ 5d5814b6-2d8d-11eb-1b45-e906e2b2d677
 
@@ -599,6 +602,47 @@ md" ### Funciones hiperbolicas "
 	
 #end
 
+# ╔═╡ 66a1e1b2-3442-11eb-14d4-03d8719ce5f2
+md"
+### Numero e de otra forma
+Sabemos que `e` puede ser escrito de la siguiente manera
+
+$$e =  \lim n \to \infty  \left ( 1 + \frac{1}{n} \right )^{n}$$
+"
+
+# ╔═╡ 3ecd41ca-3444-11eb-366d-ad65342b9016
+md" *Elegi el numero de n para ver a que valor tiende `e`*"
+
+# ╔═╡ 67ac5600-3442-11eb-2378-c39f0058f3c4
+@bind x_different NumberField(1:200, default=1)
+
+# ╔═╡ 75930778-3442-11eb-0f7c-a70816159ef4
+begin
+e1 = zeros(x_different)
+n = collect(1:1:x_different)
+for i = 1:x_different
+    e1[i] = (1 + 1/n[i]) ^ n[i]
+end
+end
+
+# ╔═╡ 765d3d54-3442-11eb-0cc2-6df9e2d9f677
+scatter(n,e1,label="e")
+
+# ╔═╡ cf61f970-3443-11eb-3e5c-9b9ba267430a
+md" #### Lo que no logro es poder hacer algo para elegir que funcion utilizar y seleccionar el color con algo ineractivo
+"
+
+# ╔═╡ a243c036-3443-11eb-310b-c3fb35e9f476
+#md"""
+
+#`funcion = ` $(@bind f html"<select><option value=sin(x)>sin(x)</option><option value='cos(x)'>cos(x)</option></select>")
+#`color = ` $(@bind f html"<input type=color >")
+
+#"""
+
+# ╔═╡ c9393bb2-3443-11eb-0c37-055010041aaf
+#(f,color)
+
 # ╔═╡ Cell order:
 # ╠═2861d22e-2e4b-11eb-0dff-315e2defde09
 # ╟─5d5814b6-2d8d-11eb-1b45-e906e2b2d677
@@ -609,8 +653,8 @@ md" ### Funciones hiperbolicas "
 # ╠═62e9ace8-2d90-11eb-0031-5b47ba2e2859
 # ╟─3a3a7fec-2d96-11eb-3d74-35d60a54140c
 # ╟─1b4b829c-2d97-11eb-2b6e-4bb26c36fc75
-# ╠═51735a70-2dc2-11eb-2d52-95460a85b1ce
-# ╠═8658e3f6-2dcc-11eb-3208-7d9321d246ec
+# ╟─51735a70-2dc2-11eb-2d52-95460a85b1ce
+# ╟─8658e3f6-2dcc-11eb-3208-7d9321d246ec
 # ╟─28efd220-2dd0-11eb-2369-790e6695662b
 # ╠═d31cb54a-2da0-11eb-2a48-3955ced0f035
 # ╟─f8a9f880-2dc7-11eb-025b-3d95c7d64866
@@ -668,3 +712,12 @@ md" ### Funciones hiperbolicas "
 # ╠═afeede4c-3032-11eb-01e5-3b2ed1efe056
 # ╠═b0fe3fee-3032-11eb-0ff1-27eb016aa605
 # ╠═b602d310-3032-11eb-370d-cb8b90364b98
+# ╠═5876811a-3442-11eb-11bb-a1903e28e7b6
+# ╠═66a1e1b2-3442-11eb-14d4-03d8719ce5f2
+# ╠═3ecd41ca-3444-11eb-366d-ad65342b9016
+# ╠═67ac5600-3442-11eb-2378-c39f0058f3c4
+# ╠═75930778-3442-11eb-0f7c-a70816159ef4
+# ╠═765d3d54-3442-11eb-0cc2-6df9e2d9f677
+# ╠═cf61f970-3443-11eb-3e5c-9b9ba267430a
+# ╠═a243c036-3443-11eb-310b-c3fb35e9f476
+# ╠═c9393bb2-3443-11eb-0c37-055010041aaf
