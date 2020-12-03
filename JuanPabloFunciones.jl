@@ -643,6 +643,130 @@ md" #### Lo que no logro es poder hacer algo para elegir que funcion utilizar y 
 # ╔═╡ c9393bb2-3443-11eb-0c37-055010041aaf
 #(f,color)
 
+# ╔═╡ 2cb4fad0-34ff-11eb-0c36-a51ff219110b
+md" ### Secuencias buen fla "
+
+# ╔═╡ 7a9ec6b8-34ff-11eb-0b34-d5323cf46c76
+@bind x_different1 NumberField(1:200, default=1)
+
+# ╔═╡ 0a72ca2a-3501-11eb-1185-f5d4b7a3aa9b
+md" `n/n+1` "
+
+# ╔═╡ 3818b2a4-34ff-11eb-3f69-e5733ade0157
+begin
+
+
+lim1 = zeros(x_different1)
+n1 = collect(1:1:x_different1)
+for i = 1:x_different1
+    lim1[i] = n1[i] / (n1[i] + 1)
+end
+end
+
+# ╔═╡ 6b700080-34ff-11eb-1388-a5097a1a7681
+scatter(n1,lim1, label= "n/n+1")
+
+# ╔═╡ 0f6ec7f6-3501-11eb-3029-d30c99574e3d
+md"  **n / sqrt(10+n)**"
+
+# ╔═╡ 31c7c760-3501-11eb-0f17-6b2ade76d01c
+@bind x_different2 NumberField(1:200, default=1)
+
+# ╔═╡ 3c8a98da-3501-11eb-2d99-df518b6e1e8f
+begin
+lim2 = zeros(x_different2)
+n2 = collect(1:1:x_different2)
+for i = 1:x_different2
+    lim2[i] = n2[i] / sqrt(n2[i] + 10)
+end
+end
+
+# ╔═╡ ec8e7938-3501-11eb-2973-a30f9550f58c
+scatter(n2,lim2)
+
+# ╔═╡ a010d65e-3502-11eb-30e4-e5d1950d83bb
+md" **ln(n)/n**"
+
+# ╔═╡ b8e380e6-3502-11eb-04f8-ffa63181aa1e
+@bind x_different3 NumberField(1:200, default=1)
+
+# ╔═╡ a1790ab6-3502-11eb-0a2d-f1286dfbaa86
+begin
+
+lim3 = zeros(x_different3)
+n3 = collect(1:1:x_different3)
+for i = 1:x_different3
+    lim3[i] = log(n3[i])/n3[i]
+end
+
+scatter(n3,lim3)
+end
+
+# ╔═╡ 7ee8ae10-3503-11eb-1d4d-39904024c3b9
+md" **(-1)^n Esta es divergente**"
+
+# ╔═╡ 9dea9230-3503-11eb-39f1-2bd15d97e2c5
+@bind x_different4 NumberField(1:200, default=1)
+
+# ╔═╡ 9dc6a594-3503-11eb-016f-8321d3d0ac42
+#(-1)^n
+
+begin
+lim4= zeros(x_different4)
+n4 = collect(1:1:x_different4)
+for i = 1:x_different4
+    lim4[i] = (-1)^n4[i]
+end
+
+scatter(n4,lim4)
+end
+
+# ╔═╡ 9da8ae72-3503-11eb-17ca-6b423fc41ebf
+md" ### Series "
+
+# ╔═╡ ff341b8a-350e-11eb-1051-e506846f7a8d
+md"
+ **1 / n(n+1)
+an son los terminos y sn la suma de estos**"
+
+# ╔═╡ ff51b1c2-350e-11eb-1f95-a313b959b1f6
+@bind x_different5 NumberField(1:200, default=1)
+
+# ╔═╡ ff688cb2-350e-11eb-1938-0f018cc3ab58
+#completar cual era
+begin
+lim5 = zeros(x_different5)
+n5 = collect(1:1:x_different5)
+for i = 1:x_different5
+    lim5[i] = 1 / (n5[i]*(n5[i]+1))
+end
+sum5 = cumsum(lim5) # el truco esta acá , sumo acumulativamente
+scatter(n5,lim5,label="an")
+scatter!(n5,sum5,label="sn")
+end
+
+# ╔═╡ ff7d6830-350e-11eb-37ee-5b230b5164f8
+md" #### Por ultimo una serie armonica
+ **1/ n**"
+
+# ╔═╡ bfc768c0-350f-11eb-29cc-0361578ed005
+@bind x_different6 NumberField(1:200, default=1)
+
+# ╔═╡ bfe1cdbc-350f-11eb-300a-a1906bcec0f0
+begin
+	lim6= zeros(x_different6)
+n6 = collect(1:1:x_different6)
+for i = 1:x_different6
+    lim6[i] = 1 / n6[i]
+end
+sum6 = cumsum(lim6)
+scatter(n6,lim6,label="an")
+scatter!(n6,sum6,label="sn")
+end
+
+# ╔═╡ bffbf8f6-350f-11eb-21b5-83beba2702a4
+
+
 # ╔═╡ Cell order:
 # ╠═2861d22e-2e4b-11eb-0dff-315e2defde09
 # ╟─5d5814b6-2d8d-11eb-1b45-e906e2b2d677
@@ -714,10 +838,33 @@ md" #### Lo que no logro es poder hacer algo para elegir que funcion utilizar y 
 # ╠═b602d310-3032-11eb-370d-cb8b90364b98
 # ╠═5876811a-3442-11eb-11bb-a1903e28e7b6
 # ╠═66a1e1b2-3442-11eb-14d4-03d8719ce5f2
-# ╠═3ecd41ca-3444-11eb-366d-ad65342b9016
+# ╟─3ecd41ca-3444-11eb-366d-ad65342b9016
 # ╠═67ac5600-3442-11eb-2378-c39f0058f3c4
 # ╠═75930778-3442-11eb-0f7c-a70816159ef4
 # ╠═765d3d54-3442-11eb-0cc2-6df9e2d9f677
 # ╠═cf61f970-3443-11eb-3e5c-9b9ba267430a
 # ╠═a243c036-3443-11eb-310b-c3fb35e9f476
 # ╠═c9393bb2-3443-11eb-0c37-055010041aaf
+# ╠═2cb4fad0-34ff-11eb-0c36-a51ff219110b
+# ╠═7a9ec6b8-34ff-11eb-0b34-d5323cf46c76
+# ╠═0a72ca2a-3501-11eb-1185-f5d4b7a3aa9b
+# ╠═3818b2a4-34ff-11eb-3f69-e5733ade0157
+# ╠═6b700080-34ff-11eb-1388-a5097a1a7681
+# ╠═0f6ec7f6-3501-11eb-3029-d30c99574e3d
+# ╠═31c7c760-3501-11eb-0f17-6b2ade76d01c
+# ╠═3c8a98da-3501-11eb-2d99-df518b6e1e8f
+# ╠═ec8e7938-3501-11eb-2973-a30f9550f58c
+# ╠═a010d65e-3502-11eb-30e4-e5d1950d83bb
+# ╠═b8e380e6-3502-11eb-04f8-ffa63181aa1e
+# ╠═a1790ab6-3502-11eb-0a2d-f1286dfbaa86
+# ╠═7ee8ae10-3503-11eb-1d4d-39904024c3b9
+# ╠═9dea9230-3503-11eb-39f1-2bd15d97e2c5
+# ╠═9dc6a594-3503-11eb-016f-8321d3d0ac42
+# ╠═9da8ae72-3503-11eb-17ca-6b423fc41ebf
+# ╠═ff341b8a-350e-11eb-1051-e506846f7a8d
+# ╠═ff51b1c2-350e-11eb-1f95-a313b959b1f6
+# ╠═ff688cb2-350e-11eb-1938-0f018cc3ab58
+# ╠═ff7d6830-350e-11eb-37ee-5b230b5164f8
+# ╠═bfc768c0-350f-11eb-29cc-0361578ed005
+# ╠═bfe1cdbc-350f-11eb-300a-a1906bcec0f0
+# ╠═bffbf8f6-350f-11eb-21b5-83beba2702a4
