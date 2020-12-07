@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.14
+# v0.12.4
 
 using Markdown
 using InteractiveUtils
@@ -133,7 +133,7 @@ $$x(t) = v \cdot t + x_0$$
 $$x_0: \text{Posición inicial} (\text{Chascomus})$$ 
 Observemos que la posición inicial es una constante, al igual que la velocidad, para un recorrido determinado. Si yo elijo la posición y la velocidad, eso me determina todo el recorrido de la posición del auto en función del tiempo.
 
-Grafiquemos cómo llegan un auto que sale de buenos aires vs un auto que sale de Chascomús en $t=0$, ambos a $400 \frac{km}{h}$.
+Grafiquemos cómo llega un auto que sale de buenos aires vs un auto que sale de Chascomús ambos a $400 \frac{km}{h}$, saliendo en $t=0$.
 "
 
 # ╔═╡ 01f8039c-37f6-11eb-3cf1-0fb81e04cd85
@@ -141,30 +141,35 @@ begin
 x3 = collect(0:0.1:12) 
 plot(x3,x3.*100,lab="Salgo CABA",legend=:bottomright) 
 plot!(x3,x3.*100 .+120,lab="Salgo Chascomús")
-plot!([500], seriestype="hline", lab="Mar del Plata")
+plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 xlims!(0,6)
 ylims!(0,600)
 end
 
 # ╔═╡ 01d9c8c8-37f6-11eb-2d49-f7767d7422d1
 md"Refleccionemos un poco sobre este gráfico. ¿Cómo se relacionan entre sí ambas rectas?
-Ambas rectas tienen la misma pendiente, porque tienen la misma velocidad.
-Una está “más arriba” que la otra. ¿Qué tanto más arriba? Recordemos que el eje vertical es la posición. Si lo pensamos, el auto que sale de Buenos Aires sale del KM=0, mientras que el otro sale del KM=120. Esto significa que una recta estará exactamente 120KM arriba de la otra.
+
+- Ambas rectas tienen la misma pendiente, porque tienen la misma velocidad.
+- Una está “más arriba” que la otra. ¿Qué tanto más arriba? Recordemos que el eje vertical es la posición. Si lo pensamos, el auto que sale de Buenos Aires sale del $km=0$, mientras que el otro sale del $km=120$. Esto significa que una recta estará exactamente $120km$ arriba de la otra.
 Esto último lo podemos ver justamente en las ecuaciones:
 
-	-posicion_auto_buenos_aires(t) = 100kmh * t
+$x_{auto\ desde \ BsAs}(t) = 100 \frac{km}{h} \cdot t$
+$x_{auto\ desde \ Chascomus}(t) = 100 \frac{km}{h} \cdot t + 120 km$
 
-	-posicion_auto_chascomus(t) = 100kmh * t + 120km
+O sea:
 
-	-O sea, posicion_auto_buenos_aires(t) + 120km = posicion_auto_chascomus(t)
-¡Esto es interesante! Esta última ecuación nos dice que independientemente de cómo esté hecha una función, podemos armar otra sumándole un número y que eso nos dará otra función, pero más arriba en el gráfico. Vamos a generalizar esto:
+$x_{auto\ desde \ BsAs}(t)  + 120km = x_{auto\ desde \ Chascomus}(t)$
 
+¡Esto es interesante! Esta última ecuación nos dice que independientemente de cómo esté hecha una función, podemos armar otra sumándole un número y que eso nos dará otra función, pero más arriba en el gráfico. 
+
+Vamos a generalizar esto. En el siguiente gráfico incluimos un slider para empezar desde distintos lugares. Pueden moverlo para ver cómo sería salir desde más cerca o más lejos de la capital.
 "
 
 
 # ╔═╡ e340bc70-380e-11eb-2ea0-7d318e0b3b4f
 begin
-	xinicslider=  @bind xinic Slider(0:10:200; default=0, show_value=true)
+	xinicslider=  @bind xinic Slider(0:10:200; default=120, show_value=true)
 	md""" Salgo :  $(xinicslider) kilometros más adelante"""
 
 end
@@ -172,10 +177,12 @@ end
 # ╔═╡ e9b6d660-380d-11eb-168f-15b5a4da6e25
 begin 
 x4 = collect(0:0.1:8) 
-plot(x4,x4.*100,lab="Salgo CABA") 
+plot(x4,x4.*100,lab="Salgo CABA", legend=:bottomright) 
 plot!(x4,x4.*100 .+xinic,lab="Salgo $xinic Km más adelante") 
-
-ylims!(0,500)
+plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
+xlims!(0,6)
+ylims!(0,600)
 end
 
 # ╔═╡ 9f37e412-3817-11eb-3013-edf105cc933a
@@ -185,63 +192,73 @@ Aquí confirmamos esto que decíamos antes.
 
 ¿Y si quisiéramos ahora predecir en qué tiempo voy a llegar a Mar del Plata? Ahora también tenemos que tener en cuenta la posición inicial… Vamos a hacer el mismo procedimiento que antes: escribimos la ecuación de posición en función del tiempo y luego despejamos el tiempo para la posición que queremos.
 
-posicion(t) = v * t + posicion_inicial
+$x_{auto}(t) = v \cdot t + x_0$
 
-Reemplazamos con nuestros datos:
-posicion_mar_del_plata = v * t_mar_del_plata + posicion_chascomus
-(posicion_mar_del_plata - posicion_chascomus) / v = t_mar_del_plata
+Reemplazamos con nuestros datos y despejamos:
 
-Acá lo que vemos es que justamente la distancia recorrida entre chascomús y mar del plata (la resta de la izquierda), dependiendo de la velocidad, que es constante, llevará una cantidad de tiempo, que es la que calculamos
+$\text{Distancia a MDQ} = v \cdot \text{Tiempo hasta MDQ} + \text{Distancia hasta Chascomús}$
 
+$\frac{\text{Distancia a MDQ} - \text{Distancia hasta Chascomus}}{v} = \text{Tiempo hasta MDQ}$
+
+Acá lo que vimos es que el tiempo que nos tardó en llegar de Chascomús a Mar del Plata es la distancia recorrida (la resta de la izquierda, $x_{final} - x_0$) sobre la velocidad. En el ejemplo de Buenos Aires, la posición inicial era siempre $0$, entonces esta resta quedaba directamente la $x_{final}$.
 "
-
-# ╔═╡ cf08aadc-3817-11eb-11ed-8719bc3f7caa
-md" La nueva formula (por ahora llamemosla asi) tiene la forma de :
-
-`(x_MDQ - x_Chascomus) / velocidad = tiempo_MDQ`  o poniendolo en palabras, el tiempo que tardamos para llegar a Mar del Plata menos la distancia inicial(es decir Chascomus) sobre la velociadd es igual al tiempo para llegar a MDQ
-
-
-"
-
 
 # ╔═╡ 6310dea6-3819-11eb-1466-977f16bc1521
 md" #### Saliendo mas tarde "
 
 
 # ╔═╡ 6fc7d4ba-3819-11eb-3c75-43f0a52000da
-md" Pero ahora estamos saliendo en t=0. Las 12 de la noche podría ser un horario incómodo. Imaginemos que queremos salir a las 6 am para llegar a las 10 am, o sea en t = 6… ¿Cómo podemos expresar esto?
+md" Pero ahora estamos saliendo en $t=0$. Las 12 de la noche podría ser un horario incómodo. Imaginemos que queremos salir a las 6 am para llegar a las 10 am, o sea saldremos en $t = 6$… ¿Cómo podemos expresar esto en nuestras ecuaciones?
 
-Antes cuando salíamos de más adelante, teníamos que la recta se corría verticalmente en esa diferencia, ya que el eje vertical era la posición. Ahora lo que nos gustaría que la recta se “mueva” en el eje horizontal.
+Antes cuando salíamos desde Chascomús, teníamos que la recta se desplazaba verticalmente en esa diferencia de distancia, ya que el eje vertical era la posición. Ahora lo que nos gustaría que la recta se “mueva” en el eje horizontal, que es el tiempo, para expresar que salimos más tarde.
 
-El truquito en este caso es que antes sumábamos “afuera” la posición inicial, ya que sumábamos posición con posición. Si ahora queremos sumar 6 horas al tiempo tenemos que hacerlo en la parte del tiempo directamente. Antintuitivamente, para que la recta se corra a la derecha, tenemos que restar en lugar de sumar. En un ratito vemos por qué.
+El truquito en este caso es que antes sumábamos “afuera” la posición inicial, ya que sumábamos posición con posición. Si ahora que queremos sumar 6 horas al tiempo tenemos que hacerlo al tiempo directamente. Antintuitivamente, para que la recta se desplace a la derecha, tenemos que restar en lugar de sumar. En un ratito veremos por qué.
 
-posicion_saliendo_a_las_6(t) = posicion_saliendo_a_las_0(t - 6)
-posicion_saliendo_a_las_6(t) = 100kmh * (t - 6 horas) = 100kmh*t - 100kmh*6horas = 100kmh - 600km
+$x_{saliendo\ 6am}(t) = x_{saliendo\ 12am}(t-6h)$
+$x_{saliendo\ 6am}(t) = 100 \frac{km}{h} \cdot (t - 6h)$
+$x_{saliendo\ 6am}(t) = 100 \frac{km}{h} \cdot t - 600km$
 
 Vamos a graficarlo.
-
 "
-
-# ╔═╡ 87829e70-3819-11eb-0cff-11bf9a91b666
-
 
 # ╔═╡ 8766aeb8-3819-11eb-0842-2169cb334dff
 begin 
 x5 = collect(0:0.1:20) 
-plot(x5,x5.*100 .-600,lab="Salgo a las 6am") 
-plot!(x5,x5.*100,lab="Salgo a las 12 am") 
-
-ylims!(0,500)
+plot(x5,x5.*100,lab="Salgo a las 12 am", legend=:bottomright) 
+plot!(x5,x5.*100 .-600,lab="Salgo a las 6am") 
+plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
+xlims!(0,12)
+ylims!(0,600)
 end
 
 # ╔═╡ 38b55daa-381a-11eb-23e6-e1fca6acd232
 md" 
 
-Lo interesante es que:
+Lo interesante es que Efectivamente nuestra recta está \"más a la derecha\".
 
-	- Efectivamente nuestra recta está **más a la derecha**.
-	- Fijémosnos que la ecuación nos dio igual que la de antes, pero como si hubéramos empezado en -600km!! Esto si bien no es lo que escribimos, es equivalente. Es decir, salir 6 horas más tarde es lo mismo que salir 600 km más lejos
+Fijémosnos que la ecuación nos dio igual que la de antes, pero como si hubéramos empezado en $-600km$!! Esto si bien no es lo que escribimos, es equivalente. Es decir, salir $6$ horas más tarde es lo mismo que salir $600 km$ más lejos.
 
+Es más, pongamos a prueba esto último. Extendamos la recta del auto que sale a las 6am hasta las 12am. ¿A dónde habría estado el auto?
+
+"
+
+# ╔═╡ f98ab398-38c8-11eb-23e0-e7d53a94191f
+begin 
+x6 = collect(0:0.1:20) 
+plot(x6,x6.*100,lab="Salgo a las 12 am", legend=:bottomright) 
+plot!(x6,x6.*100 .-600,lab="Salgo a las 6am") 
+plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
+plot!([0], seriestype="hline", lab="Capital Federal", linestyle=:dot)
+plot!([-600], seriestype="hline", lab="Lugar ficticio a -600km", linestyle=:dot)
+xlims!(0,12)
+ylims!(-650,600)
+end
+
+# ╔═╡ 333bde28-38c9-11eb-1c13-43497cd11386
+md"
+Comprobamos entonces lo que sospechábamos: si salimos a las 6 am, es lo mismo que salir a las 12am, $600km$ más atrás. Ojo, esto solo vale si vamos a $100\frac{km}{h}$.
 "
 
 # ╔═╡ d7194f12-381a-11eb-3cca-fbd7dc8882ad
@@ -249,39 +266,45 @@ md"
 ###### Generalizando 
 
 Dejando de pensar un segundo en velocidades y posiciones, las funciones lineales pueden pensarse con la ecuación 
-`y= f(x) = m x + b`
+
+$y = f(x) = m x + b$
 
 donde:
-- x es la variable “de entrada”
-- y “la de salida”
-- m es la pendiente.
-- b es el valor inicial.
 
-En nuestro ejemplo teníamos
-- x era el tiempo.
-- y era la posición en función del tiempo.
-- m era la velocidad.
-- b era la posición inicial.
+-  $x$ es la variable “de entrada”.
+-  $y$ “la de salida”
+-  $m$ es la pendiente.
+-  $b$ es el valor inicial.
+
+En nuestro ejemplo teníamos:
+
+-  $x$ era el tiempo $t$.
+-  $y$ era la posición en función del tiempo, $x(t)$.
+-  $m$ era la velocidad $v$.
+-  $b$ era la posición inicial $x_0$.
 
 
-Luego vimos cómo calcular x teniendo una y. A esto lo llamamos la inversa de la función. Por ahora es tan sencillo como “despejar” x. Luego se hará más complicado con funciones que no sean lineales.
+Luego vimos cómo calcular la entrada $x$ conociendo una salida $y$ (\"cuánto tiempo tardamos en llegar a mar del plata\"). A esto lo llamamos la _inversa_ de la función. Para funciones lineales, calcular la inversa es tan sencillo como “despejar” $x$. Más adelante, cuando veamos otras funciones, el cálculo se hará más complicado.
 
-y(x) = m * x + b
-x(y) = (y - b) / m = y/m - b/m
+$y(x) = m \cdot x + b$
+$x(y) = \frac{(y - b)}{m} = \frac{y}{m} - \frac{b}{m}$
 
-Algo a remarcar, es que la función inversa de una lineal es otra lineal donde y es la variable de entrada. Si lo presentamos cómo x = m’y + b’... cuáles son nuestras nuevas pendientes? Basta ver la ecuación anterior:
+Algo a remarcar, es que la función inversa de una lineal es otra lineal donde $y$ es la variable de entrada. Si lo presentamos como $x(y) = m’y + b’$... ¿Cuáles son nuestras nuevas pendientes y valores iniciales? Basta ver la ecuación anterior:
 
-m’ = 1/m
+$m’ = \frac{1}{m}$
 
-b’ = b/m
+$b’ = \frac{b}{m}$
 
-Esto tiene sentido. Cuanto mayor haya sido la pendiente, menor será la de la inversa. Si nuestra velocidad a mar del plata era muy alta, el tiempo que nos tardará recorrer una distancia será más chico.
-
+Esto tiene sentido. Cuanto mayor haya sido la pendiente, menor será la de la inversa. Si nuestra velocidad a Mar del Plata era muy alta, el tiempo que nos tardará recorrer una distancia será más chico.
 
 "
 
 # ╔═╡ d691d366-381a-11eb-2204-6363ae55ff34
+md"
+#### Cosas que podríamos agregar:
 
+Podríamos agregar dos gráficos, uno al lado del otro, uno con y en función de x y otro con x en funcion de y, con un slider que varíe m para ver cómo la pendiente de uno se agranda cuando la del otro se achica.
+"
 
 # ╔═╡ af631940-3756-11eb-0744-59341550b719
 md"### Ejemplo 2
@@ -644,15 +667,15 @@ end
 # ╟─01d9c8c8-37f6-11eb-2d49-f7767d7422d1
 # ╟─e340bc70-380e-11eb-2ea0-7d318e0b3b4f
 # ╠═e9b6d660-380d-11eb-168f-15b5a4da6e25
-# ╠═9f37e412-3817-11eb-3013-edf105cc933a
-# ╠═cf08aadc-3817-11eb-11ed-8719bc3f7caa
-# ╠═6310dea6-3819-11eb-1466-977f16bc1521
-# ╠═6fc7d4ba-3819-11eb-3c75-43f0a52000da
-# ╠═87829e70-3819-11eb-0cff-11bf9a91b666
+# ╟─9f37e412-3817-11eb-3013-edf105cc933a
+# ╟─6310dea6-3819-11eb-1466-977f16bc1521
+# ╟─6fc7d4ba-3819-11eb-3c75-43f0a52000da
 # ╠═8766aeb8-3819-11eb-0842-2169cb334dff
-# ╠═38b55daa-381a-11eb-23e6-e1fca6acd232
+# ╟─38b55daa-381a-11eb-23e6-e1fca6acd232
+# ╠═f98ab398-38c8-11eb-23e0-e7d53a94191f
+# ╠═333bde28-38c9-11eb-1c13-43497cd11386
 # ╟─d7194f12-381a-11eb-3cca-fbd7dc8882ad
-# ╠═d691d366-381a-11eb-2204-6363ae55ff34
+# ╟─d691d366-381a-11eb-2204-6363ae55ff34
 # ╠═af631940-3756-11eb-0744-59341550b719
 # ╠═eaf5a3d2-37e8-11eb-3884-d7bef46081b1
 # ╠═ea967346-37e8-11eb-3708-f7f5c68e008c
