@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.12
+# v0.12.14
 
 using Markdown
 using InteractiveUtils
@@ -15,8 +15,6 @@ end
 
 # ╔═╡ a3658046-3725-11eb-1bb6-e981ac1de371
 using Plots
-
-
 
 # ╔═╡ 80448600-3763-11eb-0426-071d4c5c2581
 using PlutoUI
@@ -39,8 +37,8 @@ Resource(snake_math)
 md"""
 ### Funcion lineal 
 
-Cuando decimos que una funcion es `y` es una funcion lineal de `x`, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma `pendiente  (m)` - `ordenada(b)` al origen para describir la funcion:
-`y= f(x) = m x + b`
+Cuando decimos que una funcion es $y$ es una funcion lineal de $x$, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma `pendiente  (m)` - `ordenada(b)` al origen para describir la funcion:
+$y = f(x) = m \cdot x + b$
 
 Una de las caracteristicas de las funcione slineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal `f(x) = 3 x -2` , se puede ver que a medida que `x` aumenta en `0,1` , el valor de `y` lo hace en `0,3` , entonces `f(x)` aumenta su valor tres veces mas rapido que `x`. Esto significa que la pendiente de la recta puede ser visto como la tasa de crecimiento dA characteristic feature of linear functions is that they change at a constant ratee `y` respecto a `x`
 """
@@ -60,7 +58,7 @@ md" ### Buenos Aires - Mar del Plata"
 md"
 Veamos un ejemplo. Buenos Aires está aproximadamente a 400 kilómetros de Mar del Plata. Si vamos a 100km/h llegaremos en 4 horas, mientras que si vamos a 50km/h llegaremos en 8. ¿Cómo podemos escribir esta relación?
 
-Si llamamos v a la velocidad y t el tiempo que llevamos de viaje, podemos ver que el camino recorrido será `v*t (100 km/h * 4 h = 400 km).`
+Si llamamos v a la velocidad y t el tiempo que llevamos de viaje, podemos ver que el camino recorrido será: \\[ v \cdot t = (100 \frac{km}{h} \cdot 4 h) = 400 km \\]
 
 Vamos a graficar el recorrido para los dos ejemplos de los que charlamos
 "
@@ -77,14 +75,17 @@ end
 
 # ╔═╡ a54b80a2-37ef-11eb-1561-ff2eb53d96ff
 md"Podemos ver que:
-El recorrido se ve como una recta, porque la velocidad es constante: no importa en qué momento t0 del recorrido me pare, sé que en t0 + delta t habré recorrido v*delta_t.
-La velocidad determina qué tan “empinada” es la recta. Por eso, esta constante de la ecuación se llama “pendiente” y es la que relaciona la posición con el tiempo.
+
+- El recorrido se ve como una recta, porque la velocidad es constante: no importa en qué momento $t_0$ del recorrido me pare, sé que en $t_0 + \Delta t$ habré recorrido $v \cdot \Delta t.$
+
+- La velocidad determina qué tan “empinada” es la recta. Por eso, esta constante de la ecuación se llama “pendiente” y es la que relaciona la posición con el tiempo.
 
 En el ejemplo anterior teníamos dos ecuaciones, una por cada recorrido:
 
-posicion_auto_rapido(t) = v_auto_rapido * t = 100kmh * t
+$x_{auto \ rapido} = v_1 \cdot t = 100 \frac{km}{h} \cdot t$
+$x_{auto \ lento} = v_2 \cdot t = 50 \frac{km}{h} \cdot t$
 
-posicion_auto_lento(t) = v_auto_lento * t = 50kmh * t
+
 
 En el siguiente gráfico podemos observar que si cambiamos la velocidad, la pendiente de la recta cambia"
 
@@ -100,18 +101,20 @@ end
 begin 
 x2 = collect(0:0.1:13) 
 plot(x2,x2.*v,lab="$v km/h") 
+xlabel!("Tiempo [h]")
+ylabel!("Distancia [km]")
 ylims!(0,500)
+xlims!(0,12)
 end
 
 # ╔═╡ 1c5b9714-37f2-11eb-2aee-c12c5b3378b6
 md"
 Dada la velocidad de un auto… podemos predecir cuándo llega a Mar del Plata? Podemos!
 
-[Ecuaciones en latex]
-posicion(t) = v * t 
-distancia_a_mar_del_plata = v * tiempo_hasta_mar_del_plata
-400 km = v * tiempo_hasta_mar_del_plata
-tiempo_hasta_mar_del_plata = v / 400km
+$$x(t) = v \cdot t$$
+$$\text{Distancia a MDQ} = v \cdot \text{Tiempo de viaje}$$
+$$400 km = v \cdot \text{Tiempo de viaje}$$
+$$\text{Tiempo de viaje} = v / 400km$$
 "
 
 # ╔═╡ 1bb527c8-37f2-11eb-392d-91cd73e93975
@@ -125,20 +128,22 @@ Pero esto es poco realista. No todos los autos salen de la capital. Comparemos c
 
 ¿Cómo cambia la ecuación si agregamos una posición inicial?
 
-posicion(t) = v * t + posicion_inicial
+$$x(t) = v \cdot t + x_0$$
 
+$$x_0: \text{Posición inicial} (\text{Chascomus})$$ 
 Observemos que la posición inicial es una constante, al igual que la velocidad, para un recorrido determinado. Si yo elijo la posición y la velocidad, eso me determina todo el recorrido de la posición del auto en función del tiempo.
 
-Grafiquemos cómo llegan un auto que sale de buenos aires vs un auto que sale de Chascomús en t=0, ambos a 400kmh.
+Grafiquemos cómo llegan un auto que sale de buenos aires vs un auto que sale de Chascomús en $t=0$, ambos a $400 \frac{km}{h}$.
 "
 
 # ╔═╡ 01f8039c-37f6-11eb-3cf1-0fb81e04cd85
 begin 
 x3 = collect(0:0.1:12) 
-plot(x3,x3.*100,lab="Salgo CABA") 
-plot!(x3,x3.*100 .+120,lab="Salgo Chascomús") 
-
-ylims!(0,500)
+plot(x3,x3.*100,lab="Salgo CABA",legend=:bottomright) 
+plot!(x3,x3.*100 .+120,lab="Salgo Chascomús")
+plot!([500], seriestype="hline", lab="Mar del Plata")
+xlims!(0,6)
+ylims!(0,600)
 end
 
 # ╔═╡ 01d9c8c8-37f6-11eb-2d49-f7767d7422d1
@@ -624,13 +629,13 @@ end
 # ╟─a88df786-376d-11eb-30bf-d36644f2462d
 # ╟─6783a4fc-376d-11eb-32c9-c16376782b06
 # ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
-# ╟─b02439b8-3756-11eb-08fc-a1ab31ae4b9e
+# ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 # ╠═afcf8e22-3756-11eb-34ea-5376536fb482
 # ╟─0bbab030-37e9-11eb-2d59-750dcc1389ed
-# ╠═669fff32-37e9-11eb-0a8f-b9965e7fc876
+# ╟─669fff32-37e9-11eb-0a8f-b9965e7fc876
 # ╠═668188c0-37e9-11eb-2b79-21a9ad8c8045
-# ╟─a54b80a2-37ef-11eb-1561-ff2eb53d96ff
-# ╠═b9f68ee2-37f0-11eb-32b9-f5f8414a003f
+# ╠═a54b80a2-37ef-11eb-1561-ff2eb53d96ff
+# ╟─b9f68ee2-37f0-11eb-32b9-f5f8414a003f
 # ╠═a59a24ae-37f0-11eb-27a7-4168be79ae76
 # ╟─1c5b9714-37f2-11eb-2aee-c12c5b3378b6
 # ╟─1bb527c8-37f2-11eb-392d-91cd73e93975
