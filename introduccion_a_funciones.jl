@@ -246,7 +246,8 @@ Graficando directamente como una recta, lo veremos así:
 
 # ╔═╡ 683ac160-39a6-11eb-1038-d9520464f302
 begin
-    plot(puntos_x, y(puntos_x), lab="y(x) = 2x", color=:red)
+	x_recta = collect(-5:0.01:5)
+    plot(x_recta, y(x_recta), lab="y(x) = 2x", color=:red)
     plot!([0], seriestype="hline", lab="",color=:black)
     plot!([0], seriestype="vline", lab="",color=:black)
 	xlabel!("Eje x")
