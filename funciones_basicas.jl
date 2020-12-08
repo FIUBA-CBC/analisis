@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.4
+# v0.12.12
 
 using Markdown
 using InteractiveUtils
@@ -37,18 +37,61 @@ Resource(snake_math)
 md"""
 ### Funcion lineal 
 
-Cuando decimos que una funcion es $y$ es una funcion lineal de $x$, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma `pendiente  (m)` - `ordenada(b)` al origen para describir la funcion:
+Cuando decimos que una funcion  $y$ es una funcion lineal de $x$, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma pendiente  $m$ - ordenada  al origen $b$ para describir la funcion:
 $y = f(x) = m \cdot x + b$
 
-Una de las caracteristicas de las funcione slineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal `f(x) = 3 x -2` , se puede ver que a medida que `x` aumenta en `0,1` , el valor de `y` lo hace en `0,3` , entonces `f(x)` aumenta su valor tres veces mas rapido que `x`. Esto significa que la pendiente de la recta puede ser visto como la tasa de crecimiento dA characteristic feature of linear functions is that they change at a constant ratee `y` respecto a `x`
+Una de las caracteristicas de las funciones lineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal $f(x) = 3 x -2$ , se puede ver que a medida que $x$ aumenta en $1$ , el valor de $y$ lo hace en $3$ , entonces $f(x)$ aumenta su valor tres veces mas rapido que $x$. Si hacemos una tabla con los resultados para un $x$ que aumenta de $1$ en 1 hasta 10 y otra con u $x$ que varia en $3$ vamos a tener lo siguiente
+
+
+| $x$  | $f(x) = 3  x - 2 $|
+|----|------------------|
+| 0  | -2             |
+| 1  | 1             |
+| 2  | 4              |
+| 3  | 7              |
+| 4  | 10              |
+| 5  | 13              |
+| 6  | 16              |
+| 7  | 19              |
+| 8  | 22              |
+| 9  | 25              |
+| 10 | 28               |
+
+
+
+| $x$  | $f(x) = 3 x - 2$ |
+|----|------------------|
+| 0  | -2              |
+| 3  | 7              |
+| 6  | 16             |
+| 9  | 25              |
+| 12  | 34              |
+| 15  | 43              |
+
+
+
 """
+
+# ╔═╡ a471660e-398b-11eb-0424-35634d66157a
+begin
+	
+	
+xx=collect(0:1:10)
+ff = (xx,xx.*3 .-2)
+xx1=collect(0:3:15)
+ff1 = (xx1,xx1.*3 .-2)		
+	
+end;
+
 
 # ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
 begin
 f1(x) = 3x - 2
-plot(f1, -0.1, 2,m=:circle)
-xlims!(0,2)
-ylims!(-1.1,1.1)
+scatter(xx,xx.*3 .-2, label= "Tabla 1")
+scatter!(xx1,xx1.*3 .-2, label = "Tabla 2")
+plot!(xx1,xx1.*3 .-2,label="f(x)", legend=:topleft)
+xlims!(-0.1,17)
+ylims!(-4,35)
 end
 
 # ╔═╡ 0bbab030-37e9-11eb-2d59-750dcc1389ed
@@ -93,7 +136,7 @@ En el siguiente gráfico podemos observar que si cambiamos la velocidad, la pend
 
 # ╔═╡ b9f68ee2-37f0-11eb-32b9-f5f8414a003f
 begin
-	vslider=  @bind v Slider(0:50:200; default=10, show_value=true)
+	vslider=  @bind v Slider(0:10:200; default=10, show_value=true)
 	md""" Velocidad: v $(vslider)"""
 
 end
@@ -337,105 +380,86 @@ Podemos ver que en los valores de m más altos el gráfico de la inversa tiene u
 # ╔═╡ af631940-3756-11eb-0744-59341550b719
 md"### Ejemplo 2
 
-A medida que aire seco sube, se expande y enfria. Si la temperatura en el nivel del suelo es de `20°C` y la temperatura a 1km es de `10°C`, ¿Cúal será la temperatura (en °C) en funcion de la altura `h` (en kilometros)? 
+A medida que aire seco sube, se expande y enfria. Si la temperatura en el nivel del suelo es de $20°C$ y la temperatura a $1km$ es de $10°C$, ¿Cúal será la temperatura (en $°C$) en funcion de la altura $h$ (en kilometros)? 
 asumir que un modelo lineal es apropiado
 
 ------
 
-Como asumimos un modelo linal podemos asumir que la temperatura viene dada por la ecuacion `T(h) = mh + b` . Como sabemos que la temperatura al nivel del suelo es de 20°C podemos escribir `20= m . 0 + b`, de donde obtenemos que b = 20, es decir que 20 es la ordenada al origen.
-Además sabemos que a 1km la temperatura es de 10°C , que en terminos de la ecuacion implica 10 = m . 1 + 20, por lo que la pendiente resulta `m = 10 -20 = -1`
-Finalmente podemos escribir que `T=-10h +20` es laa funcion que describe la temperatura del aire en funcion de la altura
+Como asumimos un modelo linal podemos asumir que la temperatura viene dada por la ecuacion $T(h) = m \cdot h + b$ . Como sabemos que la temperatura al nivel del suelo es de 20°C podemos escribir $20= m \cdot 0 + b$, de donde obtenemos que $b = 20$, es decir que $20$ es la ordenada al origen.
+Además sabemos que a $1km$ la temperatura es de $10°C$ , que en terminos de la ecuacion implica $10 = m \cdot 1 + 20$, por lo que la pendiente resulta $m = 10 -20 = -1$
+Finalmente podemos escribir que $T=-10\cdot h +20$ es laa funcion que describe la temperatura del aire en funcion de la altura
 
 Graficando tenemos
 "
 
-# ╔═╡ eaf5a3d2-37e8-11eb-3884-d7bef46081b1
-
-
 # ╔═╡ ea967346-37e8-11eb-3708-f7f5c68e008c
+begin 
+h11 = collect(0:0.1:7)
+plot(h11,h11.*-10 .+20,lab="T=-10h+20")
+xlims!(0,5)
+ylims!(-30,30)
+xlabel!("Altura [km]")
+ylabel!("Tempeatura [°C]")
+title!("Temperatura del aire")
 
+	
+end
 
 # ╔═╡ afb7ef92-3756-11eb-0db6-6f726d587a4e
-md" Veamos que pasa si cambiamos la pendiente y la ordenada al origen"
+md" #### Acá vas a poder ver como se modifica una funcion lineal al cambiarle los parametros"
 
 
-# ╔═╡ af9a0036-3756-11eb-1581-f7f90b2744a4
-begin
-	mslider=  @bind m Slider(-100:100; default=10, show_value=true)
-	bslider = @bind b Slider(-10:10; default=0, show_value=true)
-	md"""Pendiente: m $(mslider)
-	
-	Termino independiente: b $(bslider)"""
-end
+# ╔═╡ 69df30e4-3999-11eb-3783-598673b8874c
+md"
+Deslizá para modificar la pendiente y el termino independiente y ver como cambia una funcion genérica
 
-# ╔═╡ e915fed6-37e8-11eb-33b1-bfeeb67d9efc
-
-
-# ╔═╡ af7c90d2-3756-11eb-1e04-d7f1dbd0fa45
-begin
-f2(x) =m*x+b
-plot(f2,color=:blue,m=:blue)
-xlims!(-3,3)
-ylims!(-10,10)
-end
-
-# ╔═╡ af2d39ec-3756-11eb-29ba-73c6a59df0c9
-md" ## Rectas  paralelas y  ortogonales 
-supongamos que tenemos una recta de la forma , 
-`y= f(x) = m x + b`
-
-Veamos que pasa si tenemos las funciones: 
-`y1= 2 x + -2` ; `y2= 4 x + -2` ; `y3= -1/2 x + -2`
+$y = f(x) = m x + b$
 
 
 "
-#No se que pasa que no se ven perpendiculares
 
-# ╔═╡ af1139ae-3756-11eb-1013-9738a6a3e83d
+# ╔═╡ af9a0036-3756-11eb-1581-f7f90b2744a4
 begin
-x0 = collect(-10:0.1:10)
+	mslider=  @bind m Slider(-10:1:10; default=1, show_value=true)
+	bslider = @bind b Slider(-10:0.5:10; default=0, show_value=true)
+	md"""
 	
-plot(x0, x0.*2 .-2) 
-plot!(x0, x0.*2 .+2)
-plot!(x0, x0.*(-1/2))
-xlims!(-2.5,2.5)
-ylims!(-2.5,2.5)
-
+	Pendiente: $m$ $(mslider)
+	
+	Termino independiente: $b$ $(bslider)"""
 end
 
-# ╔═╡ aef666ce-3756-11eb-0c74-554cb9d31bae
-md"""
-### Traslaciones de la funcion 
-
-Supongamos que tenemos las constantes A, b y c  . Veremos como se puede modificar la funcion f(x)=x
-
-- `y = A f(x+b) + c` 
-
-"""
-
-# ╔═╡ aedb7472-3756-11eb-1b58-0fc5a700fee0
+# ╔═╡ af7c90d2-3756-11eb-1e04-d7f1dbd0fa45
 begin
-	Aslider = @bind  A Slider(-10:10; default=0, show_value=true)
-	b1slider = @bind  b1 Slider(-10:10; default=0, show_value=true)
-	cslider = @bind  c Slider(-10:10; default=0, show_value=true)
-	md"""A:  $(Aslider)
-	
-	b:  $(b1slider)
-	
-	c:  $(cslider)
-	"""
-	
-end
+#x = collect(-10:0.1:10) 
 
-# ╔═╡ aebe3266-3756-11eb-32a4-17ff01f60908
-begin
-plot(x0,((((x0).+b1))*A).+c,label="f(x)")
-xlims!(-10,10)
+f2(x) =m*x+b
+plot(f2,color=:blue)
+xlims!(-3,3)
 ylims!(-10,10)
+xlabel!("x")
+ylabel!("y")
+plot!([0], seriestype="hline", lab="",color=:black, linestyle=:dot)
+plot!([0], seriestype="vline", lab="",color=:black, linestyle=:dot)
+title!(" m: $m  b: $b")
+
+	
 end
 
 # ╔═╡ efbac940-3768-11eb-31ed-55e1dc275376
 md" ### Funcion cuadrática"
+
+# ╔═╡ b684a1ec-399c-11eb-1c84-e9ebef72563b
+md"
+Las funciones cuadráticas son de la forma
+
+$f(x) = ax² + bx + c$
+
+con $a,b,c, ∈ \mathbb{R}$ fijos y $a\neq0$
+
+
+" 
+
 
 # ╔═╡ aea292ce-3756-11eb-1dfd-1fd920be6ecf
 md" #### Un ejemplo de funcion cuatratica 
@@ -477,200 +501,7 @@ Se puede inferir que tiene forma de media parabola. Utilizando la técnica de [`
 Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.90t²+0.96t+449,39`. Utizando la formula cuadratica $-b \pm \sqrt{b^2 - 4ac} \over 2a$ vamos a obtener que el tiempo aproximado, es decir la raiz es `t~9.96`
 "
 
-# ╔═╡ 7e68db0c-381b-11eb-3028-ef015cf632bf
-
-
-# ╔═╡ 7e4bdd54-381b-11eb-32f8-d36c3b9c15a5
-
-
-# ╔═╡ 7e30db44-381b-11eb-3e86-3bf955568345
-
-
-# ╔═╡ 22f7bc0e-376a-11eb-39c6-9980c3c50e22
-md" 
-### Funciones trigonometrica
-"
-
-# ╔═╡ d6d1a830-37f5-11eb-229f-65f8c08a8f62
-begin
-	aslider = @bind a Slider(-10:0.5:10; default=1, show_value=true)
-	zslider = @bind z Slider(-10:10; default=1, show_value=true)
-	Φslider = @bind Φ Slider(-5:10; default=0 , show_value=true)
-	md"""θ0 Amplitud : $(aslider)
-
-	Periodo: T $(zslider)
-	
-	Desfasaje: Φ $(Φslider) """
-
-end
-
-# ╔═╡ d6b126fa-37f5-11eb-3d79-4913a173eb30
-begin
-	
-w=collect(-2π:0.01:2π)
-tr1 = plot(w, cos.(((2π/z)*w) .+Φ).*a,label="Coseno", colour=:red)
-tr2 = plot(w, sin.(((2π/z)*w ).+Φ).*a,label="Seno", colour=:blue)
-	
-plot(tr1,tr2 , label=["" "" ], title=["coseno(x)" "seno(x)"],layout=(2,1)) 	
-ylims!(-3,3)
-
-end
-
-# ╔═╡ d6812770-37f5-11eb-36ad-b1ae4acb4338
-
-
-# ╔═╡ d65ee4ee-37f5-11eb-2c9d-4b309b276bd8
-md" #### Funciones logaritmicas
-"
-
-# ╔═╡ d639c952-37f5-11eb-08d9-a53068c806c6
-begin
-u=collect(0.01:0.01:10)
-plot(u,log.(10,u),label="log 10 x")
-plot!(u,log.(3,u),label="log 3 x")
-plot!(u,log.(5,u),label="log 5 x")
-plot!(u,log.(2,u),label="log 2 x")
-xlims!(0,5)
-ylims!(-8,3.1)
-
-end
-
-# ╔═╡ d61e2bf2-37f5-11eb-0239-3380f1ed1093
-md" ### El numero *e* "
-
-# ╔═╡ d60134c0-37f5-11eb-1306-799eef7788fe
-begin
-f10(x10)= 2^x10 
-x10 = collect(-2:0.1:2)
-y10=f10.(x10)
-g(x10)= exp(x10) 
-y11=g.(x10)
-h(x10)=3^x10
-y12=h.(x10)
-i(x10)=exp(-x10)	
-y13=i.(x10)
-plot(x10,y10,lab="2^x")
-plot!(x10,y11,lab="exp(x)")
-plot!(x10,y12,lab="3^x")
-plot!(x10,y13,lab="exp(-x)")
-end
-
-# ╔═╡ d5e60bf2-37f5-11eb-2a46-fb5f663318ab
-md" ### Inversas
-Quiero hacer un grafico piola pero si defino exp(x) con x<0 y log(x) tengo error porque no existe el logaritmo de numeros negativos, tengo que ver como hacer para que quede un grafico mas lindo"
-
-# ╔═╡ d5c55b26-37f5-11eb-2b24-d59b5a5d6b87
-begin
-
-j(u3)= exp(u3) 
-u3 = collect(0:0.1:5)
-y21=j.(u3)
-k(u3)= log(u3) 
-y22=k.(u3)
-l(u3)=u3
-y23=l.(u3)
-
-plot(u3,y21,lab="exp(x)")
-plot!(u3,y22,lab="log (x)")
-plot!(u3,y23,lab="x")
-xlims!(0,5)
-ylims!(-3,8)
-
-end
-
-# ╔═╡ 4fca0274-3822-11eb-2042-99502890fd5a
-md" ### Funciones hiperbolicas "
-
-# ╔═╡ 4fc2dcf8-3822-11eb-0086-1701c4ee03d0
-begin
-c1(z1)= sinh(z1) 
-z1 = collect(-5:0.01:5)
-v1=c1.(z1)
-#f11(z1)= (exp(z1) - exp(-z1))/2	#Como se escribe seno hiperbolico con exponenciales
-#h11=f11.(z1)
-c2(z1)= cosh(z1) 
-v2=c2.(z1)
-#f22(z1)= (exp(z1) + exp(-z1))/2	#Como se escribe coseno hiperbolico con exponenciales
-#h22=f22.(z1)
-
-c3(z1)=tanh(z1)
-v3=c3.(z1)	
-#f33(z1)= (exp(z1) - exp(-z1))/(exp(z1) + exp(-z1))	#Como se escribe coseno hiperbolico con exponenciales
-#h33=f33.(z)
-
-	
-plot(z1,c1,lab="sinh")
-#plot!(z1,h11,lab="exp(x)")
-plot!(z1,c2,lab="cosh(x)")
-plot!(z1,c3,lab="tanh(x)")
-#plot!(z1,h3,lab="x")
-#xlims!(-5,5)	
-ylims!(-5,5)	
-	
-	
-	
-end
-
-# ╔═╡ 4f80e828-3822-11eb-3993-3f7b71c75099
-
-
 # ╔═╡ 4f55c706-3822-11eb-0f7e-4d682f126069
-
-
-# ╔═╡ 4f384f30-3822-11eb-3a5b-df3d944441d4
-md" ### Spoilers! 
-Vamos a graficar una funcion cuadratica y el coseno
-
-"
-
-# ╔═╡ 2272e11e-376a-11eb-36b5-5f74bea758b6
-begin 
-f(x) = 1 - x^2/2
-plot(cos, -pi/2, pi/2,label= "cos(x)")
-plot!(f, -pi/2, pi/2, label = "1 - x²/2 ")
-end
-
-# ╔═╡ 2258877e-376a-11eb-326b-6f12fb4dcc83
-md" 
-Notan algo raro? 🧐
-
-y si graficamos una recta y al seno? 🤔"
-
-# ╔═╡ 223c801a-376a-11eb-3142-952f85c37cfd
-begin 
-p(x) = x
-plot(sin, -pi/2, pi/2, label="sen(x)")
-plot!(p, -pi/2, pi/2,label="x")
-end
-
-# ╔═╡ 22222d96-376a-11eb-1f2f-11af159774c1
-
-
-# ╔═╡ 22046048-376a-11eb-12c8-9f0b009bf606
-
-
-# ╔═╡ ae35e700-3756-11eb-0c34-7b1ba150fe0f
-md"
-### Composicion de funciones "
-
-# ╔═╡ 63bee7a2-3826-11eb-0fdf-6d2c6e24acd9
-begin
-
-r1(x) = x^2
-t1(x) = sin(x)
-rt = r1 ∘ t1      # se escribe r1 \circ[tab] t1  y da la composicion
-tr = t1 ∘ r1      # se escribe t1 \circ[tab] r1  y da la composicion
-plt1=plot(r1,-2,2)
-plt2=plot(t1,-2,2)	
-plt3=plot(rt, -2, 2)
-plt4=plot(tr, -2, 2)
-
-plot(plt1,plt2,plt3,plt4, layout = 4 ,  label=["" "" "" ""],
-title=[" x^2" "sen(x)" "sen(x²)" "sen(x)²"])
-
-end
-
-# ╔═╡ 63a4ff52-3826-11eb-1628-3bbd7a34609e
 
 
 # ╔═╡ Cell order:
@@ -681,11 +512,12 @@ end
 # ╟─6783a4fc-376d-11eb-32c9-c16376782b06
 # ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
 # ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
+# ╟─a471660e-398b-11eb-0424-35634d66157a
 # ╠═afcf8e22-3756-11eb-34ea-5376536fb482
 # ╟─0bbab030-37e9-11eb-2d59-750dcc1389ed
 # ╟─669fff32-37e9-11eb-0a8f-b9965e7fc876
 # ╠═668188c0-37e9-11eb-2b79-21a9ad8c8045
-# ╠═a54b80a2-37ef-11eb-1561-ff2eb53d96ff
+# ╟─a54b80a2-37ef-11eb-1561-ff2eb53d96ff
 # ╟─b9f68ee2-37f0-11eb-32b9-f5f8414a003f
 # ╠═a59a24ae-37f0-11eb-27a7-4168be79ae76
 # ╟─1c5b9714-37f2-11eb-2aee-c12c5b3378b6
@@ -702,51 +534,21 @@ end
 # ╠═38b55daa-381a-11eb-23e6-e1fca6acd232
 # ╠═f98ab398-38c8-11eb-23e0-e7d53a94191f
 # ╠═333bde28-38c9-11eb-1c13-43497cd11386
-# ╟─d7194f12-381a-11eb-3cca-fbd7dc8882ad
+# ╠═d7194f12-381a-11eb-3cca-fbd7dc8882ad
 # ╟─d691d366-381a-11eb-2204-6363ae55ff34
 # ╟─85c0c7cc-38fa-11eb-0f1f-654ee2eb8909
 # ╠═9420c8d4-38f8-11eb-2204-77a06514b0c0
 # ╟─5fdedfea-38fe-11eb-154b-b1571a457c74
 # ╠═af631940-3756-11eb-0744-59341550b719
-# ╠═eaf5a3d2-37e8-11eb-3884-d7bef46081b1
 # ╠═ea967346-37e8-11eb-3708-f7f5c68e008c
 # ╟─afb7ef92-3756-11eb-0db6-6f726d587a4e
-# ╠═af9a0036-3756-11eb-1581-f7f90b2744a4
-# ╠═e915fed6-37e8-11eb-33b1-bfeeb67d9efc
+# ╠═69df30e4-3999-11eb-3783-598673b8874c
+# ╟─af9a0036-3756-11eb-1581-f7f90b2744a4
 # ╠═af7c90d2-3756-11eb-1e04-d7f1dbd0fa45
-# ╠═af2d39ec-3756-11eb-29ba-73c6a59df0c9
-# ╠═af1139ae-3756-11eb-1013-9738a6a3e83d
-# ╠═aef666ce-3756-11eb-0c74-554cb9d31bae
-# ╠═aedb7472-3756-11eb-1b58-0fc5a700fee0
-# ╠═aebe3266-3756-11eb-32a4-17ff01f60908
-# ╟─efbac940-3768-11eb-31ed-55e1dc275376
+# ╠═efbac940-3768-11eb-31ed-55e1dc275376
+# ╠═b684a1ec-399c-11eb-1c84-e9ebef72563b
 # ╟─aea292ce-3756-11eb-1dfd-1fd920be6ecf
 # ╟─ae87bde6-3756-11eb-121a-211c9e728dae
 # ╠═ae6c0470-3756-11eb-3293-37e5e5b7c425
 # ╟─ae51af80-3756-11eb-082d-89b9a6c434e1
-# ╠═7e68db0c-381b-11eb-3028-ef015cf632bf
-# ╠═7e4bdd54-381b-11eb-32f8-d36c3b9c15a5
-# ╠═7e30db44-381b-11eb-3e86-3bf955568345
-# ╠═22f7bc0e-376a-11eb-39c6-9980c3c50e22
-# ╟─d6d1a830-37f5-11eb-229f-65f8c08a8f62
-# ╠═d6b126fa-37f5-11eb-3d79-4913a173eb30
-# ╠═d6812770-37f5-11eb-36ad-b1ae4acb4338
-# ╠═d65ee4ee-37f5-11eb-2c9d-4b309b276bd8
-# ╠═d639c952-37f5-11eb-08d9-a53068c806c6
-# ╠═d61e2bf2-37f5-11eb-0239-3380f1ed1093
-# ╠═d60134c0-37f5-11eb-1306-799eef7788fe
-# ╠═d5e60bf2-37f5-11eb-2a46-fb5f663318ab
-# ╠═d5c55b26-37f5-11eb-2b24-d59b5a5d6b87
-# ╠═4fca0274-3822-11eb-2042-99502890fd5a
-# ╠═4fc2dcf8-3822-11eb-0086-1701c4ee03d0
-# ╠═4f80e828-3822-11eb-3993-3f7b71c75099
 # ╠═4f55c706-3822-11eb-0f7e-4d682f126069
-# ╟─4f384f30-3822-11eb-3a5b-df3d944441d4
-# ╠═2272e11e-376a-11eb-36b5-5f74bea758b6
-# ╠═2258877e-376a-11eb-326b-6f12fb4dcc83
-# ╠═223c801a-376a-11eb-3142-952f85c37cfd
-# ╠═22222d96-376a-11eb-1f2f-11af159774c1
-# ╠═22046048-376a-11eb-12c8-9f0b009bf606
-# ╟─ae35e700-3756-11eb-0c34-7b1ba150fe0f
-# ╠═63bee7a2-3826-11eb-0fdf-6d2c6e24acd9
-# ╠═63a4ff52-3826-11eb-1628-3bbd7a34609e
