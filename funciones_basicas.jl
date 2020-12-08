@@ -69,6 +69,7 @@ begin
 x1 = collect(0:0.1:12) 
 plot(x1,x1.*100,lab="100km/h") 
 plot!(x1,x1.*50,lab="50km/h") 
+plot!([400], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 
 ylims!(0,500)
 end
@@ -141,10 +142,10 @@ begin
 x3 = collect(0:0.1:12) 
 plot(x3,x3.*100,lab="Salgo CABA",legend=:bottomright) 
 plot!(x3,x3.*100 .+120,lab="Salgo Chascomús")
-plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([400], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 xlims!(0,6)
-ylims!(0,600)
+ylims!(0,500)
 end
 
 # ╔═╡ 01d9c8c8-37f6-11eb-2d49-f7767d7422d1
@@ -179,7 +180,7 @@ begin
 x4 = collect(0:0.1:8) 
 plot(x4,x4.*100,lab="Salgo CABA", legend=:bottomright) 
 plot!(x4,x4.*100 .+xinic,lab="Salgo $xinic Km más adelante") 
-plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([400], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 xlims!(0,6)
 ylims!(0,600)
@@ -226,7 +227,7 @@ begin
 x5 = collect(0:0.1:20) 
 plot(x5,x5.*100,lab="Salgo a las 12 am", legend=:bottomright) 
 plot!(x5,x5.*100 .-600,lab="Salgo a las 6am") 
-plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([400], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 xlims!(0,12)
 ylims!(0,600)
@@ -248,7 +249,7 @@ begin
 x6 = collect(0:0.1:20) 
 plot(x6,x6.*100,lab="Salgo a las 12 am", legend=:bottomright) 
 plot!(x6,x6.*100 .-600,lab="Salgo a las 6am") 
-plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+plot!([400], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 plot!([0], seriestype="hline", lab="Capital Federal", linestyle=:dot)
 plot!([-600], seriestype="hline", lab="Rio Cuarto (-600km)", linestyle=:dot)
 xlims!(0,12)
