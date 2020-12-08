@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.4
+# v0.12.14
 
 using Markdown
 using InteractiveUtils
@@ -40,7 +40,7 @@ md"""
 Cuando decimos que una funcion es $y$ es una funcion lineal de $x$, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma `pendiente  (m)` - `ordenada(b)` al origen para describir la funcion:
 $y = f(x) = m \cdot x + b$
 
-Una de las caracteristicas de las funcione slineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal `f(x) = 3 x -2` , se puede ver que a medida que `x` aumenta en `0,1` , el valor de `y` lo hace en `0,3` , entonces `f(x)` aumenta su valor tres veces mas rapido que `x`. Esto significa que la pendiente de la recta puede ser visto como la tasa de crecimiento dA characteristic feature of linear functions is that they change at a constant ratee `y` respecto a `x`
+Una de las caracteristicas de las funcione slineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal $f(x) = 3 x \text \ {menos}\ 2$ , se puede ver que a medida que $x$ aumenta en $0,1$ , el valor de $y$ lo hace en $0,3$ , entonces $f(x)$ aumenta su valor tres veces mas rapido que $x$. Esto significa que la pendiente de la recta puede ser visto como la tasa de crecimiento $\delta A$ characteristic feature of linear functions is that they change at a constant ratee $y$ respecto a $x$
 """
 
 # ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
@@ -66,7 +66,9 @@ Vamos a graficar el recorrido para los dos ejemplos de los que charlamos
 
 # ╔═╡ 668188c0-37e9-11eb-2b79-21a9ad8c8045
 begin 
-x1 = collect(0:0.1:12) 
+x1 = collect(0:0.1:12)
+xlabel!("Tiempo [h]")
+ylabel!("Distancia [km]")
 plot(x1,x1.*100,lab="100km/h") 
 plot!(x1,x1.*50,lab="50km/h") 
 
@@ -100,10 +102,12 @@ end
 # ╔═╡ a59a24ae-37f0-11eb-27a7-4168be79ae76
 begin 
 x2 = collect(0:0.1:13) 
-plot(x2,x2.*v,lab="$v km/h") 
+plot(x2,x2.*v,lab="$v km/h",legend=:right) 
 xlabel!("Tiempo [h]")
 ylabel!("Distancia [km]")
-ylims!(0,500)
+plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
+scatter!([5],[500], color=:red, lab="")
+ylims!(0,600)
 xlims!(0,12)
 end
 
@@ -139,10 +143,12 @@ Grafiquemos cómo llega un auto que sale de buenos aires vs un auto que sale de 
 # ╔═╡ 01f8039c-37f6-11eb-3cf1-0fb81e04cd85
 begin 
 x3 = collect(0:0.1:12) 
-plot(x3,x3.*100,lab="Salgo CABA",legend=:bottomright) 
+plot(x3,x3.*100,lab="Salgo CABA",legend=:right) 
 plot!(x3,x3.*100 .+120,lab="Salgo Chascomús")
 plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
 plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
+xlabel!("Tiempo [h]")
+ylabel!("Distancia [km]")
 xlims!(0,6)
 ylims!(0,600)
 end
@@ -177,10 +183,10 @@ end
 # ╔═╡ e9b6d660-380d-11eb-168f-15b5a4da6e25
 begin 
 x4 = collect(0:0.1:8) 
-plot(x4,x4.*100,lab="Salgo CABA", legend=:bottomright) 
+plot(x4,x4.*100,lab="Salgo CABA", legend=:right) 
 plot!(x4,x4.*100 .+xinic,lab="Salgo $xinic Km más adelante") 
 plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
-plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
+plot!([xinic], seriestype="hline", lab="Salida", linestyle=:dot)
 xlims!(0,6)
 ylims!(0,600)
 end
@@ -227,7 +233,6 @@ x5 = collect(0:0.1:20)
 plot(x5,x5.*100,lab="Salgo a las 12 am", legend=:bottomright) 
 plot!(x5,x5.*100 .-600,lab="Salgo a las 6am") 
 plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
-plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 xlims!(0,12)
 ylims!(0,600)
 end
@@ -235,7 +240,7 @@ end
 # ╔═╡ 38b55daa-381a-11eb-23e6-e1fca6acd232
 md" 
 
-Lo interesante es que Efectivamente nuestra recta está \"más a la derecha\".
+Lo interesante es que efectivamente nuestra recta está \"más a la derecha\".
 
 Fijémosnos que la ecuación nos dio igual que la de antes, pero como si hubéramos empezado en $-600km$!! Esto si bien no es lo que escribimos, es equivalente. Es decir, salir $6$ horas más tarde es lo mismo que salir $600 km$ más lejos.
 
@@ -249,7 +254,6 @@ x6 = collect(0:0.1:20)
 plot(x6,x6.*100,lab="Salgo a las 12 am", legend=:bottomright) 
 plot!(x6,x6.*100 .-600,lab="Salgo a las 6am") 
 plot!([500], seriestype="hline", lab="Mar del Plata", linestyle=:dot)
-plot!([120], seriestype="hline", lab="Chascomús", linestyle=:dot)
 plot!([0], seriestype="hline", lab="Capital Federal", linestyle=:dot)
 plot!([-600], seriestype="hline", lab="Lugar ficticio a -600km", linestyle=:dot)
 xlims!(0,12)
@@ -655,7 +659,7 @@ end
 # ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 # ╠═afcf8e22-3756-11eb-34ea-5376536fb482
 # ╟─0bbab030-37e9-11eb-2d59-750dcc1389ed
-# ╟─669fff32-37e9-11eb-0a8f-b9965e7fc876
+# ╠═669fff32-37e9-11eb-0a8f-b9965e7fc876
 # ╠═668188c0-37e9-11eb-2b79-21a9ad8c8045
 # ╠═a54b80a2-37ef-11eb-1561-ff2eb53d96ff
 # ╟─b9f68ee2-37f0-11eb-32b9-f5f8414a003f
@@ -665,16 +669,16 @@ end
 # ╟─fc574524-37f5-11eb-332f-e9240245e01c
 # ╠═01f8039c-37f6-11eb-3cf1-0fb81e04cd85
 # ╟─01d9c8c8-37f6-11eb-2d49-f7767d7422d1
-# ╟─e340bc70-380e-11eb-2ea0-7d318e0b3b4f
+# ╠═e340bc70-380e-11eb-2ea0-7d318e0b3b4f
 # ╠═e9b6d660-380d-11eb-168f-15b5a4da6e25
 # ╟─9f37e412-3817-11eb-3013-edf105cc933a
 # ╟─6310dea6-3819-11eb-1466-977f16bc1521
 # ╟─6fc7d4ba-3819-11eb-3c75-43f0a52000da
 # ╠═8766aeb8-3819-11eb-0842-2169cb334dff
-# ╟─38b55daa-381a-11eb-23e6-e1fca6acd232
+# ╠═38b55daa-381a-11eb-23e6-e1fca6acd232
 # ╠═f98ab398-38c8-11eb-23e0-e7d53a94191f
 # ╠═333bde28-38c9-11eb-1c13-43497cd11386
-# ╟─d7194f12-381a-11eb-3cca-fbd7dc8882ad
+# ╠═d7194f12-381a-11eb-3cca-fbd7dc8882ad
 # ╟─d691d366-381a-11eb-2204-6363ae55ff34
 # ╠═af631940-3756-11eb-0744-59341550b719
 # ╠═eaf5a3d2-37e8-11eb-3884-d7bef46081b1
