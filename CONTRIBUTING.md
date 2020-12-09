@@ -1,8 +1,6 @@
-# Análisis Matemático
+# Manual de Colaboración
 
-## Repo para subir los avances en los apuntes de análisis 2
-
-### Reglas IMPORTANTES:
+## Reglas IMPORTANTES:
 
 1) NUNCA pushear a master
 2) Siempre trabajar en la branch asignada
@@ -11,7 +9,7 @@
 5) Simpre hacer commit -m "mensaje aclarando qué se hizo"
 6) Nunca mergear sin que otra persona haya revisado el PR
 
-### Pipeline para trabajar con github
+## Pipeline para trabajar con github
 
 *Para bajarse el repo (clonarlo):*
 1) Ir a la carpeta que queramos desde la terminal
@@ -33,9 +31,9 @@ Cuando terminamos de trabajar, siempre pushear el avance:
 3) git commit -m "explicación corta de qué es lo que se hizo"
 4) git push
 
-### Workflow de trabajo
+## Workflow de trabajo
 
-#### Instalación de dependencias
+### Instalación de dependencias
 
 Para instalar las dependencias (Julia, Pluto, PlutoUI) ejecutar:
 
@@ -47,7 +45,7 @@ Basta con ejecutar esto una vez la primera vez que se comienza a trabajar en
 el proyecto con una computadora nueva. Si ya existe una instalación previa
 de Julia, el script no instalará Julia de nuevo.
 
-#### Ejecutar Pluto
+### Ejecutar Pluto
 
 Para levantar Pluto basta con ejectuar:
 
