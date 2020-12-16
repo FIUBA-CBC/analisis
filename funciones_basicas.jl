@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.12
+# v0.12.17
 
 using Markdown
 using InteractiveUtils
@@ -33,14 +33,36 @@ snake_math = "https://i.imgur.com/nsrOoqp.png"
 # ╔═╡ 920d6d1e-376d-11eb-169d-b7ba0fc2f787
 Resource(snake_math)
 
+# ╔═╡ a471660e-398b-11eb-0424-35634d66157a
+begin
+	
+	
+xx=collect(0:1:10)
+ff = (xx,xx.*3 .-2)
+xx1=collect(0:3:15)
+ff1 = (xx1,xx1.*3 .-2)		
+	
+end;
+
+
+# ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
+begin
+f(x) = 3x - 2
+scatter(xx,xx.*3 .-2, label= "Tabla 1")
+scatter!(xx1,xx1.*3 .-2, label = "Tabla 2")
+plot!(xx1,xx1.*3 .-2,label="f(x)", legend=:topleft)
+xlims!(-0.1,17)
+ylims!(-4,35)
+end
+
 # ╔═╡ b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 md"""
-### Funcion lineal 
+### Función lineal 
 
-Cuando decimos que una funcion  $y$ es una funcion lineal de $x$, queremos decir que el grafico de esta es una linea recta, por lo que podemos utilizar la forma pendiente  $m$ - ordenada  al origen $b$ para describir la funcion:
+Cuando decimos que una función  $y$ es una función lineal de $x$, queremos decir que el gráfico de esta es una linea recta, por lo que podemos utilizar la forma pendiente  $m$ - ordenada  al origen $b$ para describir la funcion:
 $y = f(x) = m \cdot x + b$
 
-Una de las caracteristicas de las funciones lineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal $f(x) = 3 x -2$ , se puede ver que a medida que $x$ aumenta en $1$ , el valor de $y$ lo hace en $3$ , entonces $f(x)$ aumenta su valor tres veces mas rapido que $x$. Si hacemos una tabla con los resultados para un $x$ que aumenta de $1$ en 1 hasta 10 y otra con u $x$ que varia en $3$ vamos a tener lo siguiente
+Una de las características de las funciones lineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal $f(x) = 3 x -2$ , se puede ver que a medida que $x$ aumenta en $1$ , el valor de $y$ lo hace en $3$ , entonces $f(x)$ aumenta su valor tres veces mas rapido que $x$. Si hacemos una tabla con los resultados para un $x$ que aumenta de $1$ en $1$ hasta 10 y otra con un $x$ que varia en $3$ vamos a tener lo siguiente
 
 
 | $x$  | $f(x) = 3  x - 2 $|
@@ -71,28 +93,6 @@ Una de las caracteristicas de las funciones lineales es que cambian a una tasa c
 
 
 """
-
-# ╔═╡ a471660e-398b-11eb-0424-35634d66157a
-begin
-	
-	
-xx=collect(0:1:10)
-ff = (xx,xx.*3 .-2)
-xx1=collect(0:3:15)
-ff1 = (xx1,xx1.*3 .-2)		
-	
-end;
-
-
-# ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
-begin
-f1(x) = 3x - 2
-scatter(xx,xx.*3 .-2, label= "Tabla 1")
-scatter!(xx1,xx1.*3 .-2, label = "Tabla 2")
-plot!(xx1,xx1.*3 .-2,label="f(x)", legend=:topleft)
-xlims!(-0.1,17)
-ylims!(-4,35)
-end
 
 # ╔═╡ 0bbab030-37e9-11eb-2d59-750dcc1389ed
 md" ### Buenos Aires - Mar del Plata"
@@ -167,8 +167,7 @@ md"
 
 # ╔═╡ fc574524-37f5-11eb-332f-e9240245e01c
 md"
-Saliendo desde Chascomús (kilómetro 120)
-Pero esto es poco realista. No todos los autos salen de la capital. Comparemos con un Auto que sale de Chascomús, que está a 120 km de Buenos Aires.
+Pero esto es poco realista. No todos los autos salen de la capital. Comparemos nuestro viaje original con el de un auto que sale de Chascomús, que está a 120 km más cerca de Mar del Plata que Buenos Aires.
 
 ¿Cómo cambia la ecuación si agregamos una posición inicial?
 
@@ -177,7 +176,7 @@ $$x(t) = v \cdot t + x_0$$
 $$x_0: \text{Posición inicial} (\text{Chascomus})$$ 
 Observemos que la posición inicial es una constante, al igual que la velocidad, para un recorrido determinado. Si yo elijo la posición y la velocidad, eso me determina todo el recorrido de la posición del auto en función del tiempo.
 
-Grafiquemos cómo llega un auto que sale de buenos aires vs un auto que sale de Chascomús ambos a $400 \frac{km}{h}$, saliendo en $t=0$.
+Grafiquemos cómo llega un auto que sale de Buenos Aires vs un auto que sale de Chascomús ambos a $100 \frac{km}{h}$, saliendo en $t=0$.
 "
 
 # ╔═╡ 01f8039c-37f6-11eb-3cf1-0fb81e04cd85
@@ -195,7 +194,7 @@ end
 md"Refleccionemos un poco sobre este gráfico. ¿Cómo se relacionan entre sí ambas rectas?
 
 - Ambas rectas tienen la misma pendiente, porque tienen la misma velocidad.
-- Una está “más arriba” que la otra. ¿Qué tanto más arriba? Recordemos que el eje vertical es la posición. Si lo pensamos, el auto que sale de Buenos Aires sale del $km=0$, mientras que el otro sale del $km=120$. Esto significa que una recta estará exactamente $120km$ arriba de la otra.
+- Una está “más arriba” que la otra. ¿Qué tanto más arriba? Recordemos que el eje vertical es la posición. Si lo pensamos, el auto que sale de Buenos Aires sale del $km=0$, mientras que el otro sale del $km=120$. Esto significa que una recta estará exactamente $120km$ arriba de la otra en todos sus puntos.
 Esto último lo podemos ver justamente en las ecuaciones:
 
 $x_{auto\ desde \ BsAs}(t) = 100 \frac{km}{h} \cdot t$
@@ -234,7 +233,7 @@ md"
 
 Aquí confirmamos esto que decíamos antes. 
 
-¿Y si quisiéramos ahora predecir en qué tiempo voy a llegar a Mar del Plata? Ahora también tenemos que tener en cuenta la posición inicial… Vamos a hacer el mismo procedimiento que antes: escribimos la ecuación de posición en función del tiempo y luego despejamos el tiempo para la posición que queremos.
+¿Y si quisiéramos ahora predecir en qué tiempo voy a llegar a Mar del Plata? Ahora además de la velocidad, también tenemos que tener en cuenta la posición inicial. Vamos a hacer el mismo procedimiento que antes: escribimos la ecuación de posición en función del tiempo y luego despejamos el tiempo para la posición que queremos.
 
 $x_{auto}(t) = v \cdot t + x_0$
 
@@ -258,7 +257,7 @@ Antes cuando salíamos desde Chascomús, teníamos que la recta se desplazaba ve
 
 El truquito en este caso es que antes sumábamos “afuera” la posición inicial, ya que sumábamos posición con posición. Si ahora que queremos sumar 6 horas al tiempo tenemos que hacerlo al tiempo directamente. Antintuitivamente, para que la recta se desplace a la derecha, tenemos que restar en lugar de sumar. En un ratito veremos por qué.
 
-$x_{saliendo\ 6am}(t) = x_{saliendo\ 12am}(t-6h)$
+$x_{saliendo\ 6am}(t) = x_{saliendo\ 12am}(t - 6h)$
 $x_{saliendo\ 6am}(t) = 100 \frac{km}{h} \cdot (t - 6h)$
 $x_{saliendo\ 6am}(t) = 100 \frac{km}{h} \cdot t - 600km$
 
@@ -279,7 +278,7 @@ end
 # ╔═╡ 38b55daa-381a-11eb-23e6-e1fca6acd232
 md" 
 
-Lo interesante es que Efectivamente nuestra recta está \"más a la derecha\".
+Lo interesante es que efectivamente nuestra recta está \"más a la derecha\".
 
 Fijémosnos que la ecuación nos dio igual que la de antes, pero como si hubéramos empezado en $-600km$!! Esto si bien no es lo que escribimos, es equivalente. Es decir, salir $6$ horas más tarde es lo mismo que salir $600 km$ más lejos. Por ejemplo, esto saría salir desde Rio Cuarto (Córdoba), viajar hasta Buenos Aires y luego hasta Mar del Plata.
 
@@ -381,11 +380,11 @@ Podemos ver que en los valores de m más altos el gráfico de la inversa tiene u
 md"### Ejemplo 2
 
 A medida que aire seco sube, se expande y enfria. Si la temperatura en el nivel del suelo es de $20°C$ y la temperatura a $1km$ es de $10°C$, ¿Cúal será la temperatura (en $°C$) en funcion de la altura $h$ (en kilometros)? 
-asumir que un modelo lineal es apropiado
+Asumir que un modelo lineal es apropiado.
 
 ------
 
-Como asumimos un modelo linal podemos asumir que la temperatura viene dada por la ecuacion $T(h) = m \cdot h + b$ . Como sabemos que la temperatura al nivel del suelo es de 20°C podemos escribir $20= m \cdot 0 + b$, de donde obtenemos que $b = 20$, es decir que $20$ es la ordenada al origen.
+Como asumimos un modelo lineal podemos asumir que la temperatura viene dada por la ecuacion $T(h) = m \cdot h + b$ . Como sabemos que la temperatura al nivel del suelo es de 20°C podemos escribir $20= m \cdot 0 + b$, de donde obtenemos que $b = 20$, es decir que $20$ es la ordenada al origen.
 Además sabemos que a $1km$ la temperatura es de $10°C$ , que en terminos de la ecuacion implica $10 = m \cdot 1 + 20$, por lo que la pendiente resulta $m = 10 -20 = -1$
 Finalmente podemos escribir que $T=-10\cdot h +20$ es laa funcion que describe la temperatura del aire en funcion de la altura
 
@@ -407,7 +406,7 @@ end
 
 # ╔═╡ afb7ef92-3756-11eb-0db6-6f726d587a4e
 md" #### Acá vas a poder ver como se modifica una funcion lineal al cambiarle los parametros"
-
+#Crea tu propia función lineal!
 
 # ╔═╡ 69df30e4-3999-11eb-3783-598673b8874c
 md"
@@ -462,9 +461,9 @@ con $a,b,c, ∈ \mathbb{R}$ fijos y $a\neq0$
 
 
 # ╔═╡ aea292ce-3756-11eb-1dfd-1fd920be6ecf
-md" #### Un ejemplo de funcion cuatratica 
+md" #### Un ejemplo de funcion cuadrática 
 
-Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `450m` de altura y la altura de la misma `h` es sensada en intervalos de `1 segundo` . Como se sultado observan los datos representados en la siguiente tabla
+Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `450m` de altura y la altura de la misma `h` es sensada en intervalos de `1 segundo` (Es decir, cada 1 segundo, "mido" donde está la pelota, y lo anoro en la tabla) . Como resultado observan los datos representados en la siguiente tabla
 
 | Tiempo | Metros |
 |--------|--------|
@@ -496,7 +495,7 @@ end
 
 # ╔═╡ ae51af80-3756-11eb-082d-89b9a6c434e1
 md"
-Se puede inferir que tiene forma de media parabola. Utilizando la técnica de [`cuadrados minimos`](https://es.wikipedia.org/wiki/M%C3%ADnimos_cuadrados) (no te preocupes esto lo vas a ver más adelante, por ahora solo nos interesa lo que nos devuelve) podemos obtener la siguiente forma cuadratica del modelo 
+Se puede inferir que tiene forma de media parábola. Utilizando la técnica de [`cuadrados mínimos`](https://es.wikipedia.org/wiki/M%C3%ADnimos_cuadrados) (no te preocupes esto lo vas a ver más adelante, por ahora solo nos interesa lo que nos devuelve) podemos obtener la siguiente forma cuadratica del modelo 
 `h = 449,36 + 0.96 t -4.90t²`
 Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.90t²+0.96t+449,39`. Utizando la formula cuadratica $-b \pm \sqrt{b^2 - 4ac} \over 2a$ vamos a obtener que el tiempo aproximado, es decir la raiz es `t~9.96`
 "
@@ -508,7 +507,7 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╠═a3658046-3725-11eb-1bb6-e981ac1de371
 # ╠═80448600-3763-11eb-0426-071d4c5c2581
 # ╠═b5ea471a-3725-11eb-09de-eb08414cea0c
-# ╟─a88df786-376d-11eb-30bf-d36644f2462d
+# ╠═a88df786-376d-11eb-30bf-d36644f2462d
 # ╟─6783a4fc-376d-11eb-32c9-c16376782b06
 # ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
 # ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
@@ -522,14 +521,14 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╠═a59a24ae-37f0-11eb-27a7-4168be79ae76
 # ╟─1c5b9714-37f2-11eb-2aee-c12c5b3378b6
 # ╟─1bb527c8-37f2-11eb-392d-91cd73e93975
-# ╟─fc574524-37f5-11eb-332f-e9240245e01c
+# ╠═fc574524-37f5-11eb-332f-e9240245e01c
 # ╠═01f8039c-37f6-11eb-3cf1-0fb81e04cd85
-# ╟─01d9c8c8-37f6-11eb-2d49-f7767d7422d1
+# ╠═01d9c8c8-37f6-11eb-2d49-f7767d7422d1
 # ╟─e340bc70-380e-11eb-2ea0-7d318e0b3b4f
 # ╠═e9b6d660-380d-11eb-168f-15b5a4da6e25
-# ╟─9f37e412-3817-11eb-3013-edf105cc933a
+# ╠═9f37e412-3817-11eb-3013-edf105cc933a
 # ╟─6310dea6-3819-11eb-1466-977f16bc1521
-# ╟─6fc7d4ba-3819-11eb-3c75-43f0a52000da
+# ╠═6fc7d4ba-3819-11eb-3c75-43f0a52000da
 # ╠═8766aeb8-3819-11eb-0842-2169cb334dff
 # ╠═38b55daa-381a-11eb-23e6-e1fca6acd232
 # ╠═f98ab398-38c8-11eb-23e0-e7d53a94191f
@@ -541,14 +540,14 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╟─5fdedfea-38fe-11eb-154b-b1571a457c74
 # ╠═af631940-3756-11eb-0744-59341550b719
 # ╠═ea967346-37e8-11eb-3708-f7f5c68e008c
-# ╟─afb7ef92-3756-11eb-0db6-6f726d587a4e
+# ╠═afb7ef92-3756-11eb-0db6-6f726d587a4e
 # ╠═69df30e4-3999-11eb-3783-598673b8874c
 # ╟─af9a0036-3756-11eb-1581-f7f90b2744a4
 # ╠═af7c90d2-3756-11eb-1e04-d7f1dbd0fa45
 # ╠═efbac940-3768-11eb-31ed-55e1dc275376
 # ╠═b684a1ec-399c-11eb-1c84-e9ebef72563b
-# ╟─aea292ce-3756-11eb-1dfd-1fd920be6ecf
+# ╠═aea292ce-3756-11eb-1dfd-1fd920be6ecf
 # ╟─ae87bde6-3756-11eb-121a-211c9e728dae
 # ╠═ae6c0470-3756-11eb-3293-37e5e5b7c425
-# ╟─ae51af80-3756-11eb-082d-89b9a6c434e1
+# ╠═ae51af80-3756-11eb-082d-89b9a6c434e1
 # ╠═4f55c706-3822-11eb-0f7e-4d682f126069
