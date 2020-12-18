@@ -17,11 +17,11 @@ plotly()
 md" ## Continuidad y derivabilidad de funciones "
 
 # ╔═╡ 6783a4fc-376d-11eb-32c9-c16376782b06
-snake_math = "https://i.pinimg.com/originals/a5/15/1a/a5151af368347d2dea5e6fa2d1f34f65.jpg"
+Lovell = "https://i.pinimg.com/originals/a5/15/1a/a5151af368347d2dea5e6fa2d1f34f65.jpg"
 
 
 # ╔═╡ 920d6d1e-376d-11eb-169d-b7ba0fc2f787
-Resource(snake_math)
+Resource(Lovell)
 
 # ╔═╡ d9c11a08-3fa0-11eb-1390-4b6ff5f9821d
 md"El Capitán James Lovell y su transferencia fálica, digo, una maqueta de la nave Gemini 12"
@@ -135,7 +135,7 @@ Pero que pasa con la función posición de Han Solo? En $t=0$, tanto por \"izqui
 # ╠═b5ea471a-3725-11eb-09de-eb08414cea0c
 # ╠═a88df786-376d-11eb-30bf-d36644f2462d
 # ╠═6783a4fc-376d-11eb-32c9-c16376782b06
-# ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
+# ╠═920d6d1e-376d-11eb-169d-b7ba0fc2f787
 # ╠═d9c11a08-3fa0-11eb-1390-4b6ff5f9821d
 # ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 # ╠═d711697a-3fcd-11eb-229e-6346b4134045
