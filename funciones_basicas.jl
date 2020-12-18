@@ -33,28 +33,6 @@ snake_math = "https://i.imgur.com/nsrOoqp.png"
 # ╔═╡ 920d6d1e-376d-11eb-169d-b7ba0fc2f787
 Resource(snake_math)
 
-# ╔═╡ a471660e-398b-11eb-0424-35634d66157a
-begin
-	
-	
-xx=collect(0:1:10)
-ff = (xx,xx.*3 .-2)
-xx1=collect(0:3:15)
-ff1 = (xx1,xx1.*3 .-2)		
-	
-end;
-
-
-# ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
-begin
-f(x) = 3x - 2
-scatter(xx,xx.*3 .-2, label= "Tabla 1")
-scatter!(xx1,xx1.*3 .-2, label = "Tabla 2")
-plot!(xx1,xx1.*3 .-2,label="f(x)", legend=:topleft)
-xlims!(-0.1,17)
-ylims!(-4,35)
-end
-
 # ╔═╡ b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 md"""
 ### Función lineal 
@@ -65,7 +43,7 @@ $y = f(x) = m \cdot x + b$
 Una de las características de las funciones lineales es que cambian a una tasa constante. Por ejemplo en la siguiente figura se observa el grafico de una funcion lineal $f(x) = 3 x -2$ , se puede ver que a medida que $x$ aumenta en $1$ , el valor de $y$ lo hace en $3$ , entonces $f(x)$ aumenta su valor tres veces mas rapido que $x$. Si hacemos una tabla con los resultados para un $x$ que aumenta de $1$ en $1$ hasta 10 y otra con un $x$ que varia en $3$ vamos a tener lo siguiente
 
 
-| $x$  | $f(x) = 3  x - 2 $|
+| $x$  | $f(x) = 3  x - 2$|
 |----|------------------|
 | 0  | -2             |
 | 1  | 1             |
@@ -93,6 +71,28 @@ Una de las características de las funciones lineales es que cambian a una tasa 
 
 
 """
+
+# ╔═╡ a471660e-398b-11eb-0424-35634d66157a
+begin
+	
+	
+xx=collect(0:1:10)
+ff = (xx,xx.*3 .-2)
+xx1=collect(0:3:15)
+ff1 = (xx1,xx1.*3 .-2)		
+	
+end;
+
+
+# ╔═╡ afcf8e22-3756-11eb-34ea-5376536fb482
+begin
+f(x) = 3x - 2
+scatter(xx,xx.*3 .-2, label= "Tabla 1")
+scatter!(xx1,xx1.*3 .-2, label = "Tabla 2")
+plot!(xx1,xx1.*3 .-2,label="f(x)", legend=:topleft)
+xlims!(-0.1,17)
+ylims!(-4,35)
+end
 
 # ╔═╡ 0bbab030-37e9-11eb-2d59-750dcc1389ed
 md" ### Buenos Aires - Mar del Plata"
@@ -461,9 +461,11 @@ con $a,b,c, ∈ \mathbb{R}$ fijos y $a\neq0$
 
 
 # ╔═╡ aea292ce-3756-11eb-1dfd-1fd920be6ecf
-md" #### Un ejemplo de funcion cuadrática 
+md"
 
-Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `450m` de altura y la altura de la misma `h` es sensada en intervalos de `1 segundo` (Es decir, cada 1 segundo, "mido" donde está la pelota, y lo anoro en la tabla) . Como resultado observan los datos representados en la siguiente tabla
+#### Un ejemplo de funcion cuadrática 
+
+Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `450m` de altura y la altura de la misma `h` es sensada en intervalos de `1 segundo` (Es decir, cada 1 segundo, \"mido\" donde está la pelota, y lo anoro en la tabla) . Como resultado observan los datos representados en la siguiente tabla
 
 | Tiempo | Metros |
 |--------|--------|
@@ -478,7 +480,8 @@ Se lanza una pelota desde arriba de una torre muy alta la cual se encuentra a `4
 | 8      | 143    |
 | 9      | 61     |
 
-Vamos a tratar de encontrar el mejor modelo para tratar de precedir el tiempo en el cual la pelota tocara el suelo"
+Vamos a tratar de encontrar el mejor modelo para tratar de precedir el tiempo en el cual la pelota tocara el suelo
+"
 
 # ╔═╡ ae87bde6-3756-11eb-121a-211c9e728dae
 md" 
@@ -510,7 +513,7 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╠═a88df786-376d-11eb-30bf-d36644f2462d
 # ╟─6783a4fc-376d-11eb-32c9-c16376782b06
 # ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
-# ╠═b02439b8-3756-11eb-08fc-a1ab31ae4b9e
+# ╟─b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 # ╟─a471660e-398b-11eb-0424-35634d66157a
 # ╠═afcf8e22-3756-11eb-34ea-5376536fb482
 # ╟─0bbab030-37e9-11eb-2d59-750dcc1389ed
@@ -521,33 +524,33 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╠═a59a24ae-37f0-11eb-27a7-4168be79ae76
 # ╟─1c5b9714-37f2-11eb-2aee-c12c5b3378b6
 # ╟─1bb527c8-37f2-11eb-392d-91cd73e93975
-# ╠═fc574524-37f5-11eb-332f-e9240245e01c
+# ╟─fc574524-37f5-11eb-332f-e9240245e01c
 # ╠═01f8039c-37f6-11eb-3cf1-0fb81e04cd85
-# ╠═01d9c8c8-37f6-11eb-2d49-f7767d7422d1
+# ╟─01d9c8c8-37f6-11eb-2d49-f7767d7422d1
 # ╟─e340bc70-380e-11eb-2ea0-7d318e0b3b4f
 # ╠═e9b6d660-380d-11eb-168f-15b5a4da6e25
-# ╠═9f37e412-3817-11eb-3013-edf105cc933a
+# ╟─9f37e412-3817-11eb-3013-edf105cc933a
 # ╟─6310dea6-3819-11eb-1466-977f16bc1521
-# ╠═6fc7d4ba-3819-11eb-3c75-43f0a52000da
+# ╟─6fc7d4ba-3819-11eb-3c75-43f0a52000da
 # ╠═8766aeb8-3819-11eb-0842-2169cb334dff
-# ╠═38b55daa-381a-11eb-23e6-e1fca6acd232
+# ╟─38b55daa-381a-11eb-23e6-e1fca6acd232
 # ╠═f98ab398-38c8-11eb-23e0-e7d53a94191f
-# ╠═333bde28-38c9-11eb-1c13-43497cd11386
-# ╠═d7194f12-381a-11eb-3cca-fbd7dc8882ad
+# ╟─333bde28-38c9-11eb-1c13-43497cd11386
+# ╟─d7194f12-381a-11eb-3cca-fbd7dc8882ad
 # ╟─d691d366-381a-11eb-2204-6363ae55ff34
 # ╟─85c0c7cc-38fa-11eb-0f1f-654ee2eb8909
 # ╠═9420c8d4-38f8-11eb-2204-77a06514b0c0
 # ╟─5fdedfea-38fe-11eb-154b-b1571a457c74
-# ╠═af631940-3756-11eb-0744-59341550b719
+# ╟─af631940-3756-11eb-0744-59341550b719
 # ╠═ea967346-37e8-11eb-3708-f7f5c68e008c
-# ╠═afb7ef92-3756-11eb-0db6-6f726d587a4e
-# ╠═69df30e4-3999-11eb-3783-598673b8874c
+# ╟─afb7ef92-3756-11eb-0db6-6f726d587a4e
+# ╟─69df30e4-3999-11eb-3783-598673b8874c
 # ╟─af9a0036-3756-11eb-1581-f7f90b2744a4
 # ╠═af7c90d2-3756-11eb-1e04-d7f1dbd0fa45
-# ╠═efbac940-3768-11eb-31ed-55e1dc275376
-# ╠═b684a1ec-399c-11eb-1c84-e9ebef72563b
-# ╠═aea292ce-3756-11eb-1dfd-1fd920be6ecf
+# ╟─efbac940-3768-11eb-31ed-55e1dc275376
+# ╟─b684a1ec-399c-11eb-1c84-e9ebef72563b
+# ╟─aea292ce-3756-11eb-1dfd-1fd920be6ecf
 # ╟─ae87bde6-3756-11eb-121a-211c9e728dae
 # ╠═ae6c0470-3756-11eb-3293-37e5e5b7c425
-# ╠═ae51af80-3756-11eb-082d-89b9a6c434e1
+# ╟─ae51af80-3756-11eb-082d-89b9a6c434e1
 # ╠═4f55c706-3822-11eb-0f7e-4d682f126069

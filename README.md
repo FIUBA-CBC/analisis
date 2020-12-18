@@ -1,59 +1,78 @@
-# Análisis Matemático
+# Análisis Matemático - CBC
 
-## Repo para subir los avances en los apuntes de análisis 2
+## Ejes ordenadores:
+- Aplicación: los conceptos deben estar aplicados a ejemplos prácticos familiares
+- Actualizacion en la presentación (libro online, videos manim https://github.com/3b1b/manim, simulaciones online parametrizadas)
+- Contexto histórico de cuando y para que se crearon los diferentes conceptos
 
-### Reglas IMPORTANTES:
+## Temario
 
-1) NUNCA pushear a master
-2) Siempre trabajar en la branch asignada
-3) Al crear una nueva branch, hacerla desde master.
-4) Antes de pushear un avance, hacer pull para que esté todo sincronizado y no hayan conflictos
-5) Simpre hacer commit -m "mensaje aclarando qué se hizo"
-6) Nunca mergear sin que otra persona haya revisado el PR
+- Basis de funciones:
+    - Caja negra: metes algo, sale algo (con imagenes como esto https://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
+        - Ejemplos de la vida real (pagina 73 kolmogorov).
+        - Notacion.
+        - Ejemplos de cosas que andan mal.
+        - Contraejemplos, no se puede poner un zapato en una funcion que calcula cuadrado.
+    - Conjuntos (book of proof, richard hammack).
+        - Qué es un conjunto.
+        - Complemento, interseccion, union.
+        - Notacion.
+        - Intervalos, abierto, cerrado, etc.
+        - Conjuntos fundamentales.
+    - Funciones:
+        - Definicion formal.
+        - Dominio.
+        - Codominio.
+        - Imagen.
+        - Preimagen.
+        - Clasificacion de funciones.
+    - Funciones elementales:
+      - Exponencial. COVID/crecimiento poblacional/Decaimientos nucleares, datación de objetos.
+      - Lineal. Gradiente atmosférico, velocidad, etc.
+      - Trigonométricas. Alterna, péndulo, etc.
+      - Aplicación. Dominio. Características.
+    - Plot de funciones mostrar la suma y operaciones:
+        - Ejempos: Corriente alterna, péndulo.
+    - Explicar para qué se usan.
+    - Composición de funciones.
+    - Mostrar dominio:
+        - Usar sliders para mostrar como se modifican las funciones elementales con los parametros.
+    - Exponencial: hablar de bernouilli y la historia.
+        - Modelo de decaimientos nucleares. isotopos radioactivos con carbono 14.
+    - Funciones trigonometricas:
+        - Superposición de ondas.
+- Sucesiones.
+- Series.
+- Limite de sucesiones:
+    - Fibonacci.
+    - Método de raíces cuadradas.
+- Limite de funciones.
+- Derivadas.
+    - Concepto.
+    - Derivadas de funciones elementales.
+    - Visualizacion geometrica.
+    - Definición con limite.
+    - Ejemplo:
+        - Estabilidad termodinámica (una aplicación de derivadas segundas, análisis de funciones, etc).
+- Minimización/maximización de funciones:
+    - Elección de lote óptimo para minimizar el costo.
+    - Tamaño óptimo de un equipo de procesos (por ejemplo, una columna de destilación).
+    - Ajuste por cuadrados mínimos de una función simple.
+- Newton Raphson y ecuaciones no lineales.
+- Serie de Taylor y su utilizacion en ec. dif:
+    - Ejemplo de pendulo y angulos/equilibrio.
+    - Diferencias finitas.
 
-### Pipeline para trabajar con github
+## Fuentes
 
-*Para bajarse el repo (clonarlo):*
-1) Ir a la carpeta que queramos desde la terminal
-2) Ir a github y, desde el boton verde que dice "code", copiar la url
-3) desde la terminal poner "git clone [copiar la url]"
-4) Una carpeta va a aparecer con el contenido del repo "master"
+- The real and the complex: a history of analysis in the 19th century - Jeremy Gray.
+- Foundation of applied mathematics - SIAM.
+- Introduction to computational thinking Julia https://computationalthinking.mit.edu/Fall20/
+- Matrix Methods in Data Analysis, Signal Processing, and Machine Learning - Strang: https://ocw.mit.edu/courses/mathematics/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/
+- Calculus with Julia https://juliahub.com/docs/CalculusWithJulia/AZHbv/0.0.5/
+- Oliver Knill (Harvard) http://people.math.harvard.edu/~knill/teach/index.html - http://people.math.harvard.edu/~knill/teaching/math1a2020/
+- Mathematics, its content, methods and meaning - Aleksandrov, Kolmogorov and Lavrent.
 
+## Colaboración
 
-5) Para cambiar de branch poner "git checkout nombre-de-la-branch"
-6) En el caso de querer crear una IR A LA BRANCH MASTER y poner "git checkout -b nombre-nueva-branch"
-7) Al estar trabajando en una branch, en el caso de querer saber si hace falta pushear algo poner "git status" Eso nos va a decir los archivos que hace faltan que subamos.
-
-**Al comezar el trabajo (y antes de pushear), siempre bajar posibles avances de compañerxs poniendo "git pull"**
-
-Cuando terminamos de trabajar, siempre pushear el avance:
-1) poner "git status" (va a aparecer en rojo los archivos que modificamos)
-2) "git add nombre-del-archivo"
-(si acá volvemos a poner git status vamos a ver esos archivos en verde)
-3) git commit -m "explicación corta de qué es lo que se hizo"
-4) git push
--
-
-### Workflow de trabajo
-
-#### Instalación de dependencias
-
-Para instalar las dependencias (Julia, Pluto, PlutoUI) ejecutar:
-
-```bash
-make deps
-```
-
-Basta con ejecutar esto una vez la primera vez que se comienza a trabajar en
-el proyecto con una computadora nueva. Si ya existe una instalación previa
-de Julia, el script no instalará Julia de nuevo.
-
-#### Ejecutar Pluto
-
-Para levantar Pluto basta con ejectuar:
-
-```bash
-make run
-```
-
-Esto debe ejecutarse cada vez que se quiera comenzar a trabajar.
+Para añadir o modificar el contenido de los apuntes, las instrucciones se encuentran en [CONTRIBUTING.md](CONTRIBUTING.md).
