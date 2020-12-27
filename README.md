@@ -41,12 +41,14 @@
         - Modelo de decaimientos nucleares. isotopos radioactivos con carbono 14.
     - Funciones trigonometricas:
         - Superposición de ondas.
-- Sucesiones.
-- Series.
-- Limite de sucesiones:
-    - Fibonacci.
-    - Método de raíces cuadradas.
-- Limite de funciones.
+    - Funciones sobre los naturales: sucesiones (ej: Fibonacci, Babilónica) y series (trailer).
+    - Caracterización de funciones:
+        - Acotada. Máximos, Mínimos, globales y locales.
+        - Monótona creciente y decreciente.
+- Limites
+    - Partir de sucesiones (límite asintótico).
+    - Limite de funciones.
+- Continuidad.
 - Derivadas.
     - Concepto.
     - Derivadas de funciones elementales.
@@ -54,14 +56,36 @@
     - Definición con limite.
     - Ejemplo:
         - Estabilidad termodinámica (una aplicación de derivadas segundas, análisis de funciones, etc).
-- Minimización/maximización de funciones:
-    - Elección de lote óptimo para minimizar el costo.
-    - Tamaño óptimo de un equipo de procesos (por ejemplo, una columna de destilación).
-    - Ajuste por cuadrados mínimos de una función simple.
-- Newton Raphson y ecuaciones no lineales.
+    - Regla de L'Hôpital.
+    - Minimización/maximización de funciones:
+        - Elección de lote óptimo para minimizar el costo.
+        - Tamaño óptimo de un equipo de procesos (por ejemplo, una columna de destilación).
+        - Ajuste por cuadrados mínimos de una función simple.
+    - Concavidad y convexidad de secciones del dominio en una función.
+    - Polinomio de Taylor y aproximación de funciones.
+    - Newton Raphson y ecuaciones no lineales.
+    - Regla de la cadena.
+- Integrales.
+    - Intuición por acumulación. Visión informal de las sumas de Riemmann. Historia, Arquímides.
+    - Teorema Fundamental del Cálculo.
+    - Regla de Barrow.
+    - Métodos de resolución de integrales:
+        - Sustitución. Inversa de regla de la cadena.
+        - Integración por partes. Inversa del producto de la derivada.
+        - Fracciones Simples. Método general (no solo para integrales).
+    - Interpretación geométrica de la integral (área bajo la curva).
+    - Ejemplos de aplicaciones de Integral.
+- Ecuaciones Diferenciales.
+    - Motivación: ver la sección de [Computational Thinking](https://www.youtube.com/watch?time_continue=1177&v=L8cBFARnig4&feature=emb_logo).
+    - Lineales y no lineales en los parámetros.
+    - Qué es la solución de una ecuación diferencial. Ejemplos de Física, MRU, Péndulo, Crecimiento exponencial.
+- Sucesiones y Series.
+    - Criterios de convergencia (Cauchy, D'Alambert).
+    - Series de Potencias?
 - Serie de Taylor y su utilizacion en ec. dif:
     - Ejemplo de pendulo y angulos/equilibrio.
     - Diferencias finitas.
+
 
 ## Fuentes
 
