@@ -3,3 +3,6 @@ deps:
 
 run:
 	julia -e "using Pluto; Pluto.run()"
+
+export:
+	julia -e "using Pluto; Pluto.run()" | python export.py

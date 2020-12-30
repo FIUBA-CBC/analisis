@@ -1,11 +1,15 @@
 import os
+import subprocess
+import fileinput
+import re
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-SECRET = "UpYLRGw0"
-URL_BASE = "http://localhost:1234/open"
+
 NOTEBOOKS_DIR = "notebooks"
+PLUTO_CMD = ["julia", "-e", '"using Pluto; Pluto.run()"']
+PLUTO_URL_REGEX = r"http://localhost:([0-9]{4})/\?secret=(\w*)"
 
 
 def get_path(notebook):
@@ -35,9 +39,9 @@ def click_with_retry(clickable):
     )
 
 
-def download(driver, notebook_filename):
+def download(driver, port, secret, notebook_filename):
     path = get_path(notebook_filename)
-    driver.get(f"{URL_BASE}?path={path}&secret={SECRET}")
+    driver.get(f"localhost:{port}/open?path={path}&secret={secret}")
 
     print("Getting export menu.")
     toggle = get_with_retry(driver, "toggle_export", 1)
@@ -51,8 +55,18 @@ def download(driver, notebook_filename):
 
 
 if __name__ == "__main__":
+
+    # Reads output from pluto with the secret number.
+    for line in fileinput.input():
+        match = re.search(PLUTO_URL_REGEX, line)
+        if match:
+            port = match.group(1)
+            secret = match.group(2)
+            print(f"Pluto executing on port {port} with secret {secret}")
+            break
+
     driver = webdriver.Chrome()
     for file in os.listdir(NOTEBOOKS_DIR):
         # Only download notebooks.
         if ".jl" in file:
-            download(driver, file)
+            download(driver, port, secret, file)
