@@ -52,4 +52,7 @@ def download(driver, notebook_filename):
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    download(driver, "funciones_basicas.jl")
+    for file in os.listdir(NOTEBOOKS_DIR):
+        # Only download notebooks.
+        if ".jl" in file:
+            download(driver, file)
