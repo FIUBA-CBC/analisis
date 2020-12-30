@@ -1,14 +1,15 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-
 SECRET = "UpYLRGw0"
 URL_BASE = "http://localhost:1234/open"
+NOTEBOOKS_DIR = "notebooks"
 
 
 def get_path(notebook):
-    return f"/home/tomas/workspace/analisis/notebooks/{notebook}"
+    return os.path.join(os.getcwd(), NOTEBOOKS_DIR, notebook)
 
 
 def f_with_retry(f, retries=20, single_failure_message="not ready."):
