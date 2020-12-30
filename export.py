@@ -2,9 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-driver = webdriver.Chrome()
 
-secret = "UpYLRGw0"
+SECRET = "UpYLRGw0"
 URL_BASE = "http://localhost:1234/open"
 
 
@@ -35,15 +34,21 @@ def click_with_retry(clickable):
     )
 
 
-path = get_path("funciones_basicas.jl")
-driver.get(f"{URL_BASE}?path={path}&secret={secret}")
+def download(driver, notebook_filename):
+    path = get_path(notebook_filename)
+    driver.get(f"{URL_BASE}?path={path}&secret={SECRET}")
 
-print("Getting export menu.")
-toggle = get_with_retry(driver, "toggle_export", 1)
-print("Clicking export menu.")
+    print("Getting export menu.")
+    toggle = get_with_retry(driver, "toggle_export", 1)
+    print("Clicking export menu.")
 
-click_with_retry(toggle)
-print("Getting export button.")
-export_link = get_with_retry(driver, "export_card", 1)
-print("Clicking export button.")
-click_with_retry(export_link)
+    click_with_retry(toggle)
+    print("Getting export button.")
+    export_link = get_with_retry(driver, "export_card", 1)
+    print("Clicking export button.")
+    click_with_retry(export_link)
+
+
+if __name__ == "__main__":
+    driver = webdriver.Chrome()
+    download(driver, "funciones_basicas.jl")
