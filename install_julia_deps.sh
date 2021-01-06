@@ -11,4 +11,4 @@ else
     sudo ln -s ${HOME}/julia/bin/julia /usr/local/bin/julia
 fi
 
-julia install_pluto.jl
+julia -e "using Pkg; Pkg.activate(pwd()); Pkg.instantiate();"
