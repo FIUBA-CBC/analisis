@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.4
+# v0.12.18
 
 using Markdown
 using InteractiveUtils
@@ -57,37 +57,40 @@ Por lo tanto nuestra máquina de contar letras **es un función**.
 
 # ╔═╡ 1d1e7cb6-39a2-11eb-1441-57d8e1e5f1c2
 md"
-Como contraejemplo, imaginemos una máquina que a la cual le damos un libro y nos devuelve un párrafo al azar contenido en ese libro. Esta máquina... ¿Es una función?
+Como contraejemplo, imaginemos una máquina a la cual le damos un libro y nos devuelve un párrafo al azar contenido en ese libro. Esta máquina ¿es una función?
 
-- Respecto a la existencia, cualquier libro tendrá un párrafo que devolvernos. Siempre habrá un resultado.
-- Respecto a la unicidad del resultado, vemos que no se cumple. Si a nuestra máquina le damos un mismo libro dos veces, podríamos tener como resultado dos frases distintas.
+- Respecto a la existencia, todo libro tendrá un párrafo que devolvernos. Siempre habrá un resultado.
+- Respecto a la unicidad del resultado, no se cumple ya que la elección es al azar. Si a nuestra máquina le damos un mismo libro dos veces, podríamos tener como resultado dos frases distintas.
+
+Nuestra máquina de selección de frases, entonces, **no** es una función.
 "
 
 # ╔═╡ 24564a0e-39a2-11eb-03d0-f96c52fbcddd
-# Mostrar imagen con LOTR y dos frases de salida.
-
-# ╔═╡ 39a48a24-39a2-11eb-0eb5-3d59ba59159b
 md"
-Nuestra máquina de selección de frases, entonces, **no** es una función.
+![ejemplo no-función](https://github.com/FIUBA-CBC/analisis/img/funciones_basicas_1.jpg)
 "
 
 # ╔═╡ 4d98e5e8-39a2-11eb-2521-21cbf3403029
 md"
 ## Entrada y Salida - Dominio e Imagen
 
-Volviendo al ejemplo del contador de letras... ¿Qué pasa ahora si en vez de una palabra en español intentamos ingresar otra cosa? Por ejemplo si a nuestra máquina le ingresamos \"こんにちは\", ¿Qué nos devuelve? La realidad es que no devuelve nada, porque no está preparada para entender Hiragana. A todo el conjunto de elementos que sí acepta (las palabras en lenguaje español), lo vamos a llamar \"Dominio\".
+Volviendo al ejemplo del contador de letras... ¿Qué pasa ahora si en vez de una palabra en español intentamos ingresar otra cosa? Por ejemplo si a nuestra máquina le ingresamos \"こんにちは\", ¿Qué nos devuelve? La realidad es que no devuelve nada, porque no está preparada para entender Hiragana. A todo el conjunto de elementos que sí acepta (las palabras en lenguaje español), lo vamos a llamar **dominio**.
 
-Y también es interesante ver qué cosas nos puede devolver nuestra maquina/función. En nuestro ejemplo siempre nos va a devolver números (numeros enteros positivos si somos mas especificos). Al conjunto de elementos que me puede devolver mi función lo llamamos \"Imagen\".
+Y también es interesante ver qué cosas nos puede devolver nuestra maquina/función. En nuestro ejemplo siempre nos va a devolver números (números enteros positivos si somos mas específicos). Al conjunto de elementos que me puede devolver mi función lo llamamos **imagen**.
 
-Resumiendo, nuestra maquina contadora de letras tiene como dominio todas las palabras que existen y para conocer la imagen, tenemos que ingresar todos estos elementos del dominio y ver el conjunto de valores que nos devuelve. En este caso van a ser los números naturales del 1 a n, donde n es la cantidad de letras de la palabra mas larga que existe. Según la RAE, en el español esta palabra es _electroencefalografista_, con lo cual la imagen son los enteros entre 1 y 23 (inclusive). Para otros idiomas, la imagen podría ser más amplia...
+Resumiendo, nuestra máquina contadora de letras tiene como dominio todas las palabras que existen y para conocer la imagen, tenemos que ingresar todos estos elementos del dominio y ver el conjunto de valores que nos devuelve. En este caso van a ser los números naturales del 1 a n, donde n es la cantidad de letras de la palabra mas larga que existe. Según la RAE, en el español esta palabra es _electroencefalografista_, con lo cual la imagen son los enteros entre 1 y 23 (inclusive). Para otros idiomas, la imagen podría ser más amplia...
 "
 
 # ╔═╡ 5ce13672-39a2-11eb-3943-adbc2ea4df34
-# Foto del pueblo de nombra más largo en gales?
+md"
+Por ejemplo, para este pueblo en Gales que ostenta el nombre más largo del mundo: 
+
+![cartel del pueblo galés con el nombre más largo](https://upload.wikimedia.org/wikipedia/commons/e/e8/Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch_station_sign_%28cropped_version_1%29.jpg)
+"
 
 # ╔═╡ 639b9534-39a2-11eb-1105-9959261a360e
 md"
-También podemos pensar a una función como una tabla, por ejemplo la lista de precios de una verduleria:
+También podemos pensar a una función como una tabla que relaciona dos valores, por ejemplo la lista de precios de una verdulería:
 
 | Producto | Precio [\$/kg]  |
 |-----|------|
@@ -97,29 +100,29 @@ También podemos pensar a una función como una tabla, por ejemplo la lista de p
 | Pera   | 35    |
 | Ananá   | 40    |
 
-En este caso yo le ingreso una fruta a la tabla, y me devulve el precio, la funcion asocia valores de frutas a valores de precio.
+En este caso, si yo quiero saber el valor de una fruta que se encuentra en la tabla, el valor de entrada es la fruta que busco, el valor de saluda es el precio y la función es la relación que asocia ambos valores.
 
 ¿Cumple con las condiciones que establecimos?
-- Cada fruta tiene un precio, o sea que el resultado existe.
-- Cualquiera que compre una fruta pagará lo mismo, por lo cual el valor de salida es único, y además siempre es el mismo.
+- Toda fruta tiene un precio asociado, o sea que el resultado existe.
+- Para cada fruta el precio es uno solo, por lo cual el valor de salida es único.
 
-En este caso, el dominio es el conjunto {Banana, Manzana, Durazno, Pera, Ananá} y la imagen los números {35, 40, 50, 67}.
+En este caso particular, el dominio es el conjunto {Banana, Manzana, Durazno, Pera, Ananá} y la imagen son los números {35, 40, 50, 67}.
 
-¿Puede pasar que dos valores diferentes de entrada me den un mismo valor de salida? Mis condiciones no lo impiden, y en la tabla podemos podemos ver que la manzana y la pera tiene el mismo valor de salida.
+¿Puede pasar que dos valores diferentes de entrada me den un mismo valor de salida? Mis condiciones no lo impiden, solamente impiden que un valor de entrada tenga dos valores de salida. Pero dos entradas diferentes (por ejemplo, \"Manzana\" y \"Pera\") pueden tener un mismo valor de salida (en este caso, \"35\").
 "
 
 # ╔═╡ c5c72e6c-39a2-11eb-28f2-1bc72645c20c
 md"
 ## Funciones Numéricas
-Nosotros nos vamos a concentrar ahora en funciones que toman como valor de entrada un  número y nos devuelve otro. Ademas, a diferencia del ejemplo de la verduleria donde no hay una relacion clara entre los valores de entrada y los de salida, vamos a estudiar relaciones que van a estar dadas por fórmulas.
+Ahora nos vamos a concentrar en funciones que toman como valor de entrada un  número y nos devuelven otro. Además, a diferencia del ejemplo de la verdulería, donde no hay una relación clara entre los valores de entrada y los de salida, vamos a estudiar relaciones que van a estar dadas por fórmulas.
 
-Pensemos en un ejemplo muy sencillo: una función que tome numeros y me devuelva el doble del valor ingresado. Le vamos a poner nombre a esta función, pero como no somos muy creativos la vamos a llamar $f$. Podemos encones escribirla como:
+Pensemos en el siguiente ejemplo: una función que tome números y me devuelva el doble del valor ingresado. Le vamos a poner nombre a esta función, pero como no somos muy creativos la vamos a llamar $f$. Podemos entonces escribirla como:
 
 $f(x) = y$
 
 Donde llamamos $x$ a los valores de entrada, e $y$ a los de salida. 
 
-Como nuestra función nos devuelve el doble del numero que ingresamos, la definimos como:
+Como nuestra función nos devuelve el doble del número que ingresamos, la definimos como:
 
 $f(x) = y = 2 \cdot x$
 "
@@ -134,7 +137,7 @@ y(x) = 2x;
 
 # ╔═╡ e00eed60-39a6-11eb-026b-e3034bb33326
 md"
-Apliquemos esta función a varias entradas y veremos que nos devuelve siempre el doble.
+Ahora que creamos nuestra función $y$ en la celda de arriba, apliquemos esta función a varias entradas y veremos que nos devuelve siempre el doble.
 "
 
 # ╔═╡ 7419201a-39a6-11eb-3f8d-1d64ed0dd3c6
@@ -148,9 +151,9 @@ y(3.14)
 
 # ╔═╡ ff108920-39a2-11eb-31c8-c1da25a851f4
 md"
-Podemos ahora pensar cual va a ser el dominio de esta función. Para esto tenemos que fijarnos si hay alguna restricción. En este caso nosotros podemos multiplicar por dos a cualquier valor, por lo tanto el dominio de esta función son todos los números reales. Para la imagen, tenemos que pensar todas las cosas que nos devolveria cuando le aplicamos la función a todo su dominio. Vamos a volver a ver esto mas adelante.
+Ahora podemos pensar cuál va a ser el dominio de esta función, es decir, todos los valores de entrada posibles. Para esto tenemos que fijarnos si hay alguna restricción. Todos los números reales pueden ser multiplicados por dos, por lo tanto, el dominio de esta función son todos los números reales. Para conocer la imagen, tenemos que definir el conjunto de todas las cosas que nos puede devolver cuando le aplicamos la función a todo su dominio. Vamos a volver a ver esto más adelante.
 
-Podemos armar una tabla con esta función, eligiendo algunos valores de $x$ y apclicando la fórmula de la función. Lo haremos para 5 valores:
+Una manera de visualizar la relación entre el dominio y la imagen es armar una tabla de entradas y salidas. Vamos a hacer una tabla chica, eligiendo algunos valores de $x$ y aplicando la fórmula de la función. Lo haremos para 5 valores:
 "
 
 
@@ -179,7 +182,7 @@ Esta es una manera de visualizar la función, pero resulta un poco limitada, por
 md"
 ### Gráfica de una función
 
-La manera mas usual de representar una funcición es con lo que llamamos \"gráfica\" de la función. Para esto vamos a utilizar un par de rectas perpendiculares, una horizontal y otra vertical. 
+La manera mas usual de representar una función es con lo que llamamos \"gráfica\" de la función. Para esto vamos a utilizar un par de rectas perpendiculares, una horizontal y otra vertical. 
 "
 
 # ╔═╡ 2b1c0e40-39a3-11eb-086a-fd57357fe0b9
@@ -260,33 +263,32 @@ end
 md"
 Ahora no tenemos un número finito de puntos: tenemos todos valores de $y$ para $x$ entre $-2.5$ y $2.5$. Basta con observar la altura de la recta para un $x$ cualquiera, para obtener su $y$ correspondiente.
 
-Si queremos ver esto en el apunte, podemos pasar el mouse por arriba de la recta para ver el valor para cada x.
+Si queremos ver esto en el gráfico, podemos pasar el mouse por arriba de la recta para ver el valor para cada x.
 "
 
 # ╔═╡ Cell order:
 # ╟─98dde660-39a3-11eb-36ae-1f540bcd1f6e
-# ╟─bc86db48-39a1-11eb-3702-5fec3865f699
+# ╠═bc86db48-39a1-11eb-3702-5fec3865f699
 # ╠═b75d7b04-39a9-11eb-3958-f9e9b67f76c6
 # ╠═75278720-39a9-11eb-29e0-3d25c917c1a5
 # ╠═ab0792a4-39a9-11eb-29d6-e1c48c4f5357
-# ╟─07eb7bb4-39a2-11eb-3966-7fb63826c807
-# ╟─1d1e7cb6-39a2-11eb-1441-57d8e1e5f1c2
+# ╠═07eb7bb4-39a2-11eb-3966-7fb63826c807
+# ╠═1d1e7cb6-39a2-11eb-1441-57d8e1e5f1c2
 # ╠═24564a0e-39a2-11eb-03d0-f96c52fbcddd
-# ╟─39a48a24-39a2-11eb-0eb5-3d59ba59159b
-# ╟─4d98e5e8-39a2-11eb-2521-21cbf3403029
+# ╠═4d98e5e8-39a2-11eb-2521-21cbf3403029
 # ╠═5ce13672-39a2-11eb-3943-adbc2ea4df34
-# ╟─639b9534-39a2-11eb-1105-9959261a360e
-# ╟─c5c72e6c-39a2-11eb-28f2-1bc72645c20c
+# ╠═639b9534-39a2-11eb-1105-9959261a360e
+# ╠═c5c72e6c-39a2-11eb-28f2-1bc72645c20c
 # ╟─b03534aa-39a6-11eb-3e3b-056e1dce25f7
 # ╠═f3929bf6-39a2-11eb-0579-e523f774ab20
-# ╟─e00eed60-39a6-11eb-026b-e3034bb33326
+# ╠═e00eed60-39a6-11eb-026b-e3034bb33326
 # ╠═7419201a-39a6-11eb-3f8d-1d64ed0dd3c6
 # ╠═771eff84-39a6-11eb-0da0-991cf8d801cb
 # ╠═7a74486a-39a6-11eb-1751-03a59c43534a
-# ╟─ff108920-39a2-11eb-31c8-c1da25a851f4
+# ╠═ff108920-39a2-11eb-31c8-c1da25a851f4
 # ╠═1f2cef24-39a7-11eb-1013-4fea26fec72b
 # ╟─78d354a0-39a7-11eb-29c3-c95fe549edf3
-# ╟─28028400-39a3-11eb-1929-9da042af8605
+# ╠═28028400-39a3-11eb-1929-9da042af8605
 # ╠═2b1c0e40-39a3-11eb-086a-fd57357fe0b9
 # ╟─7a980408-39a1-11eb-2cba-7d91808ef38f
 # ╠═bc58643e-39a4-11eb-0b5c-45be59611272
@@ -295,4 +297,4 @@ Si queremos ver esto en el apunte, podemos pasar el mouse por arriba de la recta
 # ╠═06eadb16-39a6-11eb-3e6d-f94904175161
 # ╟─b0d76046-39a5-11eb-146f-779ffd213ca5
 # ╠═683ac160-39a6-11eb-1038-d9520464f302
-# ╟─da4cf834-39a8-11eb-35d9-a70e594e792f
+# ╠═da4cf834-39a8-11eb-35d9-a70e594e792f
