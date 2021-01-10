@@ -8,6 +8,18 @@
 4) Antes de pushear un avance, hacer pull para que esté todo sincronizado y no hayan conflictos
 5) Simpre hacer commit -m "mensaje aclarando qué se hizo"
 6) Nunca mergear sin que otra persona haya revisado el PR
+7) Mantener la estructura para coincidir con los issues:
+
+- notebooks/
+  - 1_funciones/
+    - 1_1_introduccion_a_funciones.jl
+    - 1_2_conjuntos.jl
+    - 1_3_caracterizacion.jl
+  - 2_limites_continuidad/
+    - ...
+  - ...
+
+
 
 ## Pipeline para trabajar con github
 
