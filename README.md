@@ -1,5 +1,12 @@
 # Análisis Matemático - CBC
 
+# Libros
+- [Mathematics: Its Content, Methods and Meaning - Aleksandrov, Kolmogorov, Lavrent'ev](https://www.goodreads.com/book/show/405880.Mathematics)
+- [Modeling Life: The Mathematics of Biological Systems - Alan Garfinkel, Jane Shevtsov, Yina Guo](https://www.goodreads.com/book/show/36430190-modeling-life)
+- [The Joy of x: A Guided Tour of Math, from One to Infinity - Steven Strogatz](https://www.goodreads.com/book/show/13356649-the-joy-of-x)
+- [Infinite Powers: How Calculus Reveals the Secrets of the Universe - Steven Strogatz](https://www.goodreads.com/book/show/40796176-infinite-powers)
+- [The Real and the Complex: A History of Analysis in the 19th Century - Jeremy Gray](https://www.goodreads.com/book/show/26785151-the-real-and-the-complex)
+
 ## Ejes ordenadores:
 - Aplicación: los conceptos deben estar aplicados a ejemplos prácticos familiares
 - Actualizacion en la presentación (libro online, videos manim https://github.com/3b1b/manim, simulaciones online parametrizadas)
