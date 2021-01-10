@@ -1,10 +1,11 @@
 # Análisis Matemático - CBC
 
 # Libros
+- [Infinite Powers: How Calculus Reveals the Secrets of the Universe - Steven Strogatz](https://www.goodreads.com/book/show/40796176-infinite-powers)
 - [Mathematics: Its Content, Methods and Meaning - Aleksandrov, Kolmogorov, Lavrent'ev](https://www.goodreads.com/book/show/405880.Mathematics)
 - [Modeling Life: The Mathematics of Biological Systems - Alan Garfinkel, Jane Shevtsov, Yina Guo](https://www.goodreads.com/book/show/36430190-modeling-life)
 - [The Joy of x: A Guided Tour of Math, from One to Infinity - Steven Strogatz](https://www.goodreads.com/book/show/13356649-the-joy-of-x)
-- [Infinite Powers: How Calculus Reveals the Secrets of the Universe - Steven Strogatz](https://www.goodreads.com/book/show/40796176-infinite-powers)
+- [The Grapes of Math: How Life Reflects Numbers and Numbers Reflect Life - Alex Bellos](https://www.goodreads.com/book/show/13547287-the-grapes-of-math)
 - [The Real and the Complex: A History of Analysis in the 19th Century - Jeremy Gray](https://www.goodreads.com/book/show/26785151-the-real-and-the-complex)
 
 ## Ejes ordenadores:
