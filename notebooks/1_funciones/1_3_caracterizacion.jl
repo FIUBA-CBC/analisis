@@ -97,7 +97,7 @@ Ver la gráfica de una función es importante para probar que es inyectiva, pero
 "
 
 # ╔═╡ 05bc6ea4-5395-11eb-2f8c-e5430def4de7
-
+# Grafico
 
 # ╔═╡ 188135a6-5395-11eb-3d2e-274357cbcb24
 md"
@@ -138,7 +138,7 @@ La función lineal es muy fácil para operar. Para otras será importante conoce
 "
 
 # ╔═╡ 3675ca40-5395-11eb-0fa4-958a41909abe
-
+# Plot de la función coseno
 
 # ╔═╡ 3e567aca-5395-11eb-13c2-4722d715ef17
 md"
@@ -148,7 +148,7 @@ Esto aplica para cosenos de cualquier frecuencia:
 "
 
 # ╔═╡ 47a461a0-5395-11eb-13f1-e31932db7f69
-
+# gráfico donde varíe la frecuencia del coseno
 
 # ╔═╡ 4f7f9412-5395-11eb-125e-b944e3e51439
 md"
@@ -171,7 +171,7 @@ $x^3 - x$
 "
 
 # ╔═╡ 78346d60-5395-11eb-356b-7b6079466bfb
-
+# Gráfico de la función
 
 # ╔═╡ 54bb5bb4-5395-11eb-065c-b5f101121fd8
 md"
@@ -219,7 +219,7 @@ Esto último es lo que hicimos verbalmente con la función cúbica de hace unas 
 "
 
 # ╔═╡ b54b0dee-5395-11eb-2386-b1bd3d67bd4e
-
+# Gráfico de la cúbica de nuevo
 
 # ╔═╡ 87fd0e96-5395-11eb-1272-a380b4042949
 md"
@@ -270,7 +270,7 @@ Como estudiamos ingeniería, tomaremos mediciones por unos días y luego modelar
 "
 
 # ╔═╡ 645aa8d0-5396-11eb-198c-eb0b414fb61b
-
+# gráfico que se aproxima por un coseno
 
 # ╔═╡ d25e50a8-5395-11eb-0ad7-0faeadafb95a
 md"
@@ -286,7 +286,7 @@ Conceptualmente, ¿cuál es el problema? La pregunta que habíamos hecho era per
 "
 
 # ╔═╡ 6f780852-5396-11eb-2425-2b51da1ad3d0
-
+# gráfico con los días separados por colores, con los 6 metros marcados
 
 # ╔═╡ 79103d28-5396-11eb-2534-b96a12cfb50f
 md"
@@ -294,7 +294,7 @@ Claro. El problema es evidente. Se llega a los 6 metros dos veces por día todos
 "
 
 # ╔═╡ 80e5b742-5396-11eb-3287-456ce5221efe
-
+# gráfico del coseno en 24 horas
 
 # ╔═╡ 8749a80a-5396-11eb-1757-5dcc4a259298
 md"
@@ -302,7 +302,7 @@ Ahora estamos mucho mejor, aunque se sigue dando el mismo problema: dos veces al
 "
 
 # ╔═╡ 8bac75d0-5396-11eb-2a3f-a9d221ab9c1b
-
+# gráfico entre las 12am y 12pm
 
 # ╔═╡ 99eb6e3a-5396-11eb-1654-37ffd9d2869b
 md"
@@ -332,7 +332,7 @@ Finalmente, aplicamos nuestra función inversa $h^{-1}(6\text{m}) = NN$ y obtuvi
 "
 
 # ╔═╡ 9e60ba7e-5396-11eb-26ca-638c7c62eae7
-
+# repetimos el gráfico de un solo día, con un color hasta las 12 y otro después
 
 # ╔═╡ a9b5c5ea-5396-11eb-30a0-b70a5b821499
 md"
@@ -355,7 +355,7 @@ En particular, deberemos quedarnos con el dominio que querramos para la solució
 "
 
 # ╔═╡ be2f435c-5396-11eb-1d26-235f5b97e4e5
-
+# Gráfico de x^2
 
 # ╔═╡ c6dfa3d6-5396-11eb-318d-85da105b63ca
 md"
@@ -375,7 +375,7 @@ Graficando:
 "
 
 # ╔═╡ d9e31ca4-5396-11eb-09f0-17eef4097cf1
-
+# Gráfico de ambas ramas con los colores.
 
 # ╔═╡ d718bf24-5396-11eb-2a80-afbeb54cc8d8
 md"
@@ -396,7 +396,7 @@ Hace un rato mencionamos, por ejemplo, que el coseno se parece a una función cu
 "
 
 # ╔═╡ f5a10512-5396-11eb-004a-f1d8a701208d
-
+# gráfico con el zoom variable
 
 # ╔═╡ f1927246-5396-11eb-26e5-574a49aca33c
 md"
@@ -404,7 +404,7 @@ Esta idea de aproximar con funciones más simples también se aplica a las linea
 "
 
 # ╔═╡ cdc72d66-5396-11eb-3449-4bda0462e0af
-
+# gráfico de un seno y una lineal
 
 # ╔═╡ Cell order:
 # ╟─57c122b6-5394-11eb-3970-75f46fb55ac4
