@@ -4,6 +4,22 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    quote
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : missing
+        el
+    end
+end
+
+# ╔═╡ 0de4bef2-5916-11eb-03cd-396932d588c2
+begin
+	using Plots
+	using PlutoUI
+	plotly()
+end
+
 # ╔═╡ 57c122b6-5394-11eb-3970-75f46fb55ac4
 md"# 1.3. Características de funciones
 
@@ -18,8 +34,30 @@ Para muchas aplicaciones el ingenier@ puede necesitar definir una función inver
 
 ¿Se puede invertir toda función? La función $x^2$, por ejemplo, es invertible?"
 
+# ╔═╡ 0e7900f2-5917-11eb-0eec-bdddb19e77d2
+begin
+	x_cuad = collect(-5:0.01:5)
+	y_cuad(x) = x.^2
+	
+    p_cuad = plot(x_cuad, y_cuad(x_cuad), lab="y(x) = x²", color=:red)
+	xlabel!("x")
+	ylabel!("x²")
+    xlims!(-5,5)
+    ylims!(0,10)
+end
+
 # ╔═╡ 91290ffc-5394-11eb-27a0-179e75f62ae7
-# plot de $x^2$ y de $x^2$ rotado
+begin
+	x_cuad_rot = collect(0:0.01:10)
+	y_cuad_rot(x) = (√).(x)
+	y_cuad_rot_2(x) = -(√).(x)
+    p_sqrt = plot(x_cuad_rot, y_cuad_rot(x_cuad_rot), lab="x(y) = √y", color=:red, legend=:right)
+	plot!(x_cuad_rot, y_cuad_rot_2(x_cuad_rot), lab="x(y) = -√y", color=:blue)
+	xlabel!("y")
+	ylabel!("x")
+    xlims!(0,10)
+    ylims!(-3,3)
+end
 
 # ╔═╡ 906f8a00-5394-11eb-07f3-7f9633d5b1bb
 md"
@@ -40,7 +78,17 @@ Lo primero que observamos es que, para que una función $f(x)$ sea invertible ne
 Un ejemplo de función inyectiva es la exponencial."
 
 # ╔═╡ af0a24f2-5394-11eb-3088-ef7f8d39976d
-# gráfico de exponencial
+begin
+	x_exp = collect(-5:0.01:5)
+	y_exp(x) = 2.0.^x
+    plot(x_exp, y_exp(x_exp), lab="y(x) = 2^x", color=:red)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("2^x")
+    xlims!(-5,5)
+    ylims!(0,10)
+end
 
 # ╔═╡ c17c27b6-5394-11eb-2cfe-0f20790ba851
 md"
@@ -50,17 +98,27 @@ Contrastando, las cuadráticas, como vimos en la introducción, no son inyectiva
 "
 
 # ╔═╡ c5e02adc-5394-11eb-1f62-d5a900d8277f
-# gráfico de un tiro vertical
+begin
+	t = collect(-5:0.01:5)
+	h(x) = t.*10 - 9.8t.^2
+    plot(x_exp, h(t), lab="h(t) = 10m/s - 9.8 m/s^2", color=:red)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("Tiempo (segundos)")
+	ylabel!("Altura (metros)")
+    xlims!(0,1)
+    ylims!(0,3)
+end
 
 # ╔═╡ cce85ae8-5394-11eb-208e-f3cb40ff5b6b
 md"
 Si nosotros arrojamos una pelota hacia arriba sabemos que en algún momento llegará a la altura de donde la lanzamos. De hecho, salvo para el punto máximo, pasará por cada punto dos veces.
 
-Esto no aplica solo a funciones sobre el tiempo, sino sobre el espacio. Observemos esta sección del aconcagua:
+Esto no aplica solo a funciones sobre el tiempo, sino sobre el espacio. Observemos esta sección de la coordillera de los Andes:
 "
 
 # ╔═╡ cffc9744-5394-11eb-29b8-29d1e2595731
-# sección de la coordillera de los Andes
+Resource("https://www.researchgate.net/profile/Daniel_Sandweiss2/publication/226747201/figure/fig2/AS:393879279947812@1470919546594/Cross-section-of-the-Central-Andes-showing-the-major-environmental-zones-according-to.png")
 
 # ╔═╡ d824731a-5394-11eb-3118-bf5202cb32b5
 md"
@@ -97,7 +155,15 @@ Ver la gráfica de una función es importante para probar que es inyectiva, pero
 "
 
 # ╔═╡ 05bc6ea4-5395-11eb-2f8c-e5430def4de7
-# Grafico
+begin
+	x_in = collect(-5:0.01:5)
+	
+    plot(x_in, x_in.*5 .- 10, lab="f(x) = 5x - 10", color=:red)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 188135a6-5395-11eb-3d2e-274357cbcb24
 md"
@@ -137,18 +203,86 @@ No hace falta más prueba que esta. Encontramos dos puntos distintos cuyos valor
 La función lineal es muy fácil para operar. Para otras será importante conocerlas bien y tener presente la gráfica o su forma general. Por ejemplo, para la función coseno:
 "
 
+# ╔═╡ 487bb478-5d10-11eb-2583-63ee832c3956
+# TODO: estaría bueno explicar esto matemáticamente (cómo obtener todos los puntos que pasan por cierto valor de una trigonométrica a partir de las inversas.
+
+cos_points(x_range, y, ω) = 
+begin
+	T = 2π/ω
+	# Cada período tendrá dos cruces
+	primer_cruce = acos(y)/ω
+	segundo_cruce = T - acos(y)/ω
+	
+	# Esta es la lista de períodos incluidos en el rango.
+	primer_intervalo = floor(x_range[1]/T)
+	ultimo_intervalo = floor(x_range[end]/T)
+	intervalos = collect(primer_intervalo:1:ultimo_intervalo)
+	
+	# Aquí sumamos períodos a los cruces.
+	sumas = intervalos .* T
+	vcat(primer_cruce .+ sumas, segundo_cruce .+ sumas)
+end
+
 # ╔═╡ 3675ca40-5395-11eb-0fa4-958a41909abe
-# Plot de la función coseno
+begin
+	x_cos = collect(-5:0.01:5)
+	y_cruce = -0.5
+	puntos = cos_points(x_cos, y_cruce, 1)
+	
+    plot(x_cos, cos.(x_cos), lab="f(x) = cos(x)", color=:red)
+	plot!([-0.5], seriestype="hline", lab="", color=:green, style="dot")
+	scatter!(puntos, repeat([y_cruce], length(puntos)), lab="f(x) = $(y_cruce)")
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 3e567aca-5395-11eb-13c2-4722d715ef17
-md"
+begin 
+	ω_slider = @bind ω_ejemplo Slider(0.1:0.1:5; default=3, show_value=true);
+	md"
 Evidentemente la función es periódica. No solo repite valores, sino que repite **todos** sus valores infinitas veces. ¿Cómo lo probamos matemáticamente? Como antes, basta con encontrar dos valores, como $0$ y $2\pi$, para los cuales el coseno vale $1$ (su valor máximo).
 
-Esto aplica para cosenos de cualquier frecuencia:
-"
+Esto aplica para cosenos de cualquier frecuencia angular.
+	
+Probemos variando $\omega$: $(ω_slider)"
+end
 
-# ╔═╡ 47a461a0-5395-11eb-13f1-e31932db7f69
-# gráfico donde varíe la frecuencia del coseno
+# ╔═╡ 645aa8d0-5396-11eb-198c-eb0b414fb61b
+begin	
+	ω_marea = 2π/24
+	t_marea = collect(0:0.5:72)
+	cruces_diarios = cos_points(x_cos, y_cruce, ω_ejemplo)
+	altura_cierre = 6
+	h_marea(t) = 10 * cos(ω_marea * t)
+	
+	using Random
+	Random.seed!(1)
+	mediciones = h_marea.(t_marea) + Random.randn(length(t_marea))*1
+	
+    p = plot(t_marea, h_marea.(t_marea), lab="h(t) = 10 cos(2π t/24)", color=:red)
+	plot!([altura_cierre], seriestype="hline", lab="Altura de cierre (6m)", color=:green, style="dot")
+	scatter!(t_marea, mediciones, lab="Mediciones", color=:blue)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("Tiempo (t) en horas")
+	ylabel!("Altura (h) en metros")
+end
+
+# ╔═╡ cb3d8298-5dd7-11eb-271b-7f97d4b9a24c
+begin	
+	cruces = cos_points(x_cos, y_cruce, ω_ejemplo)
+	cosω(x) = cos(ω_ejemplo * x)
+    plot(x_cos, cosω.(x_cos), lab="f(x) = cos($(ω_ejemplo)x)", color=:red)
+	plot!([-0.5], seriestype="hline", lab="", color=:green, style="dot")
+	scatter!(cruces, repeat([y_cruce], length(cruces)), lab="f(x) = $(y_cruce)")
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlims!(-5, 5)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 4f7f9412-5395-11eb-125e-b944e3e51439
 md"
@@ -171,7 +305,15 @@ $x^3 - x$
 "
 
 # ╔═╡ 78346d60-5395-11eb-356b-7b6079466bfb
-# Gráfico de la función
+begin	
+	x_cubo = collect(-1.5:0.1:1.5)
+	y_cubo = x_cubo .^ 3 - x_cubo
+    plot(x_cubo, y_cubo, lab="f(x) = x^3 - x", color=:red)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 54bb5bb4-5395-11eb-065c-b5f101121fd8
 md"
@@ -219,16 +361,29 @@ Esto último es lo que hicimos verbalmente con la función cúbica de hace unas 
 "
 
 # ╔═╡ b54b0dee-5395-11eb-2386-b1bd3d67bd4e
-# Gráfico de la cúbica de nuevo
+begin	
+	x_1 = collect(-1.5:0.1:-1)
+	x_2 = collect(-1:0.1:1)
+	x_3 = collect(1:0.1:1.5)
+	f_cubo(x) = x .^ 3 - x
+    plot(x_1, f_cubo(x_1), lab="f(x) para x ≤ -1", color=:red)
+	plot!(x_2, f_cubo(x_2), y_cubo, lab="f(x) para -1 < x < 1", color=:blue)
+	plot!(x_3, f_cubo(x_3), lab="f(x) para x ≥ 1", color=:green)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 87fd0e96-5395-11eb-1272-a380b4042949
 md"
 Separamos esto en tres secciones:
 
-- La primera es $x \in (-\infty, -1)$. Vemos que $f(-1) = (-1)^3 - (-1) = 0$ y que hacia izquierda la función _es decreciente_. Esto nos cubre todos los valores de $f$ en $(-\infty, 0]$.
-- La tercera es $x \in (2, \infty)$. Vemos que $f(1) = 1^3 - 1 = 0$ y que a la derecha la función es creciente. Aquí entonces cubrimos todos los valores de $f$ en $[0, \infty)$.
+- La primera es $x \in (-\infty, -1]$. Vemos que $f(-1) = (-1)^3 - (-1) = 0$ y que hacia izquierda la función _es decreciente_. Esto nos cubre todos los valores de $f$ en $(-\infty, 0]$.
+- La segunda es $x \in (-1, 1)$. Aquí toma valores reales acotados.
+- La tercera es $x \in [1, \infty)$. Vemos que $f(1) = 1^3 - 1 = 0$ y que a la derecha la función es creciente. Aquí entonces cubrimos todos los valores de $f$ en $[0, \infty)$.
 
-Con esto podemos ignorar completamente la sección del medio porque ya probamos que nuestra imagen cubre el codominio, pues $(-\infty, 0] \cup [0, \infty) = R$.
+Con esto podemos ignorar completamente la sección del medio porque ya probamos que nuestra imagen cubre el codominio: Si unimos la imagen de la primera y la tercera de las secciones, nos queda $(-\infty, 0] \cup [0, \infty) = \mathbb{R}$.
 "
 
 # ╔═╡ c549304a-5395-11eb-06ee-23f468475a76
@@ -266,11 +421,8 @@ Hasta ahora entendimos que **necesitamos** que una función sea biyectiva para q
 
 En la vida real nos podemos encontrar con ese problema. Supongamos que a nuestra consultora de logística la contrata un balneario en construcción que necesita tomar una decisión: quiere ver a qué hora deberá levantar las carpas para que no se inunden al subir la marea y en función de eso saber cuándo hacer las ofertas de su confitería para mantener a la gente cautiva.
 
-Como estudiamos ingeniería, tomaremos mediciones por unos días y luego modelaremos la marea con algo similar a una función trigonométrica, ya que la marea es una función periódica: aumenta a la noche, y disminuye durante el día.
+Como estudiamos ingeniería, tomaremos mediciones cada media hora por unos días y luego modelaremos la marea con algo similar a una función trigonométrica, ya que la marea es una función periódica: aumenta a la noche, y disminuye durante el día.
 "
-
-# ╔═╡ 645aa8d0-5396-11eb-198c-eb0b414fb61b
-# gráfico que se aproxima por un coseno
 
 # ╔═╡ d25e50a8-5395-11eb-0ad7-0faeadafb95a
 md"
@@ -286,7 +438,23 @@ Conceptualmente, ¿cuál es el problema? La pregunta que habíamos hecho era per
 "
 
 # ╔═╡ 6f780852-5396-11eb-2425-2b51da1ad3d0
-# gráfico con los días separados por colores, con los 6 metros marcados
+begin	
+	dia_1 = collect(0:0.5:24)
+	dia_2 = collect(24:0.5:48)
+	dia_3 = collect(48:0.5:72)
+	
+    scatter(t_marea, mediciones, lab="Mediciones", color=:lightgrey)
+	plot!(dia_1, h_marea.(dia_1), lab="h en día 1", color=:red)
+	plot!(dia_2, h_marea.(dia_2), lab="h en día 2", color=:blue)
+	plot!(dia_3, h_marea.(dia_3), lab="h en día 3", color=:orange)
+	
+	plot!([altura_cierre], seriestype="hline", lab="Altura de cierre (6m)", color=:green, style="dot")
+	
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("Tiempo (t) en horas")
+	ylabel!("Altura (h) en metros")
+end
 
 # ╔═╡ 79103d28-5396-11eb-2534-b96a12cfb50f
 md"
@@ -294,7 +462,10 @@ Claro. El problema es evidente. Se llega a los 6 metros dos veces por día todos
 "
 
 # ╔═╡ 80e5b742-5396-11eb-3287-456ce5221efe
-# gráfico del coseno en 24 horas
+begin
+	p
+	xlims!(0, 24)
+end
 
 # ╔═╡ 8749a80a-5396-11eb-1757-5dcc4a259298
 md"
@@ -302,7 +473,10 @@ Ahora estamos mucho mejor, aunque se sigue dando el mismo problema: dos veces al
 "
 
 # ╔═╡ 8bac75d0-5396-11eb-2a3f-a9d221ab9c1b
-# gráfico entre las 12am y 12pm
+begin
+	p
+	xlims!(0, 12)
+end
 
 # ╔═╡ 99eb6e3a-5396-11eb-1654-37ffd9d2869b
 md"
@@ -331,15 +505,31 @@ Algunas observaciones:
 Finalmente, aplicamos nuestra función inversa $h^{-1}(6\text{m}) = NN$ y obtuvimos la hora a la que la marea pasa por allí al amanecer. Averiguamos lo mismo para el atardecer mirando el gráfico
 "
 
+# ╔═╡ fe99347a-5de8-11eb-14cd-4d9d88dfecba
+begin
+	h_inv(h) = 24/(2π) *acos(h/10)
+	md"Se pasa por los 6 metros a la hora número $(h_inv(6)) en la madrugada."
+end
+
 # ╔═╡ 9e60ba7e-5396-11eb-26ca-638c7c62eae7
-# repetimos el gráfico de un solo día, con un color hasta las 12 y otro después
+begin
+	mañana = collect(0:0.5: 12)
+	tarde = collect(12:0.5:24)
+	plot(mañana, h_marea.(mañana), lab="Mañana", color=:red, legend=:bottomright)
+	plot!(tarde, h_marea.(tarde),  lab="Tarde", color=:blue)
+	plot!([altura_cierre], seriestype="hline", lab="Altura de cierre (6m)", color=:green, style="dot")
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("Tiempo (t) en horas")
+	ylabel!("Altura (h) en metros")
+end
 
 # ╔═╡ a9b5c5ea-5396-11eb-30a0-b70a5b821499
 md"
 
-Vemos que esto es simétrico en el mediodía, así que hacemos $24 - NN$ y esto nos da $XX$ que es nuestra solución.
+Vemos que esto es simétrico en el mediodía, así que hacemos 24 - $(h_inv(6)) y esto nos da $(24 - h_inv(6)) que es nuestra solución.
 
-El balneario quedó muy contento, y satisfactoriamente pudo mantener su confitería de comida marina funcionando al máximo utilizando estos cálculos que hicimos luego de medir.
+El balneario decidió entonces que el horario de las ofertas nocturnas sería el de las 20:30, quedó muy contento, y pudo mantener su confitería de comida marina funcionando al máximo utilizando estos cálculos que hicimos luego de medir.
 "
 
 # ╔═╡ b08703fc-5396-11eb-115e-397c0612ef95
@@ -355,7 +545,7 @@ En particular, deberemos quedarnos con el dominio que querramos para la solució
 "
 
 # ╔═╡ be2f435c-5396-11eb-1d26-235f5b97e4e5
-# Gráfico de x^2
+p_cuad
 
 # ╔═╡ c6dfa3d6-5396-11eb-318d-85da105b63ca
 md"
@@ -375,7 +565,7 @@ Graficando:
 "
 
 # ╔═╡ d9e31ca4-5396-11eb-09f0-17eef4097cf1
-# Gráfico de ambas ramas con los colores.
+p_sqrt
 
 # ╔═╡ d718bf24-5396-11eb-2a80-afbeb54cc8d8
 md"
@@ -395,19 +585,48 @@ Bueno, existen técnicas que se llaman \"métodos numéricos\" para esto, que se
 Hace un rato mencionamos, por ejemplo, que el coseno se parece a una función cuadrática, sobre todo si nos vamos acercando al máximo:
 "
 
+# ╔═╡ d1ce47ae-5dec-11eb-332d-45f9670939a7
+rango_x = @bind rango Slider(0.01:0.1:0.5; default=0.5, show_value=true)
+
 # ╔═╡ f5a10512-5396-11eb-004a-f1d8a701208d
-# gráfico con el zoom variable
+begin
+	x_comparacion = collect(-0.5:0.01:0.5)
+	y_aprox = 1 .- x_comparacion.^2
+	y_real = cos.(x_comparacion)
+	
+	plot(x_comparacion, y_real, lab="cos(x)", color=:red)
+	plot!(x_comparacion, y_aprox, lab="1 - x²", color=:blue)
+	xlims!(-rango, rango)
+	ylims!(0.85, 1)
+end
 
 # ╔═╡ f1927246-5396-11eb-26e5-574a49aca33c
 md"
 Esta idea de aproximar con funciones más simples también se aplica a las lineales.
 "
 
+# ╔═╡ 80accb78-5dee-11eb-338d-350f05e2628e
+@bind rango_2 Slider(0.01:0.1:0.5; default=0.5, show_value=false)
+
 # ╔═╡ cdc72d66-5396-11eb-3449-4bda0462e0af
-# gráfico de un seno y una lineal
+begin
+	x_comparacion_2 = collect(-2π:0.01:2π)
+	y_aprox_2 = x_comparacion_2
+	y_real_2 = sin.(x_comparacion_2)
+	
+	plot(x_comparacion_2, y_real_2, lab="cos(x)", color=:red)
+	plot!(x_comparacion_2, y_aprox_2, lab="1 - x²", color=:blue)
+	xlims!(-rango_2*10, rango_2*10)
+	ylims!(-rango_2*3, rango_2*3)
+end
+
+# ╔═╡ 2a5021a0-5def-11eb-29d6-01f0a6453195
+md"Sabiendo esto, si sabemos que queremos calcular $sen(x)$ en una posición cercana al $0$, podemos utilizar $x$ para el cálculo, así como podemos usar $1 - x^2$ para el $cos(x)$ en ese mismo entorno."
 
 # ╔═╡ Cell order:
+# ╠═0de4bef2-5916-11eb-03cd-396932d588c2
 # ╟─57c122b6-5394-11eb-3970-75f46fb55ac4
+# ╠═0e7900f2-5917-11eb-0eec-bdddb19e77d2
 # ╠═91290ffc-5394-11eb-27a0-179e75f62ae7
 # ╟─906f8a00-5394-11eb-07f3-7f9633d5b1bb
 # ╟─a3e63a02-5394-11eb-1998-ddf95c42b883
@@ -415,7 +634,7 @@ Esta idea de aproximar con funciones más simples también se aplica a las linea
 # ╟─c17c27b6-5394-11eb-2cfe-0f20790ba851
 # ╠═c5e02adc-5394-11eb-1f62-d5a900d8277f
 # ╟─cce85ae8-5394-11eb-208e-f3cb40ff5b6b
-# ╠═cffc9744-5394-11eb-29b8-29d1e2595731
+# ╟─cffc9744-5394-11eb-29b8-29d1e2595731
 # ╟─d824731a-5394-11eb-3118-bf5202cb32b5
 # ╟─e2295fec-5394-11eb-39ed-adb18e08b0a3
 # ╟─efde60c4-5394-11eb-159b-d1667ea62c3c
@@ -424,8 +643,9 @@ Esta idea de aproximar con funciones más simples también se aplica a las linea
 # ╟─1e75c7c4-5395-11eb-3f7f-21c8dc5d8982
 # ╟─291aa2d0-5395-11eb-0938-b355089f8303
 # ╠═3675ca40-5395-11eb-0fa4-958a41909abe
+# ╟─487bb478-5d10-11eb-2583-63ee832c3956
 # ╟─3e567aca-5395-11eb-13c2-4722d715ef17
-# ╠═47a461a0-5395-11eb-13f1-e31932db7f69
+# ╠═cb3d8298-5dd7-11eb-271b-7f97d4b9a24c
 # ╟─4f7f9412-5395-11eb-125e-b944e3e51439
 # ╟─59214df8-5395-11eb-08f7-01bffd778585
 # ╠═78346d60-5395-11eb-356b-7b6079466bfb
@@ -441,17 +661,21 @@ Esta idea de aproximar con funciones más simples también se aplica a las linea
 # ╟─d25e50a8-5395-11eb-0ad7-0faeadafb95a
 # ╠═6f780852-5396-11eb-2425-2b51da1ad3d0
 # ╟─79103d28-5396-11eb-2534-b96a12cfb50f
-# ╠═80e5b742-5396-11eb-3287-456ce5221efe
+# ╟─80e5b742-5396-11eb-3287-456ce5221efe
 # ╟─8749a80a-5396-11eb-1757-5dcc4a259298
-# ╠═8bac75d0-5396-11eb-2a3f-a9d221ab9c1b
+# ╟─8bac75d0-5396-11eb-2a3f-a9d221ab9c1b
 # ╟─99eb6e3a-5396-11eb-1654-37ffd9d2869b
+# ╟─fe99347a-5de8-11eb-14cd-4d9d88dfecba
 # ╠═9e60ba7e-5396-11eb-26ca-638c7c62eae7
 # ╟─a9b5c5ea-5396-11eb-30a0-b70a5b821499
 # ╟─b08703fc-5396-11eb-115e-397c0612ef95
-# ╠═be2f435c-5396-11eb-1d26-235f5b97e4e5
+# ╟─be2f435c-5396-11eb-1d26-235f5b97e4e5
 # ╟─c6dfa3d6-5396-11eb-318d-85da105b63ca
-# ╠═d9e31ca4-5396-11eb-09f0-17eef4097cf1
+# ╟─d9e31ca4-5396-11eb-09f0-17eef4097cf1
 # ╟─d718bf24-5396-11eb-2a80-afbeb54cc8d8
+# ╟─d1ce47ae-5dec-11eb-332d-45f9670939a7
 # ╠═f5a10512-5396-11eb-004a-f1d8a701208d
 # ╟─f1927246-5396-11eb-26e5-574a49aca33c
+# ╟─80accb78-5dee-11eb-338d-350f05e2628e
 # ╠═cdc72d66-5396-11eb-3449-4bda0462e0af
+# ╟─2a5021a0-5def-11eb-29d6-01f0a6453195
