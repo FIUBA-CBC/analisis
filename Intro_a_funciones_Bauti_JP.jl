@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.18
+# v0.12.19
 
 using Markdown
 using InteractiveUtils
@@ -219,31 +219,9 @@ md"""
 .$e$ es un valor que seguro ya tenés en tu calculadora. Si lo buscás vas a ver que vale aproximadamente $2,718$. Fijate cómo se va acercando el valor de $e$ en el gráfico (está debajo a la derecha) a ese valor a medida que aumentás el valor de $n$.
 """
 
-# ╔═╡ 55cf6280-55dd-11eb-117f-f1bf6a29565b
-md"""
-
-## Función Exponencial
-
-Ahora sí, comencemos con un ejemplo conocido y reciente: el coronavirus.
-
-Cómo puede ser que de un infectado en una ciudad China hayamos pasado a más de 100 millones de infectados (al día que redactamos esto) esparcidos por todo el mundo? Tardamos alrededor de 10 meses en llegar a esta cantidad de infectados. 
-
-Hagamos de cuenta que no estamos estudiando ingeniería y queremos imaginarnos cómo ese paciente zero en Wuhan infectó a tanta gente. La primer forma que se me ocurre es exagerar. Les propongo un modelo en el que se infecta una persona por segundo a lo largo de 10 meses. Creen que lleguemos a 100 millones de infectados?
-
-La respuesta corta es que no. Hacer la cuenta es fácil. Cuántos segundos hay en 10 meses? 10 meses que tienen 30 días que tienen 24 horas que tienen 60 minutos que tienen 60 segundos.
-$10*30*24*60*60=25920000$
-
-O sea, infectando a una persona por segundo por 10 meses no llegamos ni a los 26 millones de infectados.
-
-Entonces, cómo puede ser? Hubo 4 infectados por segundo? Tendría sentido, ahí las cuentas me darían casi perfectamente. Pero la respuesta es que no, la propuesta inicial que planteamos es de crecimiento lineal. Con esta propuesta todos los meses tendremos la misma cantidad de infectados, todos los días lo mismo y todas las horas lo mismo.
-
-Para modelar el Covid se ve que tenemos que pensar de otra forma, y como bien dice el título de esta sección, lo vamos a modelar con una función exponencial.
-
-
-"""
-
-# ╔═╡ f968ba8c-5d8e-11eb-0f6e-effe5c989d99
-
+# ╔═╡ ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
+md"
+## Función Exponencial"
 
 # ╔═╡ 43d3ce80-5d90-11eb-1b5f-bf36a9dea97d
 md"
@@ -302,6 +280,65 @@ begin
 	
 end
 
+# ╔═╡ 55cf6280-55dd-11eb-117f-f1bf6a29565b
+md"""
+
+
+
+Ahora sí, comencemos con un ejemplo conocido y reciente: el coronavirus.
+
+Cómo puede ser que de un infectado en una ciudad China hayamos pasado a más de 100 millones de infectados (al día que redactamos esto) esparcidos por todo el mundo? Tardamos alrededor de 10 meses en llegar a esta cantidad de infectados. 
+
+Hagamos de cuenta que no estamos estudiando ingeniería y queremos imaginarnos cómo ese paciente zero en Wuhan infectó a tanta gente. La primer forma que se me ocurre es exagerar. Les propongo un modelo en el que se infecta una persona por segundo a lo largo de 10 meses. Creen que lleguemos a 100 millones de infectados?
+
+La respuesta corta es que no. Hacer la cuenta es fácil. Cuántos segundos hay en 10 meses? 10 meses que tienen 30 días que tienen 24 horas que tienen 60 minutos que tienen 60 segundos.
+$10*30*24*60*60=25920000$
+
+O sea, infectando a una persona por segundo por 10 meses no llegamos ni a los 26 millones de infectados.
+
+Entonces, cómo puede ser? Hubo 4 infectados por segundo? Tendría sentido, ahí las cuentas me darían casi perfectamente. Pero la respuesta es que no, la propuesta inicial que planteamos es de crecimiento lineal. Con esta propuesta todos los meses tendremos la misma cantidad de infectados, todos los días lo mismo y todas las horas lo mismo.
+
+Para modelar el Covid se ve que tenemos que pensar de otra forma, y como bien dice el título de esta sección, lo vamos a modelar con una función exponencial.
+
+
+"""
+
+# ╔═╡ ef349bd0-55eb-11eb-0b53-999cd0ef6167
+md"""
+
+### Crecimiento exponencial
+
+##### Modelo exponencial del COVID en Argentina
+
+En el siguiente grafico vemos los datos del COVID desde el 3 de marzo hasta el 5 de abril del 2020. 
+
+Para descriir el crecimiento utilizamos la siguiente formula:
+
+
+$N(t) =2.673\  e^{0.211 x}$
+
+
+"""
+
+# ╔═╡ 586b3184-5daa-11eb-3868-cf88404f1bf9
+begin
+	xcovid = collect(0:1:40)
+	fcovid1(xcovid) = 2.673 *exp.(0.211xcovid)
+	ycovid1=fcovid1.(xcovid)
+	plot(xcovid,ycovid1,label="Ajuste potencia")
+	
+	d1 = [1:1:34]
+	datos_covid = [1,1,2,8,9,12,17,19,21,31,34,45,56,65,78,97,128,158,225,266,301,387,503,589,690,745,820,966,1054,1133,1265,1353,1451,1554]
+	scatter!(d1,datos_covid,label="Poblacion",legend=:bottomright)
+	ylims!(0,1600)
+	
+end
+
+# ╔═╡ 86161db2-5db2-11eb-19b3-bbeeb5e98e3c
+md" 
+Vimos que en un principio la curva se pudo modelar mediante una curva exponencial pero a medida que pararon más dias la misma no fue tan excacta. Esto se soluciona utilizando una mayor cantidad de terminos
+"
+
 # ╔═╡ c9e2fcf2-5d96-11eb-2561-53b190a409d0
 md"
 
@@ -353,6 +390,21 @@ También se puede pasar a un gráfico:
 
 """
 
+# ╔═╡ b40b45ee-5ca4-11eb-3c06-ab084f0ded65
+md"""
+
+Y cómo sería una fórmula que prediga estos datos?
+
+Hasta donde sabemos, es imposible pensar en una fórmula exacta que nos de el crecimiento de la población humana, pero como todo, sí podemos aproximarla.
+
+Por ahí en tu carrera llegás a desarrollar esto en algún momento, pero para este curso no tiene sentido. Solamente veamos cómo quedaría dicha aproximación:
+
+$P(t) = (1,43653*10^{6})*(1,01395)^{t}$
+
+Esto último sería un modelo matemático del crecimiento poblacional mundial.
+
+"""
+
 # ╔═╡ 92dc44fe-5c36-11eb-362e-5b973d643c25
 begin
 	x2 = collect(0:10:120)
@@ -370,21 +422,6 @@ begin
 	ylabel!("Poblacion")
 	
 end
-
-# ╔═╡ b40b45ee-5ca4-11eb-3c06-ab084f0ded65
-md"""
-
-Y cómo sería una fórmula que prediga estos datos?
-
-Hasta donde sabemos, es imposible pensar en una fórmula exacta que nos de el crecimiento de la población humana, pero como todo, sí podemos aproximarla.
-
-Por ahí en tu carrera llegás a desarrollar esto en algún momento, pero para este curso no tiene sentido. Solamente veamos cómo quedaría dicha aproximación:
-
-$P(t) = (1,43653*10^{6})*(1,01395)^{t}$
-
-Esto último sería un modelo matemático del crecimiento poblacional mundial.
-
-"""
 
 # ╔═╡ 7de3a734-5ca6-11eb-314a-b965bb97844e
 md"""
@@ -424,42 +461,6 @@ end
 
 # ╔═╡ bff0322a-5da3-11eb-2d98-03020e0519ef
 
-
-# ╔═╡ ef349bd0-55eb-11eb-0b53-999cd0ef6167
-md"""
-
-### Crecimiento exponencial
-
-##### Modelo exponencial del COVID en Argentina
-
-En el siguiente grafico vemos los datos del COVID desde el 3 de marzo hasta el 5 de abril del 2020. 
-
-Para descriir el crecimiento utilizamos la siguiente formula:
-
-
-$N(t) =2.673\  e^{0.211 x}$
-
-
-"""
-
-# ╔═╡ 586b3184-5daa-11eb-3868-cf88404f1bf9
-begin
-	xcovid = collect(0:1:40)
-	fcovid1(xcovid) = 2.673 *exp.(0.211xcovid)
-	ycovid1=fcovid1.(xcovid)
-	plot(xcovid,ycovid1,label="Ajuste potencia")
-	
-	d1 = [1:1:34]
-	datos_covid = [1,1,2,8,9,12,17,19,21,31,34,45,56,65,78,97,128,158,225,266,301,387,503,589,690,745,820,966,1054,1133,1265,1353,1451,1554]
-	scatter!(d1,datos_covid,label="Poblacion",legend=:bottomright)
-	ylims!(0,1600)
-	
-end
-
-# ╔═╡ 86161db2-5db2-11eb-19b3-bbeeb5e98e3c
-md" 
-Vimos que en un principio la curva se pudo modelar mediante una curva exponencial pero a medida que pararon más dias la misma no fue tan excacta. Esto se soluciona utilizando una mayor cantidad de terminos
-"
 
 # ╔═╡ d9af9350-55eb-11eb-0d0e-e1932621ab4d
 md"""
@@ -608,7 +609,7 @@ begin
 	xlabel!("Eje x")
 	ylabel!("Eje y")
 	
-	title!("log $alog x")
+	title!("$log $alog x")
 
 end
 
@@ -682,7 +683,14 @@ $Log\left ( a^{b} \right ) = Log(a) *b$
 
 $Log( \sqrt[b]{a} ) = Log(a) *\frac{1}{b}$
 
+
+Se pueden graficar?
+
 """
+
+# ╔═╡ bd351582-6717-11eb-2194-7dd2b34ec07c
+md"
+### Ejemplos practicos"
 
 # ╔═╡ 194e558c-5bd2-11eb-2c94-d90a9d3655c0
 md"""
@@ -904,6 +912,12 @@ Para que veas cómo varían las funciones trigonométricas, te dejamos la versi�
 
 """
 
+# ╔═╡ acb3e132-67f5-11eb-2de1-eff4dab3fe72
+triangulos = "https://www.disfrutalasmatematicas.com/algebra/images/adjacent-opposite-hypotenuse.svg";
+
+# ╔═╡ f71fbffc-67f5-11eb-03c5-1bd7320c54e6
+Resource(triangulos)
+
 # ╔═╡ 247ff22a-5d04-11eb-2dee-63ff0393f281
 md"""
 
@@ -913,7 +927,7 @@ $y = f(x) = sen(x)$
 
 Genérica interactiva:
 
-$y = f(x) = a*sen(x*b+c)$
+$y = f(x) = a*sen(b*x+\phi)$
 
 """
 
@@ -932,7 +946,7 @@ end
 # ╔═╡ cc8167a0-5d05-11eb-1a70-f5c96dfac04d
 begin
 	csen_slider=  @bind csen Slider(-10:0.1:10; default=0, show_value=true)
-	md"""c: $(csen_slider)"""
+	md"""$ \phi$: $(csen_slider)"""
 end
 
 # ╔═╡ 7ce90564-5d04-11eb-17f1-8dd00557cac1
@@ -956,7 +970,7 @@ $y = f(x) = cos(x)$
 
 Genérica interactiva:
 
-$y = f(x) = a*cos(x*b+c)$
+$y = f(x) = a*cos(b*x+\phi )$
 
 """
 
@@ -975,7 +989,7 @@ end
 # ╔═╡ 769956d0-5d06-11eb-1696-21f883bdab99
 begin
 	ccos_slider=  @bind ccos Slider(-10:0.1:10; default=0, show_value=true)
-	md"""c: $(ccos_slider)"""
+	md"""$ \phi$: $(ccos_slider)"""
 end
 
 # ╔═╡ da2060f6-5d04-11eb-3a60-03ee847395ad
@@ -999,7 +1013,7 @@ $y = f(x) = tan(x)$
 
 Genérica interactiva:
 
-$y = f(x) = a*tan(x*b+c)$
+$y = f(x) = a*tan(b*x+\phi)$
 
 """
 
@@ -1018,7 +1032,7 @@ end
 # ╔═╡ ce26374c-5d06-11eb-037f-09b672ab9bb8
 begin
 	ctan_slider=  @bind ctan Slider(-10:0.1:10; default=0, show_value=true)
-	md"""c: $(ctan_slider)"""
+	md"""$ \phi$ $: $(ctan_slider)"""
 end
 
 # ╔═╡ 4ba74a02-5d05-11eb-3e4b-2dbe1f037dd7
@@ -1122,8 +1136,8 @@ begin
 	plot(xmod2,ymod2,lab="f(x)")
 	plot!(-xmod2,ymod2, lab="f(-x)")
 	plot!(xmod2,-ymod2,lab="-f(x)")
-	plot!(1/d * xmod2,ymod2,lab=" f(x-c)")
-	plot!(d* xmod2,ymod2,lab="c f(x+c)")
+	plot!(1/d * xmod2,ymod2,lab=" f(x/c)")
+	plot!(d* xmod2,ymod2,lab="f(cx)")
 	xlims!(-3,3)
 end
 
@@ -1223,9 +1237,19 @@ md"
 
 De nuevo vemos que en cierto entorno, en este caso en las cercanias del 0 ambas funciones son practicamente iguales. ¿Esto es casualidad?
 
+"
 
 
-Marge no te voy a mentir, esto no es magia ni nada, lo que acabamos de utilizar son polinomios de Taylor, unos polinomios que nos permiten aproximar funciones utilizando polinomios que son simples de trabajar. Más adelante vamos a ver como calcularlos y que utilidad tienen. Para despedirnos vamos a mostrar otro , en este caso tenemos $f(x) = e^x$  y $p(x)=1+x - \frac{x^2}{2!}$  "
+# ╔═╡ 9ef36d18-67f7-11eb-0f73-09cfc4c3105b
+url3 = "https://i.imgflip.com/31py00.png";
+
+# ╔═╡ af01e836-67f7-11eb-35ce-bfa57283a83e
+Resource(url3)
+
+# ╔═╡ a17a6130-67f8-11eb-26cf-ad0a0f90e609
+md"
+
+Marge, no voy a mentirte... , esto no es magia ni nada, lo que acabamos de utilizar son polinomios de Taylor, unos polinomios que nos permiten aproximar funciones utilizando polinomios que son simples de trabajar. Más adelante vamos a ver como calcularlos y que utilidad tienen. Para despedirnos vamos a mostrar otro , en este caso tenemos $f(x) = e^x$  y $p(x)=1+x - \frac{x^2}{2!}$  "
 
 # ╔═╡ b5338196-5dc3-11eb-157e-85286754e367
 begin
@@ -1241,9 +1265,9 @@ end
 
 
 # ╔═╡ Cell order:
-# ╟─a76f4600-55d3-11eb-0f6c-1d60f6cae0ed
-# ╟─2e2ba646-5c34-11eb-1250-f7cd9e2b5764
-# ╟─0e5215f8-5c34-11eb-399a-0f45b885c428
+# ╠═a76f4600-55d3-11eb-0f6c-1d60f6cae0ed
+# ╠═2e2ba646-5c34-11eb-1250-f7cd9e2b5764
+# ╠═0e5215f8-5c34-11eb-399a-0f45b885c428
 # ╟─80e98170-55cf-11eb-1728-0b9be9ede10c
 # ╟─2e4c413e-55d0-11eb-0743-87da04abc000
 # ╟─629dc678-5c36-11eb-205b-3f69bd55edcf
@@ -1258,31 +1282,31 @@ end
 # ╠═8e6333ec-5cae-11eb-26c6-f3b094dab970
 # ╟─08513d6e-5cf9-11eb-10fb-29fd8cd2dd68
 # ╟─85df8462-5ca9-11eb-0b96-ed23e4415cb1
-# ╟─55cf6280-55dd-11eb-117f-f1bf6a29565b
-# ╠═f968ba8c-5d8e-11eb-0f6e-effe5c989d99
+# ╠═ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
 # ╟─43d3ce80-5d90-11eb-1b5f-bf36a9dea97d
 # ╠═01e8d45c-5d95-11eb-32a2-05703b43541a
+# ╟─55cf6280-55dd-11eb-117f-f1bf6a29565b
+# ╟─ef349bd0-55eb-11eb-0b53-999cd0ef6167
+# ╠═586b3184-5daa-11eb-3868-cf88404f1bf9
+# ╟─86161db2-5db2-11eb-19b3-bbeeb5e98e3c
 # ╠═c9e2fcf2-5d96-11eb-2561-53b190a409d0
 # ╟─a85efa00-55cf-11eb-26ae-ada91c1a547d
-# ╠═92dc44fe-5c36-11eb-362e-5b973d643c25
 # ╟─b40b45ee-5ca4-11eb-3c06-ab084f0ded65
+# ╠═92dc44fe-5c36-11eb-362e-5b973d643c25
 # ╟─7de3a734-5ca6-11eb-314a-b965bb97844e
 # ╟─e304e16e-5ca6-11eb-277a-cf504d496670
 # ╠═eed2e39c-5ca6-11eb-0e5b-11de2ae16846
 # ╠═bff0322a-5da3-11eb-2d98-03020e0519ef
-# ╟─ef349bd0-55eb-11eb-0b53-999cd0ef6167
-# ╠═586b3184-5daa-11eb-3868-cf88404f1bf9
-# ╠═86161db2-5db2-11eb-19b3-bbeeb5e98e3c
 # ╟─d9af9350-55eb-11eb-0d0e-e1932621ab4d
-# ╠═20a6b404-5da4-11eb-0664-c942ae7e07af
-# ╠═4fb87c40-55ee-11eb-3c0c-e998b5972411
+# ╟─20a6b404-5da4-11eb-0664-c942ae7e07af
+# ╟─4fb87c40-55ee-11eb-3c0c-e998b5972411
 # ╠═0eeabf0e-5da5-11eb-3ba4-f31c5481eb49
 # ╟─2b04a32a-5da4-11eb-2fb8-7fae9c509505
 # ╟─727655e6-5caa-11eb-1893-3fce87151446
 # ╟─3254f9f8-5cb0-11eb-0bef-1de90ded7c4c
 # ╠═4336abb8-5cb0-11eb-2a99-07f1b6245f70
 # ╟─4483dfd0-55ef-11eb-31da-31658529f814
-# ╟─830b5508-5cac-11eb-241f-5103abeaee17
+# ╠═830b5508-5cac-11eb-241f-5103abeaee17
 # ╠═712a3276-5c36-11eb-2c1b-353247409db1
 # ╟─92d1188e-5bd9-11eb-0934-e59f8142ccde
 # ╟─9e03a302-5da5-11eb-3ef3-bba22ba018fc
@@ -1290,14 +1314,15 @@ end
 # ╠═77915aec-5da6-11eb-33b1-819e3ec8580d
 # ╟─b420b010-5da7-11eb-146f-7112f516560f
 # ╠═c33b39da-5da7-11eb-1f0d-a3106a1cbd00
-# ╟─e1864d82-5bcf-11eb-04cc-c908a8bc0792
+# ╠═e1864d82-5bcf-11eb-04cc-c908a8bc0792
+# ╟─bd351582-6717-11eb-2194-7dd2b34ec07c
 # ╟─194e558c-5bd2-11eb-2c94-d90a9d3655c0
 # ╟─f3bb80d4-5bd5-11eb-0e63-83ac5284c67e
 # ╠═a4e57bf2-5c36-11eb-13a2-dbf774b4c79e
 # ╟─40e6fec4-5c3d-11eb-1a3c-9bdec6e05121
 # ╠═4a81d2f8-5c3d-11eb-2e62-1983b7938e8c
 # ╟─1afba524-5cfe-11eb-36f0-63c0e68da0d7
-# ╟─ae5d3120-5c36-11eb-28a7-8b225824fe58
+# ╠═ae5d3120-5c36-11eb-28a7-8b225824fe58
 # ╟─b29fea3e-5c36-11eb-2456-b17d52001aa4
 # ╟─0c37373c-5cff-11eb-2f2f-978ac03a1c2d
 # ╟─93d9bca0-5cff-11eb-117a-0715987e77d9
@@ -1310,20 +1335,22 @@ end
 # ╟─df4a0b6a-5d02-11eb-0c5c-e75a1439c1d3
 # ╠═3a63e190-5d03-11eb-2ab4-93e07cd28762
 # ╟─52934520-55ef-11eb-2ca7-6bf9f9f2b5f9
-# ╟─247ff22a-5d04-11eb-2dee-63ff0393f281
+# ╠═acb3e132-67f5-11eb-2de1-eff4dab3fe72
+# ╠═f71fbffc-67f5-11eb-03c5-1bd7320c54e6
+# ╠═247ff22a-5d04-11eb-2dee-63ff0393f281
 # ╟─bdf7ddec-5d05-11eb-0799-6bad270ea692
 # ╟─c6bb9f40-5d05-11eb-3096-579c534fa5af
-# ╟─cc8167a0-5d05-11eb-1a70-f5c96dfac04d
+# ╠═cc8167a0-5d05-11eb-1a70-f5c96dfac04d
 # ╠═7ce90564-5d04-11eb-17f1-8dd00557cac1
-# ╟─3adda8fa-5d04-11eb-13c6-55f5fe0f44ac
+# ╠═3adda8fa-5d04-11eb-13c6-55f5fe0f44ac
 # ╟─596d15a6-5d06-11eb-3015-518510dec087
 # ╟─6c1c3ed4-5d06-11eb-338f-d5e87025bcbe
-# ╟─769956d0-5d06-11eb-1696-21f883bdab99
+# ╠═769956d0-5d06-11eb-1696-21f883bdab99
 # ╠═da2060f6-5d04-11eb-3a60-03ee847395ad
-# ╟─478929bc-5d04-11eb-304e-7b6a97f299da
+# ╠═478929bc-5d04-11eb-304e-7b6a97f299da
 # ╟─b605ea40-5d06-11eb-0079-11e8eb264144
 # ╟─c53831ee-5d06-11eb-393c-d94c605714e6
-# ╟─ce26374c-5d06-11eb-037f-09b672ab9bb8
+# ╠═ce26374c-5d06-11eb-037f-09b672ab9bb8
 # ╠═4ba74a02-5d05-11eb-3e4b-2dbe1f037dd7
 # ╟─69c8c20c-5d05-11eb-32ea-51e02354fa0e
 # ╠═5f4f30cc-5d05-11eb-1c2a-2fcd170295ef
@@ -1344,6 +1371,9 @@ end
 # ╠═97a180a2-5dc2-11eb-3663-df7215a370a7
 # ╠═6a20b80e-5dc3-11eb-222c-2112df45c955
 # ╠═b4f5cdce-5dc3-11eb-3d5b-2b1cd4389582
-# ╠═b514cb16-5dc3-11eb-1a06-617c5b5184fe
+# ╟─b514cb16-5dc3-11eb-1a06-617c5b5184fe
+# ╟─9ef36d18-67f7-11eb-0f73-09cfc4c3105b
+# ╟─af01e836-67f7-11eb-35ce-bfa57283a83e
+# ╟─a17a6130-67f8-11eb-26cf-ad0a0f90e609
 # ╠═b5338196-5dc3-11eb-157e-85286754e367
 # ╠═b55030e8-5dc3-11eb-3576-279f1d0aa222
