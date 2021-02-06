@@ -1,0 +1,178 @@
+### A Pluto.jl notebook ###
+# v0.12.18
+
+using Markdown
+using InteractiveUtils
+
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    quote
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : missing
+        el
+    end
+end
+
+# ╔═╡ f4ac10bc-68be-11eb-17f4-3954c021ffd2
+using Plots; plotlyjs()
+
+# ╔═╡ ac990c72-68c7-11eb-1a93-01b684974692
+using PlutoUI
+
+# ╔═╡ 7ded00de-68bf-11eb-264f-7d50aa349757
+import Pkg; Pkg.add("PlotlyJS")
+
+# ╔═╡ 26313f7a-68c1-11eb-3464-fd8ac0fb1935
+origen(x) = 0
+
+# ╔═╡ 83c79a18-68c0-11eb-335a-8770b184760a
+f(x) = 2x+ 6
+
+# ╔═╡ 802bac82-68c0-11eb-3d0e-7d104111fc84
+begin
+plot(f,label="f(x)")
+plot!(origen,label="origen")
+end
+
+# ╔═╡ 182a3924-68bf-11eb-3c37-efd21ef22991
+g(x) = x^2 - 2
+
+# ╔═╡ da4889e8-68c1-11eb-203b-27757bda8e53
+begin
+plot(f,label="f(x)")
+plot(g,label="g(x)")
+plot!(origen,label="origen")
+end
+
+# ╔═╡ cb11b618-68c2-11eb-2a92-f9cd454c8043
+md"$f(x)$"
+
+# ╔═╡ a370c200-68c4-11eb-1857-3d3a9f9342f1
+h(x) = 1
+
+# ╔═╡ 87132be6-68c4-11eb-3c7f-2fe75de34dd5
+begin
+F(x) = f(x);
+G(x) = f(x) - h(x);
+end
+
+# ╔═╡ da3803b4-68c1-11eb-0e48-2b4631f683a0
+begin
+pf = plot([F,h])
+pg = plot([G,origen])
+plot(pf,pg)
+end
+
+# ╔═╡ d90c5f5e-68c5-11eb-3e23-1363106b2ed9
+function plot_diferencia(f,g)
+G(x) = f(x) - g(x)
+pf = plot([f,g])
+pg = plot([G,origen])
+plot(pf,pg)
+end
+
+# ╔═╡ 191bf6c2-68c6-11eb-1cda-b92f1842c3b0
+begin
+A(x) = sin(x)
+B(x) = cos(x)
+plot_diferencia(A,B)
+end
+
+# ╔═╡ ef17a9fa-68c2-11eb-126b-af0a3284a6ab
+md"# Soluciones analiticas"
+
+# ╔═╡ 8107e6aa-68c7-11eb-1173-c9557c0210ce
+begin
+a0s = @bind a_0 Slider(-1:0.1:1)
+a1s = @bind a_1 Slider(-1:0.1:1)
+md""" *Los coeficientes son*
+	
+a_{0} = $(a0s)
+	
+a_{1} = $(a1s)
+"""
+end
+
+# ╔═╡ 2f318d2a-68c9-11eb-1b45-1363fcae6072
+md"""p1(x) = $(a_1) x + $(a_0)"""
+
+# ╔═╡ 0c25df84-68c7-11eb-1699-372edbbf95b9
+p_1(x) = a_1*x+a_0
+
+# ╔═╡ b4a6ac80-68cc-11eb-2006-fd0ebdd52a0b
+plot(p_1,label="p1(x) = $(a_1) x + $(a_0)")
+
+# ╔═╡ 37fdda38-68d0-11eb-08cf-89946f0e6b04
+begin
+b0s = @bind b_0 Slider(-1:0.1:1)
+b1s = @bind b_1 Slider(-1:0.1:1)
+b2s = @bind b_2 Slider(-1:0.1:1)
+
+md""" *Los coeficientes son*
+	
+b_{0} = $(b0s)
+	
+b_{1} = $(b1s)
+	
+b_{2} = $(b2s)
+"""
+end
+
+# ╔═╡ 7ec5b570-68d1-11eb-390d-6b1f2188d86a
+p_2(x) = b_2* x^2 + b_1 * x + b_0
+
+# ╔═╡ eb2e5380-68d0-11eb-3de7-9f50101b02e1
+p2 = plot(p_2,label="p2(x) = $(b_2) x^2 $(b_1) x + $(b_0)")	
+
+# ╔═╡ 36afcb00-68d0-11eb-05cb-73d2123b5ee6
+
+
+# ╔═╡ 267fd8fc-68cf-11eb-3f70-fbfd6fa6153f
+begin
+correcto(mensaje="Bien") = Markdown.MD(Markdown.Admonition("correct","Correcto",[mensaje]))
+ayuda(mensaje="Ayuda") = Markdown.MD(Markdown.Admonition("hint","Ayuda",[mensaje]))
+casi(mensaje="casi") = Markdown.MD(Markdown.Admonition("warning","Casi",[mensaje]))
+segui_intentando(mensaje="Segui intentando") = Markdown.MD(Markdown.Admonition("danger","Segui intentando",[mensaje]))
+end
+
+# ╔═╡ 0750b112-68d0-11eb-04e6-b36e4e85a5bc
+segui_intentando()
+
+# ╔═╡ 343c2954-68d0-11eb-0ea5-b95fcfa31273
+
+
+# ╔═╡ 341c2834-68d0-11eb-1d2a-036dc75525e9
+
+
+# ╔═╡ 32ea300a-68d0-11eb-3de3-f77db7d2a40a
+
+
+# ╔═╡ Cell order:
+# ╠═7ded00de-68bf-11eb-264f-7d50aa349757
+# ╠═f4ac10bc-68be-11eb-17f4-3954c021ffd2
+# ╠═26313f7a-68c1-11eb-3464-fd8ac0fb1935
+# ╠═83c79a18-68c0-11eb-335a-8770b184760a
+# ╠═802bac82-68c0-11eb-3d0e-7d104111fc84
+# ╠═182a3924-68bf-11eb-3c37-efd21ef22991
+# ╠═da4889e8-68c1-11eb-203b-27757bda8e53
+# ╠═cb11b618-68c2-11eb-2a92-f9cd454c8043
+# ╠═a370c200-68c4-11eb-1857-3d3a9f9342f1
+# ╠═87132be6-68c4-11eb-3c7f-2fe75de34dd5
+# ╠═da3803b4-68c1-11eb-0e48-2b4631f683a0
+# ╠═d90c5f5e-68c5-11eb-3e23-1363106b2ed9
+# ╠═191bf6c2-68c6-11eb-1cda-b92f1842c3b0
+# ╟─ef17a9fa-68c2-11eb-126b-af0a3284a6ab
+# ╠═ac990c72-68c7-11eb-1a93-01b684974692
+# ╟─8107e6aa-68c7-11eb-1173-c9557c0210ce
+# ╟─2f318d2a-68c9-11eb-1b45-1363fcae6072
+# ╠═0c25df84-68c7-11eb-1699-372edbbf95b9
+# ╠═b4a6ac80-68cc-11eb-2006-fd0ebdd52a0b
+# ╟─37fdda38-68d0-11eb-08cf-89946f0e6b04
+# ╟─7ec5b570-68d1-11eb-390d-6b1f2188d86a
+# ╠═eb2e5380-68d0-11eb-3de7-9f50101b02e1
+# ╠═36afcb00-68d0-11eb-05cb-73d2123b5ee6
+# ╠═267fd8fc-68cf-11eb-3f70-fbfd6fa6153f
+# ╠═0750b112-68d0-11eb-04e6-b36e4e85a5bc
+# ╠═343c2954-68d0-11eb-0ea5-b95fcfa31273
+# ╠═341c2834-68d0-11eb-1d2a-036dc75525e9
+# ╠═32ea300a-68d0-11eb-3de3-f77db7d2a40a
