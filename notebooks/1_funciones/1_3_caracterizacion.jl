@@ -502,7 +502,7 @@ Algunas observaciones:
 - Las unidades son correctas. Adentro del arcocoseno se divide y (en metros) por $10$m, lo cual es adimencional, y luego se multiplica por horas afuera.
 - Usamos la función arcocoseno, que es la inversa del coseno. Esta función solo la podemos usar porque restringimos el dominio, ya que es una función que solo arroja resultados de $-\pi$ a $\pi$.
 
-Finalmente, aplicamos nuestra función inversa $h^{-1}(6\text{m}) = NN$ y obtuvimos la hora a la que la marea pasa por allí al amanecer. Averiguamos lo mismo para el atardecer mirando el gráfico
+Finalmente, aplicamos nuestra función inversa $h^{-1}(6\text{m}) = 3.54$ y obtuvimos la hora a la que la marea pasa por allí al amanecer. Averiguamos lo mismo para el atardecer mirando el gráfico
 "
 
 # ╔═╡ fe99347a-5de8-11eb-14cd-4d9d88dfecba
@@ -624,7 +624,7 @@ end
 md"Sabiendo esto, si sabemos que queremos calcular $sen(x)$ en una posición cercana al $0$, podemos utilizar $x$ para el cálculo, así como podemos usar $1 - x^2$ para el $cos(x)$ en ese mismo entorno."
 
 # ╔═╡ Cell order:
-# ╠═0de4bef2-5916-11eb-03cd-396932d588c2
+# ╟─0de4bef2-5916-11eb-03cd-396932d588c2
 # ╟─57c122b6-5394-11eb-3970-75f46fb55ac4
 # ╠═0e7900f2-5917-11eb-0eec-bdddb19e77d2
 # ╠═91290ffc-5394-11eb-27a0-179e75f62ae7
