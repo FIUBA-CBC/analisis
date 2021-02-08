@@ -1,6 +1,10 @@
 # Análisis Matemático - CBC
 
-# Libros
+## Organización
+
+[Diagrama de Gantt](https://docs.google.com/spreadsheets/d/13L-J1jwuitwBNqF1y4X1wIvbMa3dqxhUF2I3Qc4w2lY/edit#gid=548044316) con las secciones según las semanas.
+
+## Libros
 - [Infinite Powers: How Calculus Reveals the Secrets of the Universe - Steven Strogatz](https://www.goodreads.com/book/show/40796176-infinite-powers)
 - [Mathematics: Its Content, Methods and Meaning - Aleksandrov, Kolmogorov, Lavrent'ev](https://www.goodreads.com/book/show/405880.Mathematics)
 - [Modeling Life: The Mathematics of Biological Systems - Alan Garfinkel, Jane Shevtsov, Yina Guo](https://www.goodreads.com/book/show/36430190-modeling-life)
