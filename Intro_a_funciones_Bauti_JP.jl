@@ -81,27 +81,27 @@ Una de las formas más simples de entender el uso de estas funciones es observan
 
 ###### Cuadráticas
 
-Área de una circunferencia en función de su radio `r`:
+Área de una circunferencia en función de su radio $r$:
 
-.$Area = π.r^{2}$
+$$Area = π\cdot r^{2}$$
 
 
-Área de un cuadrado en función sus lados `l`:
+Área de un cuadrado en función sus lados $l$:
 
-.$Area = l^{2}$
+$$Area = l^{2}$$
 
 
 
 ###### Cúbicas
 
-Volumen de una esfera en función de su radio `r`:
+Volumen de una esfera en función de su radio $r$:
 
-.$Vol = π.r^{3}$
+$$Vol = π\cdot r^{3}$$
 
 
-Volumen de un cubo en función sus lados `l`:
+Volumen de un cubo en función sus lados $l$:
 
-.$Vol = l^{3}$
+$$Vol = l^{3}$$
 
 
 
@@ -110,6 +110,10 @@ Volumen de un cubo en función sus lados `l`:
 # ╔═╡ 629dc678-5c36-11eb-205b-3f69bd55edcf
 md"""
 Ahora veamos cómo varia el área de una circunferencia si modificamos el radio de la misma
+Antes de graficar pernsemos un poco. ¿Cuál será el dominio? Sabemos que el radio de una circunsferencia no puede ser negativo (lo cual es totalmente lógico) 
+Entonces el dominio será $\mathbb{R}^+$,es decir los numeros reales positivos
+
+
 """
 
 # ╔═╡ 26a66ba2-5c36-11eb-2d6b-85be51d9486d
@@ -153,7 +157,6 @@ begin
 	h0=[450,445,431,408,375,332,279,216,143,61]
 	scatter(t,h0,label="Altura")
 	plot!(t,h0,label="curva interpolada")
-
 end
 
 # ╔═╡ ed9dc666-5c35-11eb-2abb-b332fea3eb30
@@ -196,9 +199,9 @@ begin
 	xlabel!("Eje x")
 	ylabel!("Eje y")
 	title!("$a1 * x^2 + $b1 * x + $c1")
-
 	plot(pc)
 	xlims!(-20,20.1)
+	ylims!(-100,100)
 end
 
 # ╔═╡ 08513d6e-5cf9-11eb-10fb-29fd8cd2dd68
@@ -208,7 +211,7 @@ Si te fijás, esa función tiene el formato $a_{2}*x^{2} + a_{1}*x^{1} + a_{0}*x
 
 Si continuamos dicho patrón, obtenemos las llamadas _funciones polinómicas_
 
-$y = f(x) = a_{n}*x^{n} + a_{n-1}*x^{n-1} + ... + a_{2}*x^{2} + a_{1}*x + a_{0}$
+$y = f(x) = a_{n}\cdot x^{n} + a_{n-1}\cdot x^{n-1} + ... + a_{2}\cdot x^{2} + a_{1}\cdot x + a_{0}$
 
 En guías futuras entraremos más en detalle en el uso de estas funciones y nuestra aplicación favorita de las mismas con el _Polinomio de Taylor_.
 
@@ -228,7 +231,7 @@ md"
 #### Funcion exponencial
 
 
-La funcion $f(x) = 3^{x}$ se denomina $\textit{funcion\ exponencial}$ ya que la variable, en este caso $x$ es el exponente, es decir la que esta arriba (acá va entre comillas pero no me acuerdo como ponerlas). Ojo no confundir con una la funcion potencia $g(x) = x^2$ donde la variable es la base
+La funcion $f(x) = 3^{x}$ se denomina $\textit{funcion\ exponencial}$ ya que la variable, en este caso $x$ es el exponente, es decir \"la que esta arriba\" . Ojo no confundir con una la funcion potencia $g(x) = x^2$ donde la variable es la base
 
 En general una funcion exponencial posee la forma 
 
@@ -254,31 +257,46 @@ Veamos como son los graficos de algunos de los casos que estuvimos explicando:
 # ╔═╡ 01e8d45c-5d95-11eb-32a2-05703b43541a
 begin
 	xe = collect(-3:0.1:3)
-	fe1(xe) = (1/2).^xe 
+	fe1(xe) = (1/4).^xe 
 	ye1=fe1.(xe)
-	plot(xe,ye1,label="(1/2)^x")
-	fe2(xe) = (1/4).^xe 
+	plot(xe,ye1,label="(1/4)^x")
+	fe2(xe) = (1/2).^xe 
 	ye2=fe2.(xe)
-	plot!(xe,ye2,label="(1/4)^x")
-	fe3(xe) = (10).^xe 
+	plot!(xe,ye2,label="(1/2)^x")
+	fe3(xe) = (1).^xe 
 	ye3=fe3.(xe)
-	plot!(xe,ye3,label="10^x")
-	fe4(xe) = (4).^xe 
+	plot!(xe,ye3,label="1^x")
+	fe4(xe)= (1.5).^xe 
 	ye4=fe4.(xe)
-	plot!(xe,ye4,label="4^x")
+	plot!(xe,ye4,label="1.5^x")
 	fe5(xe) = (2).^xe 
 	ye5=fe5.(xe)
-	plot!(xe,ye3,label="5^x")
-	fe6(xe) = (1.5).^xe 
+	plot!(xe,ye5,label="5^x")
+	fe6(xe) = (4).^xe 
 	ye6=fe6.(xe)
-	plot!(xe,ye6,label="1.5^x")
-	fe7(xe) = (1).^xe 
+	plot!(xe,ye6,label="4^x")
+	fe7(xe) = (10).^xe 
 	ye7=fe7.(xe)
-	plot!(xe,ye7,label="1^x",legend=:topleft)
-	
+	plot!(xe,ye7,label="10^x",legend=:topleft)
 	ylims!(0,3)
-	
 end
+
+# ╔═╡ c9e2fcf2-5d96-11eb-2561-53b190a409d0
+md"
+
+###### Leyes de los exponentes
+
+
+Sean $a$ y $b$ numeros enteros positivos y $x$ e $y$  cualquier número real, entonces:
+
+$$b^{x+y} = b^{x} b^{y}$$
+
+$$b^{x-y} =  \frac{b^{x}} {b^{y}}$$
+
+$$(b^{x})^y = b^{xy}$$
+
+$$(ab)^x = a^x b^x$$
+"
 
 # ╔═╡ 55cf6280-55dd-11eb-117f-f1bf6a29565b
 md"""
@@ -312,7 +330,8 @@ md"""
 
 En el siguiente grafico vemos los datos del COVID desde el 3 de marzo hasta el 5 de abril del 2020. 
 
-Para descriir el crecimiento utilizamos la siguiente formula:
+Para describir
+ir el crecimiento utilizamos la siguiente formula:
 
 
 $N(t) =2.673\  e^{0.211 x}$
@@ -337,21 +356,6 @@ end
 # ╔═╡ 86161db2-5db2-11eb-19b3-bbeeb5e98e3c
 md" 
 Vimos que en un principio la curva se pudo modelar mediante una curva exponencial pero a medida que pararon más dias la misma no fue tan excacta. Esto se soluciona utilizando una mayor cantidad de terminos
-"
-
-# ╔═╡ c9e2fcf2-5d96-11eb-2561-53b190a409d0
-md"
-
-###### Leyes de los exponentes
-
-
-Sean $a$ y $b$ numeros enteros positivos y $x$ e $y$  cualquier número real, entonces
-
-- $b^{x+y} = b^{x} b^{y}$
-
-- $b^{x-y} =  \frac{b^{x}} {b^{y}}$
-- $(b^{x})^y = b^{xy}$
-- $(ab)^x = a^x b^x$
 "
 
 # ╔═╡ a85efa00-55cf-11eb-26ae-ada91c1a547d
@@ -420,7 +424,6 @@ begin
 	xlabel!("Años")
 	ylims!(0,8*10^6)
 	ylabel!("Poblacion")
-	
 end
 
 # ╔═╡ 7de3a734-5ca6-11eb-314a-b965bb97844e
@@ -453,14 +456,10 @@ begin
 		e[i] = (1 + 1/n[i]) ^ n[i]
 		exp = e[i]
 	end
-	
 	scatter(n,e,label="$exp", legend=:bottomright)
 	xlabel!("Valor de n")
 	ylabel!("Valor de e")
 end
-
-# ╔═╡ bff0322a-5da3-11eb-2d98-03020e0519ef
-
 
 # ╔═╡ d9af9350-55eb-11eb-0d0e-e1932621ab4d
 md"""
@@ -477,7 +476,7 @@ El decaimiento exponencial es un proceso que sucede cuando una cantidad esta suj
 
 
 
-Estos procesos los vamos a entender mejor cuando hacia el final de la materia veamos uno de los temas más interesantes de la matemática: $Las\ ecuaciones\ diferenciales$
+Estos procesos los vamos a entender mejor cuando hacia el final de la materia veamos uno de los temas más interesantes de la matemática: $Las\ ecuaciones\ diferenciales$.
 
 
 Por ahora solo veremos la forma de expresar el decaimiento. Consideremos una cantidad $N$ que depende del tiempo $t$ por lo que será $N(t)$ y tiene la forma:
@@ -564,7 +563,6 @@ begin
 	xlabel!("Eje x")
 	ylabel!("Eje y")
 	title!("$ae^x")
-
 	plot(pe)
 end
 
@@ -575,7 +573,7 @@ md"""
 
 Antes de ver la _función logarítmica_ preferimos dar un pequeño repaso. Qué es un logaritmo?
 
-En términos súper simples, sería la función inversa de la exponencial.
+En términos súper simples, sería la función inversa de la exponencial. O tambien se puede pensar como \"por qué  numero tengo que elevar a  $b$ para que me de $a$"\
 
 Decir: $log_{b}(a) = c$ 
 
@@ -619,7 +617,7 @@ md"""
 
 Cuando estabas revisando cuántos casos de COVID hubo ese mismo día, es probable que te hayas cruzado con la frase _escala logarítmica_. En pocas palabras, esta escala permite convertir funciones exponenciales en funciones lineales. Por lo tanto, para aplicaciones como visualizar mejor la cantidad de infectados de COVID suele ser muy útil. Y si ahora te estás preguntando, cuál sería la escala _normal_, a la que me acostumbré a usar (y seguirás usando)? Esa escala se llama _escala lineal_.
 
-Primero veamos un poco el porque de la escala mencionada
+Primero veamos un poco el porqué de la escala mencionada
 
 Si encontramos una linea recta en un grafico sem logaritmico, sabemos que:
 
@@ -627,7 +625,7 @@ $$\log(y) \sim \alpha x + \beta,$$
 
 donde el  $\sim$ muestra que es aproximado
 
-Aplicando expoencial a ambos lados de la ecuacion tenemos
+Aplicando exponencial a ambos lados de la ecuacion tenemos
 
 
 
@@ -727,7 +725,7 @@ $R = log_{10}\left ( \frac{a}{T} \right ) + B$
 
 Donde $a$ es la amplitud del movimiento del suelo, $T$ es el período de la actividad sísmica y $B$ un factor empírico que representa el debilitamiento de la onda sísmica a medida que se aumenta la distancia desde el epicentro del terremoto a la estación receptora.
 
-Por ejemplo, qué magnitud en la escala Ritcher nos daría un terremoto a 10,000 km de la estación receptora (B = 6.8); con el movimiento vertical del suelo $a=10 micrones$ y el período $T=1 segundo$.
+Por ejemplo, qué magnitud en la escala Ritcher nos daría un terremoto a 10,000 km de la estación receptora (B = 6.8); con el movimiento vertical del suelo $a=10 \text{micrones}$ y el período $T=1 \text{segundo}$.
 
 La magnitud del terremoto es: 
 $R = log_{10}\left ( \frac{10}{1} \right ) + 6,8 = 1 + 6,8 = 7,8$
@@ -1241,7 +1239,7 @@ De nuevo vemos que en cierto entorno, en este caso en las cercanias del 0 ambas 
 
 
 # ╔═╡ 9ef36d18-67f7-11eb-0f73-09cfc4c3105b
-url3 = "https://i.imgflip.com/31py00.png";
+url3 = "https://i.pinimg.com/736x/f5/ff/ff/f5ffffa9e9a729c3844fa8dc7f8a04ad.jpg";
 
 # ╔═╡ af01e836-67f7-11eb-35ce-bfa57283a83e
 Resource(url3)
@@ -1249,7 +1247,7 @@ Resource(url3)
 # ╔═╡ a17a6130-67f8-11eb-26cf-ad0a0f90e609
 md"
 
-Marge, no voy a mentirte... , esto no es magia ni nada, lo que acabamos de utilizar son polinomios de Taylor, unos polinomios que nos permiten aproximar funciones utilizando polinomios que son simples de trabajar. Más adelante vamos a ver como calcularlos y que utilidad tienen. Para despedirnos vamos a mostrar otro , en este caso tenemos $f(x) = e^x$  y $p(x)=1+x - \frac{x^2}{2!}$  "
+Lo que acabamos de utilizar son polinomios de Taylor, unos polinomios que nos permiten aproximar funciones utilizando polinomios que son simples de trabajar. Más adelante vamos a ver como calcularlos y que utilidad tienen. Para despedirnos vamos a mostrar otro , en este caso tenemos $f(x) = e^x$  y $p(x)=1+x - \frac{x^2}{2!}$  "
 
 # ╔═╡ b5338196-5dc3-11eb-157e-85286754e367
 begin
@@ -1260,9 +1258,6 @@ begin
 
 
 end
-
-# ╔═╡ b55030e8-5dc3-11eb-3576-279f1d0aa222
-
 
 # ╔═╡ Cell order:
 # ╠═a76f4600-55d3-11eb-0f6c-1d60f6cae0ed
@@ -1282,21 +1277,20 @@ end
 # ╠═8e6333ec-5cae-11eb-26c6-f3b094dab970
 # ╟─08513d6e-5cf9-11eb-10fb-29fd8cd2dd68
 # ╟─85df8462-5ca9-11eb-0b96-ed23e4415cb1
-# ╠═ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
+# ╟─ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
 # ╟─43d3ce80-5d90-11eb-1b5f-bf36a9dea97d
 # ╠═01e8d45c-5d95-11eb-32a2-05703b43541a
+# ╟─c9e2fcf2-5d96-11eb-2561-53b190a409d0
 # ╟─55cf6280-55dd-11eb-117f-f1bf6a29565b
 # ╟─ef349bd0-55eb-11eb-0b53-999cd0ef6167
 # ╠═586b3184-5daa-11eb-3868-cf88404f1bf9
 # ╟─86161db2-5db2-11eb-19b3-bbeeb5e98e3c
-# ╠═c9e2fcf2-5d96-11eb-2561-53b190a409d0
 # ╟─a85efa00-55cf-11eb-26ae-ada91c1a547d
 # ╟─b40b45ee-5ca4-11eb-3c06-ab084f0ded65
 # ╠═92dc44fe-5c36-11eb-362e-5b973d643c25
 # ╟─7de3a734-5ca6-11eb-314a-b965bb97844e
 # ╟─e304e16e-5ca6-11eb-277a-cf504d496670
 # ╠═eed2e39c-5ca6-11eb-0e5b-11de2ae16846
-# ╠═bff0322a-5da3-11eb-2d98-03020e0519ef
 # ╟─d9af9350-55eb-11eb-0d0e-e1932621ab4d
 # ╟─20a6b404-5da4-11eb-0664-c942ae7e07af
 # ╟─4fb87c40-55ee-11eb-3c0c-e998b5972411
@@ -1305,7 +1299,7 @@ end
 # ╟─727655e6-5caa-11eb-1893-3fce87151446
 # ╟─3254f9f8-5cb0-11eb-0bef-1de90ded7c4c
 # ╠═4336abb8-5cb0-11eb-2a99-07f1b6245f70
-# ╟─4483dfd0-55ef-11eb-31da-31658529f814
+# ╠═4483dfd0-55ef-11eb-31da-31658529f814
 # ╠═830b5508-5cac-11eb-241f-5103abeaee17
 # ╠═712a3276-5c36-11eb-2c1b-353247409db1
 # ╟─92d1188e-5bd9-11eb-0934-e59f8142ccde
@@ -1314,11 +1308,11 @@ end
 # ╠═77915aec-5da6-11eb-33b1-819e3ec8580d
 # ╟─b420b010-5da7-11eb-146f-7112f516560f
 # ╠═c33b39da-5da7-11eb-1f0d-a3106a1cbd00
-# ╠═e1864d82-5bcf-11eb-04cc-c908a8bc0792
+# ╟─e1864d82-5bcf-11eb-04cc-c908a8bc0792
 # ╟─bd351582-6717-11eb-2194-7dd2b34ec07c
 # ╟─194e558c-5bd2-11eb-2c94-d90a9d3655c0
 # ╟─f3bb80d4-5bd5-11eb-0e63-83ac5284c67e
-# ╠═a4e57bf2-5c36-11eb-13a2-dbf774b4c79e
+# ╟─a4e57bf2-5c36-11eb-13a2-dbf774b4c79e
 # ╟─40e6fec4-5c3d-11eb-1a3c-9bdec6e05121
 # ╠═4a81d2f8-5c3d-11eb-2e62-1983b7938e8c
 # ╟─1afba524-5cfe-11eb-36f0-63c0e68da0d7
@@ -1335,8 +1329,8 @@ end
 # ╟─df4a0b6a-5d02-11eb-0c5c-e75a1439c1d3
 # ╠═3a63e190-5d03-11eb-2ab4-93e07cd28762
 # ╟─52934520-55ef-11eb-2ca7-6bf9f9f2b5f9
-# ╠═acb3e132-67f5-11eb-2de1-eff4dab3fe72
-# ╠═f71fbffc-67f5-11eb-03c5-1bd7320c54e6
+# ╟─acb3e132-67f5-11eb-2de1-eff4dab3fe72
+# ╟─f71fbffc-67f5-11eb-03c5-1bd7320c54e6
 # ╠═247ff22a-5d04-11eb-2dee-63ff0393f281
 # ╟─bdf7ddec-5d05-11eb-0799-6bad270ea692
 # ╟─c6bb9f40-5d05-11eb-3096-579c534fa5af
@@ -1347,33 +1341,32 @@ end
 # ╟─6c1c3ed4-5d06-11eb-338f-d5e87025bcbe
 # ╠═769956d0-5d06-11eb-1696-21f883bdab99
 # ╠═da2060f6-5d04-11eb-3a60-03ee847395ad
-# ╠═478929bc-5d04-11eb-304e-7b6a97f299da
+# ╟─478929bc-5d04-11eb-304e-7b6a97f299da
 # ╟─b605ea40-5d06-11eb-0079-11e8eb264144
 # ╟─c53831ee-5d06-11eb-393c-d94c605714e6
 # ╠═ce26374c-5d06-11eb-037f-09b672ab9bb8
 # ╠═4ba74a02-5d05-11eb-3e4b-2dbe1f037dd7
 # ╟─69c8c20c-5d05-11eb-32ea-51e02354fa0e
 # ╠═5f4f30cc-5d05-11eb-1c2a-2fcd170295ef
-# ╠═eacd154e-5da3-11eb-1bad-839fdff53ded
+# ╟─eacd154e-5da3-11eb-1bad-839fdff53ded
 # ╟─86078f3c-5dbb-11eb-37b1-5d710b4b658e
-# ╠═e26e74f2-5dbb-11eb-3395-15624d9b306e
+# ╟─e26e74f2-5dbb-11eb-3395-15624d9b306e
 # ╠═960f68a2-5dbb-11eb-2c1a-0d66db2695d0
-# ╠═f963a8fe-5dbd-11eb-28b3-db46d5fb3638
-# ╠═aaa91f74-5dbe-11eb-0634-3d4f3428cac9
+# ╟─f963a8fe-5dbd-11eb-28b3-db46d5fb3638
+# ╟─aaa91f74-5dbe-11eb-0634-3d4f3428cac9
 # ╠═bdebb2b8-5dbe-11eb-040f-afbe83855334
-# ╠═d3336728-5dbf-11eb-3c1d-79728396ef42
-# ╠═b393562c-5dc0-11eb-1efa-69c1387081ba
+# ╟─d3336728-5dbf-11eb-3c1d-79728396ef42
+# ╟─b393562c-5dc0-11eb-1efa-69c1387081ba
 # ╠═9495e74c-5dc0-11eb-1620-e5395a73a3cc
-# ╠═c294b3a8-5dc0-11eb-07f0-0901a3cc56ac
-# ╠═9a3657ee-5dc1-11eb-0e69-55693f3f39fe
+# ╟─c294b3a8-5dc0-11eb-07f0-0901a3cc56ac
+# ╟─9a3657ee-5dc1-11eb-0e69-55693f3f39fe
 # ╠═17b5d528-5dc2-11eb-0694-2586b7b91b10
-# ╠═52fcf29c-5dc2-11eb-082c-6b9c2590c1ae
+# ╟─52fcf29c-5dc2-11eb-082c-6b9c2590c1ae
 # ╠═97a180a2-5dc2-11eb-3663-df7215a370a7
-# ╠═6a20b80e-5dc3-11eb-222c-2112df45c955
+# ╟─6a20b80e-5dc3-11eb-222c-2112df45c955
 # ╠═b4f5cdce-5dc3-11eb-3d5b-2b1cd4389582
 # ╟─b514cb16-5dc3-11eb-1a06-617c5b5184fe
 # ╟─9ef36d18-67f7-11eb-0f73-09cfc4c3105b
 # ╟─af01e836-67f7-11eb-35ce-bfa57283a83e
 # ╟─a17a6130-67f8-11eb-26cf-ad0a0f90e609
 # ╠═b5338196-5dc3-11eb-157e-85286754e367
-# ╠═b55030e8-5dc3-11eb-3576-279f1d0aa222
