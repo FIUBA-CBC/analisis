@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.12
+# v0.12.20
 
 using Markdown
 using InteractiveUtils
@@ -586,18 +586,18 @@ Hace un rato mencionamos, por ejemplo, que el coseno se parece a una función cu
 "
 
 # ╔═╡ d1ce47ae-5dec-11eb-332d-45f9670939a7
-rango_x = @bind rango Slider(0.01:0.1:0.5; default=0.5, show_value=true)
+rango_x = @bind rango Slider(0.01:0.1:2; default=0.5, show_value=true)
 
 # ╔═╡ f5a10512-5396-11eb-004a-f1d8a701208d
 begin
-	x_comparacion = collect(-0.5:0.01:0.5)
-	y_aprox = 1 .- x_comparacion.^2
+	x_comparacion = collect(-rango:0.01:rango)
+	y_aprox = 1 .- x_comparacion.^2/2
 	y_real = cos.(x_comparacion)
 	
 	plot(x_comparacion, y_real, lab="cos(x)", color=:red)
-	plot!(x_comparacion, y_aprox, lab="1 - x²", color=:blue)
+	plot!(x_comparacion, y_aprox, lab="1 - x²/2", color=:blue)
 	xlims!(-rango, rango)
-	ylims!(0.85, 1)
+	ylims!(1-rango, 1)
 end
 
 # ╔═╡ f1927246-5396-11eb-26e5-574a49aca33c
@@ -614,8 +614,8 @@ begin
 	y_aprox_2 = x_comparacion_2
 	y_real_2 = sin.(x_comparacion_2)
 	
-	plot(x_comparacion_2, y_real_2, lab="cos(x)", color=:red)
-	plot!(x_comparacion_2, y_aprox_2, lab="1 - x²", color=:blue)
+	plot(x_comparacion_2, y_real_2, lab="sen(x)", color=:red)
+	plot!(x_comparacion_2, y_aprox_2, lab="x", color=:blue)
 	xlims!(-rango_2*10, rango_2*10)
 	ylims!(-rango_2*3, rango_2*3)
 end
