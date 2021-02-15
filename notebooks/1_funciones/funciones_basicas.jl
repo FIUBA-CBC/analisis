@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.17
+# v0.12.12
 
 using Markdown
 using InteractiveUtils
@@ -512,7 +512,7 @@ Si queremos encontrar cuando la pelota toca el piso debemos imponer que `h=0=-4.
 # ╠═b5ea471a-3725-11eb-09de-eb08414cea0c
 # ╠═a88df786-376d-11eb-30bf-d36644f2462d
 # ╟─6783a4fc-376d-11eb-32c9-c16376782b06
-# ╟─920d6d1e-376d-11eb-169d-b7ba0fc2f787
+# ╠═920d6d1e-376d-11eb-169d-b7ba0fc2f787
 # ╟─b02439b8-3756-11eb-08fc-a1ab31ae4b9e
 # ╟─a471660e-398b-11eb-0424-35634d66157a
 # ╠═afcf8e22-3756-11eb-34ea-5376536fb482

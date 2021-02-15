@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.18
+# v0.12.12
 
 using Markdown
 using InteractiveUtils
@@ -267,7 +267,7 @@ Si queremos ver esto en el gráfico, podemos pasar el mouse por arriba de la rec
 "
 
 # ╔═╡ Cell order:
-# ╟─98dde660-39a3-11eb-36ae-1f540bcd1f6e
+# ╠═98dde660-39a3-11eb-36ae-1f540bcd1f6e
 # ╠═bc86db48-39a1-11eb-3702-5fec3865f699
 # ╠═b75d7b04-39a9-11eb-3958-f9e9b67f76c6
 # ╠═75278720-39a9-11eb-29e0-3d25c917c1a5
