@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.19
+# v0.12.20
 
 using Markdown
 using InteractiveUtils
@@ -12,6 +12,9 @@ macro bind(def, element)
         el
     end
 end
+
+# ╔═╡ a0199626-6faf-11eb-3208-ed3b6cc4d835
+using Pluto
 
 # ╔═╡ ad7545c4-640e-11eb-1939-b1951d89c24c
 using Plots
@@ -35,7 +38,7 @@ md"Una **sucesion** se puede pensar como una lista de numeros escrita en un orde
 
 El número $a_1$ se llama *primer termino*, $a_2$ es el *segundo termino* y de forma general $a_n$ es el *n-esimo termino*. La notacion estándar es $(a_n)_{n\in\mathbb{N}}$
 
-Como para cada número entero positivo $n$ existe un numero $a_n$ por lo que podemos definir a una sucesion como una funcion que toma números enteros positivos, es decir que su dominio es $\mathbb{N}$ y su codominio son los reales $\mathbb{R}$
+Para cada número entero positivo $n$ existe un numero $a_n$ por lo que podemos definir a una sucesion como una funcion que toma números enteros positivos, es decir que su dominio es $\mathbb{N}$ y su codominio son los reales $\mathbb{R}$
 
 Una sucesion es una funcion $a: \mathbb{N}\rightarrow \mathbb{R}$, que se escribe $a(n)=a_n$.
 
@@ -70,34 +73,57 @@ $a_{{\color{Red} 1}{\color{Red} 0}}=\frac{3^{{\color{Red} 1}{\color{Red} 0}-3}}{
 # ╔═╡ a72c4d38-6414-11eb-0323-2b101a96a4e2
 md"
 
- #### Limite
+ #### Límite
  
 
  
-  Una sucesion ${a_n}$ tiene limite L si podemos hacer que los terminos de $a_n$  se aproximen a L tanto como se queira tomando un $n$ lo suficentemente grande. Esto se escribe:
+  Una sucesion ${a_n}$ tiene límite L si podemos hacer que los terminos de $a_n$  se aproximen a L tanto como se quiera tomando un $n$ lo suficientemente grande. Esto se escribe:
   
  $\lim_{n\rightarrow \infty} a_n = L$ o $a_n\rightarrow L$ cuando $n:n\rightarrow \infty$
  
- Esto se lee \"el limite de a sub n cuando n tiende a inficino es L\"
+ Esto se lee \"El límite de a sub n cuando n tiende a infinito es L\"
  
- Si el límite $\lim_{n\rightarrow \infty} a_n = L$ existe se deice que la sucesion **converge** y de lo contrario **diverge**
+ Si el límite $\lim_{n\rightarrow \infty} a_n = L$ existe se dice que la sucesión **converge** y de lo contrario **diverge**.
  
- En el siguiente grafico vemos un ejemplo de cada una.
- (hacer dos graficos ,uno al lado del otro)
- 
+ En los siguientes gráficos se observa un ejemplo de cada una.
 
+Primero tenemos la sucesión $a_n=\frac{1}{n}$, la cual converge a $0$, ya que a medida que n es mayor el resultado de la sucesión es mas pequeño (tiende a cero). Luego tenemos a la sucesión $b_n=n^{2}$, la cual diverge, ya que a medida que aumenta n, la sucesión toma valores más y más grandes, es decir, tiende a infinito.
+ 
+(hacer dos graficos ,uno al lado del otro)
+ 
+"
+
+
+# ╔═╡ bc25a3bc-714b-11eb-19db-6b45c6ff60e0
+begin
+	terminos0=100
+	lim0 = zeros(terminos0)
+	n0 = collect(1:1:terminos0)
+	for i = 1:terminos0
+		lim0[i] = n0[i] * (n0[i])
+		
+	end
+	limite0= lim0[terminos0]
+	scatter(n0,lim0, label="bn")
+	plot!([1], seriestype="hline", lab="",color=:black)
+	
+	title!("Sucesión Divergente")
+	xlabel!("n")
+	ylabel!("bn")
+end
+
+# ╔═╡ a9439dbc-714b-11eb-0b3f-954322529980
+md"
 Una version un poco más precisa es la siguiente:
 Una sucesion ${a_n}$ tiene el limite $L$
 
-$\lim_{n\rightarrow \infty} a_n = L$ o bien$a_n\rightarrow L$ cuando $n:n\rightarrow \infty$
+$\lim_{n\rightarrow \infty} a_n = L$ o bien $a_n\rightarrow L$ cuando $n:n\rightarrow \infty$
 
 si para todo $\varepsilon>0$ hay un correspondiente entero $N$ tal que 
 si $n>N$ entonces $\left |a_n -L  \right | < \varepsilon$
 
 Por ahi esta deficinion no es del todo clara asi que hagamos un grafico para ver de que se trata
-
 "
-
 
 # ╔═╡ 88319290-6415-11eb-291c-79d1bf8ccd7b
 md"
@@ -113,6 +139,25 @@ Agregá la cantidad de terminos para ver como evoluciona la sucesion.
 begin
 ϵ_b = @bind ϵ Slider(0.03:0.001:0.0500,show_value=true)
 md"ϵ: $ϵ_b"
+end
+
+# ╔═╡ 4827edf6-714d-11eb-1176-1d4368d4a161
+begin
+	terminos00=100
+	lim00 = zeros(terminos00)
+	n00 = collect(1:1:terminos00)
+	for i = 1:terminos00
+		lim00[i] = 1/n0[i]
+		
+	end
+	limite00= lim00[terminos00]
+	scatter(n00,lim00, label="an")
+	plot!([0], seriestype="hline", lab="",color=:black)
+	plot!([0+ϵ], seriestype="hline", lab="",color=:grey)
+	plot!([0-ϵ], seriestype="hline", lab="",color=:grey)
+	title!("Sucesión Convergente")
+	xlabel!("n")
+	ylabel!("an")
 end
 
 # ╔═╡ 1972b17a-6415-11eb-3a05-a76e20b37ce5
@@ -194,7 +239,7 @@ begin
 end
 
 # ╔═╡ 8fe6fddc-6cb4-11eb-344d-8d6687205f74
-md" Podemos observar que oscina entre $-1$ y $1$. ¿Qué pasará si la dividimos por $n$?
+md" Podemos observar que oscila entre $-1$ y $1$. ¿Qué pasará si la dividimos por $n$?
 Es decir:
 
 $\frac{(-1)^n}{n}$
@@ -353,7 +398,7 @@ $a_{n+1}\leq a_n$ para (casi) todo $n$. En tal caso será **decreciente** . La l
 Si la desigualdad es estricta, la sucesion $a_n$ es estrictamente decreciente (a partir de cierto $n$) 
 
 
-En el caso que $a_{n+1}\geq a_n$para (casi) todo $n$.
+En el caso que $a_{n+1}\geq a_n$ para (casi) todo $n$.
  la sucesion será **creciente**. La litaretura tambien las llama **no decrecientes**
 Si la desigualdad es estrictal la sucesion $a_n$ es estrictamente decreciente (a partir de cierto $n$)
 En ambos casos decimos que se trata de una **sucesión monótona**.
@@ -372,7 +417,7 @@ $\frac{a_{n+1}}{a_n} \geq 1$ equivale a $a_n$ creciente.
 
 # ╔═╡ e529bb96-6425-11eb-04be-85ddcfcff418
 md"
-### Indeterminaciónes
+### Indeterminaciones
 
 Supongamos que queremos calcular el siguiente límite:
 $\lim_{n\rightarrow \infty }\frac{sen(\frac{2}{n}))}{\frac{1}{n}}$
@@ -394,9 +439,9 @@ Una **indeterminación** matemática es una expresión algebraica que aparece en
 
 Cuando aparece una indeterminación en un límite, el límite **depende de la propia función**. Esto conlleva que, aunque aparezca la misma indeterminación, el límite puede ser distinto para funciones distintas.
 
-Entonces es necesario, en cada caso, aplicar alguna técnica algebraica que permita \"salvar\" la indeterminación y calcular el límite. $0/0$ no es el único tipo de indeeterminación con el que nos vamos a encontrar.
+Entonces es necesario, en cada caso, aplicar alguna técnica algebraica que permita \"salvar\" la indeterminación y calcular el límite. $0/0$ no es el único tipo de indeterminación con el que nos vamos a encontrar.
 
-Por ejemplo, el producto de dos sucesiones, una de ellas que tienda a cero y la otra que tienda a infinito(\"cero por infinito\" o \"$0\cdot \infty$\"), constituye también una indeeterminación. Analicemos los siguientes ejemplos:
+Por ejemplo, el producto de dos sucesiones, una de ellas que tienda a cero y la otra que tienda a infinito(\"cero por infinito\" o \"$0\cdot \infty$\"), constituye también una indeterminación. Analicemos los siguientes ejemplos:
 
 
 $$a_n=\frac{1}{n}\rightarrow 0, b_n=n\rightarrow \infty\Rightarrow 
@@ -432,6 +477,10 @@ En todos los casos, hay que entender estos simbolos como el límite de la operac
 
 Como vimos, el álgebra de límites requiere que las sucesiones involucradas sean convergentes a un número real. Cuando esto no ocurre, a veces se presentan *indeterminaciones*. En cada caso hay que usar algún recurso algebraico que permita salvar la indeterminación y calcular el valor del límite.
 
+"
+
+# ╔═╡ f9a3ca2c-7153-11eb-0408-1f0916e2d550
+md"
 **Ejemplo:** Calcular el $\lim_{n\rightarrow \infty} \sqrt{n}(\sqrt{n+5}-\sqrt{n})$
 
 En este caso no se puede aplicar el álgebra de límites, porque de un primer análisis surge $\sqrt{n}\rightarrow +\infty$ y $(\sqrt{n+5}-\sqrt{n}$ es de la forma \"infinito menos infinito\" que constituye una indeterminación en si misma.
@@ -440,16 +489,22 @@ Para salvar la indeterminación y poder calcular el límite, multiplicaremos por
 
 $\sqrt{n}(\sqrt{n+5}-\sqrt{n})= \sqrt{n}(\sqrt{n+5}-\sqrt{n}) \frac{\sqrt{n+5}+\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}$
 
-*El producto por conjugado*
+*El producto por conjugado*:
 Cuando aparecen raices cuadradas es útil usar la siguiente identidad para eliminarlas
 $(A-B)(A+B)=A^{2}-B^{2}$
 
 Entonces:
 $(\sqrt{n+5}-\sqrt{n})(\sqrt{n+5}+\sqrt{n})=(n+5-n)=5$
 
-$\sqrt{n}(\sqrt{n+5}-\sqrt{n}) \frac{\sqrt{n+5}+\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}=\frac{5\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}=$
+$\sqrt{n}(\sqrt{n+5}-\sqrt{n}) \frac{\sqrt{n+5}+\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}=\frac{5\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}$
 
+Seguimos teniendo una indeterminación ya que el númerador tiende a más infinito y el denominador también. Pero estamos mejor que antes. Sacamos factor común $\sqrt{n}$ en el denominador:
 
+$\frac{5\sqrt{n}}{\sqrt{n+5}-\sqrt{n}}=\frac{5\sqrt{n}}{\sqrt{n}\left ( \sqrt{1+\frac{5}{n}}+1 \right )}=\frac{5}{\sqrt{1+\frac{5}{n}}+1}$
+
+Ahora estamos en condiciones de aplicar el álgebra de límites: el numerador es igual a $5$ y la raiz del denominador tiende a $1$. Entonces:
+
+$\lim_{n\rightarrow \infty }\sqrt{n}\left ( \sqrt{n+5}-\sqrt{n} \right)=\lim_{n\rightarrow \infty}\frac{5}{\sqrt{1+\frac{5}{n}}+1}=\frac{5}{2}$
 
 "
 
@@ -477,7 +532,7 @@ Ejemplo: $\lim_{n\rightarrow \infty }(\frac{n}{n^{2}+1})^{n}=0$
 Cada una de estas afirmaciones se puede demostrar a partir de la función de límite. Haremos uso de ellas libremente.
 
 ### \"Cero por acotado\"
-Si bien los límites del tipo \"$0\cdot \infty$\" resulta ser una indeterminación y, por lo tanto, nada podemos decir sobre el valor del kímite sin salvar tal indeterminación, si se puede decir algo cuando estamos en presencia de un producto de una sucesión que tiende a cero por otra que está acotada. En estos casos se obtiene una sucesión que tiende a cero. Es decir:
+Si bien los límites del tipo \"$0\cdot \infty$\" resulta ser una indeterminación y, por lo tanto, nada podemos decir sobre el valor del límite sin salvar tal indeterminación, si se puede decir algo cuando estamos en presencia de un producto de una sucesión que tiende a cero por otra que está acotada. En estos casos se obtiene una sucesión que tiende a cero. Es decir:
 
 Si $a_n\rightarrow 0$ y $\left | b_n \right | \leq k$ entonces $a_n\cdot b_n\rightarrow 0$
 
@@ -518,10 +573,18 @@ begin
 		
 	end
 	
-	scatter(n6,lim10, label="an")
-	scatter!(n6,lim11, label="bn")
-	scatter!(n6,lim12, label="cn")
+	limite10 = lim10[terminos11]
+	limite11 = lim11[terminos11]
+	limite12 = lim12[terminos11]
+	
+	scatter(n6,lim10, label="an=$limite10")
+	scatter!(n6,lim11, label="bn=$limite11")
+	scatter!(n6,lim12, label="cn=$limite12")
 	ylims!(0.4,2)
+	
+	title!("")
+	xlabel!("n")
+	ylabel!("an, bn, cn")
 end
 
 # ╔═╡ ac6351b2-642c-11eb-2f61-ab08efb3c175
@@ -547,7 +610,7 @@ $$p_{n+1} =k \cdot p_n (1-p_n)$$
 Donde $p_n$ es el tamaño de una poblacion en la $n-ésima$ generacion. Este balor se encontrará entre $0$ y $1$, es decir $0 \leq  p_n \leqslant 1$
 
 
-Supongamos qu enos interesa predecir el tamaño de la poblacion a mediad que el tiempo avanza. ¿Podremos encontrar algun valor limite? ¿Existe un comportamiento ciclico? o ¿el comportamiento es similar siempre o pueden haber movimientos aleatorios?
+Supongamos que nos interesa predecir el tamaño de la poblacion a mediad que el tiempo avanza. ¿Podremos encontrar algun valor limite? ¿Existe un comportamiento cíclico? o ¿el comportamiento es similar siempre o pueden haber movimientos aleatorios?
 
 Gracias a Julia podremos responder estas preguntas. 
 Abajo tenemos dos *sliders*, con uno podemos hacer variar a la constante $k$ y con el otro vemos la cantidad de iteraciones, es decir las generaciones
@@ -555,8 +618,8 @@ Abajo tenemos dos *sliders*, con uno podemos hacer variar a la constante $k$ y c
 
 1. Con un valor de poblacion inicial $p_0 = \frac{1}{2}$ y para dos valores de $k$ entre 1 y 3, vean que pasa con 30 términos.
 2. Repetir el punto anterior pero modificando el valor inicial de la poblacion. Depende del valor de k el comportamiento?
-3. Si variamos el valor de k entre 3 y 3.4, ¿Que pasa? ¿Y si vale 3.5?
-4. Para valores entre 3.6 y 4 ver que pasa. Lo que sucese es un fenómeno que se llama *caos* . Al final te dejamos un video por si te dio curiosidad
+3. Si variamos el valor de k entre 3 y 3.4 ¿Qué pasa? ¿Y si vale 3.5?
+4. Para valores entre 3.6 y 4 ver que pasa. Lo que sucese es un fenómeno que se llama *caos* . Al final te dejamos un video por si te dió curiosidad.
 
 "
 
@@ -586,17 +649,29 @@ begin
 		
 	end
 	
+	poblacion=limrec[terminos111]
 	
-	
-	scatter(nrec,limrec, label="pn")
+	scatter(nrec,limrec, label="pn=$poblacion")
 	plot!(nrec,limrec, label="")
 	
 	title!("")
-	xlabel!("cantidad de terminos ")
-	ylabel!("Poblacion pn")
+	xlabel!("Cantidad de términos ")
+	ylabel!("Población pn")
 
 	ylims!(0,1.1)
 end
+
+# ╔═╡ 235970d6-7149-11eb-216e-715f195832e5
+md"
+### Un *plus* de sucesiones
+
+Si queres acá te dejamos un tutorial para que veas como se gráfica una sucesión.
+
+
+
+`Hola world`
+"
+
 
 # ╔═╡ b24a61da-69b1-11eb-231c-c5d49a44f578
 yoda = "https://media1.tenor.com/images/52987ea5d89a3700d96ca943a94c774d/tenor.gif?itemid=15689476";
@@ -619,6 +694,7 @@ html"""
 # Este es el video https://www.youtube.com/watch?v=EOvLhZPevm0
 
 # ╔═╡ Cell order:
+# ╠═a0199626-6faf-11eb-3208-ed3b6cc4d835
 # ╠═ad7545c4-640e-11eb-1939-b1951d89c24c
 # ╠═caeaa286-640e-11eb-0e70-5ba4322a021b
 # ╠═77698f2a-69aa-11eb-1d85-4f74a52bc9a8
@@ -626,21 +702,24 @@ html"""
 # ╟─19d941d4-640f-11eb-322d-43c8c17e1ca5
 # ╟─7d6e156a-640f-11eb-03ff-9bf78a886890
 # ╟─a72c4d38-6414-11eb-0323-2b101a96a4e2
+# ╟─4827edf6-714d-11eb-1176-1d4368d4a161
+# ╟─bc25a3bc-714b-11eb-19db-6b45c6ff60e0
+# ╟─a9439dbc-714b-11eb-0b3f-954322529980
 # ╟─88319290-6415-11eb-291c-79d1bf8ccd7b
-# ╠═28002902-6415-11eb-3ec5-2ff429ee4125
-# ╠═2f82e7f8-69af-11eb-283c-ebaba2ca091c
-# ╠═1972b17a-6415-11eb-3a05-a76e20b37ce5
+# ╟─28002902-6415-11eb-3ec5-2ff429ee4125
+# ╟─2f82e7f8-69af-11eb-283c-ebaba2ca091c
+# ╟─1972b17a-6415-11eb-3a05-a76e20b37ce5
 # ╟─8e4e197c-69a5-11eb-0e01-357faf0814f9
 # ╟─6a6de6f6-69ad-11eb-3bc4-1f2622111a13
 # ╟─4b243270-69b0-11eb-0f1d-e34a13c86159
-# ╠═df33be38-6cab-11eb-1bc5-4d1f573ec5a2
-# ╠═beba74a8-6cab-11eb-3e8a-81bf71d64a6c
+# ╟─df33be38-6cab-11eb-1bc5-4d1f573ec5a2
+# ╟─beba74a8-6cab-11eb-3e8a-81bf71d64a6c
 # ╟─78c0541c-6cb4-11eb-292f-9bb43d2c7c36
 # ╟─167880f2-6cae-11eb-10f9-695e95bea9dd
-# ╠═1741635c-6cae-11eb-323c-dd7ff6ffa50e
+# ╟─1741635c-6cae-11eb-323c-dd7ff6ffa50e
 # ╟─8fe6fddc-6cb4-11eb-344d-8d6687205f74
-# ╠═76273888-6cb4-11eb-112d-91a3ed30a042
-# ╠═d89b27d6-6cb4-11eb-0dd6-97376d57740c
+# ╟─76273888-6cb4-11eb-112d-91a3ed30a042
+# ╟─d89b27d6-6cb4-11eb-0dd6-97376d57740c
 # ╟─15f406b4-6417-11eb-1614-577cdf0f282c
 # ╟─726a445c-641d-11eb-32eb-75df861e1b54
 # ╠═94acde12-641d-11eb-1d7e-e369279bc92a
@@ -650,6 +729,7 @@ html"""
 # ╠═6d816262-6cb6-11eb-1513-1b065fa019c6
 # ╟─472062e2-6425-11eb-38d7-e764c0ccfc0a
 # ╟─e529bb96-6425-11eb-04be-85ddcfcff418
+# ╟─f9a3ca2c-7153-11eb-0408-1f0916e2d550
 # ╟─431abf4c-69b8-11eb-18e4-2f2c769a85a1
 # ╟─9d424d10-642b-11eb-0800-ed0461bad325
 # ╠═f3ff887a-642b-11eb-0fdd-b5c7db6ec8cd
@@ -658,9 +738,10 @@ html"""
 # ╠═dfaf8452-69bb-11eb-2204-eb4c3c503462
 # ╠═bc7447c8-69bf-11eb-2a5b-ad28e93001d4
 # ╠═8127fa76-6cc5-11eb-0245-7d18ec64d88f
-# ╠═d9d18096-69b9-11eb-0111-9b62d1dec03d
+# ╟─d9d18096-69b9-11eb-0111-9b62d1dec03d
+# ╠═235970d6-7149-11eb-216e-715f195832e5
 # ╟─b24a61da-69b1-11eb-231c-c5d49a44f578
 # ╟─cf82c80c-6cc5-11eb-2999-2ff8fb008686
 # ╟─d46fa5dc-69b3-11eb-3137-cbc9aa25ccd1
-# ╠═38d448a8-6cc6-11eb-2523-d15337e10e66
+# ╟─38d448a8-6cc6-11eb-2523-d15337e10e66
 # ╠═7b485b52-6cc6-11eb-3088-27d318c62764
