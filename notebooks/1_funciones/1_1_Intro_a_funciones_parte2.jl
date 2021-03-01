@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.19
+# v0.12.21
 
 using Markdown
 using InteractiveUtils
@@ -974,7 +974,7 @@ $y = f(x) = a*cos(b*x+\phi )$
 
 # ╔═╡ 596d15a6-5d06-11eb-3015-518510dec087
 begin
-	acos_slider=  @bind acos Slider(-10:0.1:10; default=1, show_value=true)
+	acos_slider=  @bind acos_ Slider(-10:0.1:10; default=1, show_value=true)
 	md"""a: $(acos_slider)"""
 end
 
@@ -994,7 +994,7 @@ end
 begin
 	xcos=collect(-2π:0.01π:2π)
 	g2(xcos)= cos.(xcos)
-	g2i(xcos)= acos * cos.(xcos * bcos + ccos)
+	g2i(xcos)= acos_ * cos.(xcos * bcos + ccos)
 
 	plot(g2,-2π,2π,lab="cos(x)")
 	plot!(g2i,-2π,2π,lab="interactiva")
@@ -1337,7 +1337,7 @@ end
 # ╠═cc8167a0-5d05-11eb-1a70-f5c96dfac04d
 # ╠═7ce90564-5d04-11eb-17f1-8dd00557cac1
 # ╠═3adda8fa-5d04-11eb-13c6-55f5fe0f44ac
-# ╟─596d15a6-5d06-11eb-3015-518510dec087
+# ╠═596d15a6-5d06-11eb-3015-518510dec087
 # ╟─6c1c3ed4-5d06-11eb-338f-d5e87025bcbe
 # ╠═769956d0-5d06-11eb-1696-21f883bdab99
 # ╠═da2060f6-5d04-11eb-3a60-03ee847395ad
