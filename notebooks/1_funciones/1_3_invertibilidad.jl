@@ -17,7 +17,7 @@ end
 begin
 	using Plots
 	using PlutoUI
-	plotly()
+	plotlyjs()
 end
 
 # ╔═╡ 57c122b6-5394-11eb-3970-75f46fb55ac4
@@ -623,8 +623,8 @@ end
 md"Sabiendo esto, si sabemos que queremos calcular $sen(x)$ en una posición cercana al $0$, podemos utilizar $x$ para el cálculo, así como podemos usar $1 - x^2$ para el $cos(x)$ en ese mismo entorno."
 
 # ╔═╡ Cell order:
-# ╟─0de4bef2-5916-11eb-03cd-396932d588c2
-# ╟─57c122b6-5394-11eb-3970-75f46fb55ac4
+# ╠═0de4bef2-5916-11eb-03cd-396932d588c2
+# ╠═57c122b6-5394-11eb-3970-75f46fb55ac4
 # ╠═0e7900f2-5917-11eb-0eec-bdddb19e77d2
 # ╠═91290ffc-5394-11eb-27a0-179e75f62ae7
 # ╟─906f8a00-5394-11eb-07f3-7f9633d5b1bb

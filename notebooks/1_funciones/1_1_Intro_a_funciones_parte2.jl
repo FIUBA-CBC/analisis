@@ -26,7 +26,7 @@ begin
 	using ZipFile
 	using LsqFit
 	using Dates
-	plotly();
+	plotlyjs();
 end
 
 # ╔═╡ 80e98170-55cf-11eb-1728-0b9be9ede10c
@@ -1257,7 +1257,7 @@ begin
 end
 
 # ╔═╡ Cell order:
-# ╟─d26bbfe2-7abc-11eb-22e0-b364ac769123
+# ╠═d26bbfe2-7abc-11eb-22e0-b364ac769123
 # ╟─80e98170-55cf-11eb-1728-0b9be9ede10c
 # ╠═2e4c413e-55d0-11eb-0743-87da04abc000
 # ╠═629dc678-5c36-11eb-205b-3f69bd55edcf
