@@ -13,55 +13,21 @@ macro bind(def, element)
     end
 end
 
-# ╔═╡ a76f4600-55d3-11eb-0f6c-1d60f6cae0ed
-using Plots
-
-# ╔═╡ 2e2ba646-5c34-11eb-1250-f7cd9e2b5764
-using PlutoUI
-
-# ╔═╡ 9e03a302-5da5-11eb-3ef3-bba22ba018fc
+# ╔═╡ d26bbfe2-7abc-11eb-22e0-b364ac769123
 begin
-	using Pkg   
-	Pkg.add.(["CSV", "DataFrames", "PlutoUI", "Shapefile", "ZipFile", "LsqFit", "Plots"])
-
+	# using Pkg   
+	# Pkg.add.(["CSV", "DataFrames", "PlutoUI", "Shapefile", "ZipFile", "LsqFit", "Plots"])
+	using PlutoUI
+	using Plots
+	using Statistics
 	using CSV
 	using DataFrames
 	using Shapefile
 	using ZipFile
 	using LsqFit
 	using Dates
-	url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
-	
-	download(url, "covid_data.csv");
-	csv_data = CSV.File("covid_data.csv");   
-	data = DataFrame(csv_data)   # it is common to use `df` as a variable name
-		data_2 = rename(data, 1 => "province", 2 => "country", 3 => "latitude", 4 => "longitude");   
-	rename!(data, 1 => "province", 2 => "country", 3 => "latitude", 4 => "longitude") ;
-	all_countries = data[:, "country"];
-	ARG_row = findfirst(==("Argentina"), all_countries);
-	data[ARG_row, :];
-	data[ARG_row:ARG_row, :];
-	ARG_data = Vector(data[ARG_row, 5:end]);
-	column_names = names(data);
-	date_strings = names(data)[5:end];
-	date_format = Dates.DateFormat("m/d/Y");
-	dates = parse.(Date, date_strings, date_format) .+ Year(2000);
-
-	
-	
+	plotly();
 end
-
-# ╔═╡ 77915aec-5da6-11eb-33b1-819e3ec8580d
-begin
-	using Statistics
-	daily_cases = diff(ARG_data)
-	running_mean = [mean(daily_cases[i-6:i]) for i in 7:length(daily_cases)]
-	#plot(daily_cases, label="Casos diarios")
-	plot(running_mean, m=:o, label="Promedio semanal", leg=:topleft)
-end
-
-# ╔═╡ 0e5215f8-5c34-11eb-399a-0f45b885c428
-plotly()
 
 # ╔═╡ 80e98170-55cf-11eb-1728-0b9be9ede10c
 md"""
@@ -649,9 +615,40 @@ donde la constante $\alpha$ es la velocidad de crecimiento exponencial  que se v
 ##### Aqui ponemos grafico comparacion de Covid con escala lineal y escala logarítmica.
 """
 
+# ╔═╡ 9e03a302-5da5-11eb-3ef3-bba22ba018fc
+begin
+	url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+	
+	download(url, "covid_data.csv");
+	csv_data = CSV.File("covid_data.csv");   
+	data = DataFrame(csv_data)   # it is common to use `df` as a variable name
+		data_2 = rename(data, 1 => "province", 2 => "country", 3 => "latitude", 4 => "longitude");   
+	rename!(data, 1 => "province", 2 => "country", 3 => "latitude", 4 => "longitude") ;
+	all_countries = data[:, "country"];
+	ARG_row = findfirst(==("Argentina"), all_countries);
+	data[ARG_row, :];
+	data[ARG_row:ARG_row, :];
+	ARG_data = Vector(data[ARG_row, 5:end]);
+	column_names = names(data);
+	date_strings = names(data)[5:end];
+	date_format = Dates.DateFormat("m/d/Y");
+	dates = parse.(Date, date_strings, date_format) .+ Year(2000);
+
+	
+	
+end
+
 # ╔═╡ 64cc285a-5da7-11eb-0351-0bce87f950df
 md"
 A continuacion graficamos el promedio semanal de casos en Argentina en funcion de los dias que pasaron desde que todo comenzó"
+
+# ╔═╡ 77915aec-5da6-11eb-33b1-819e3ec8580d
+begin
+	daily_cases = diff(ARG_data)
+	running_mean = [mean(daily_cases[i-6:i]) for i in 7:length(daily_cases)]
+	#plot(daily_cases, label="Casos diarios")
+	plot(running_mean, m=:o, label="Promedio semanal", leg=:topleft)
+end
 
 # ╔═╡ b420b010-5da7-11eb-146f-7112f516560f
 md"
@@ -1260,50 +1257,48 @@ begin
 end
 
 # ╔═╡ Cell order:
-# ╠═a76f4600-55d3-11eb-0f6c-1d60f6cae0ed
-# ╠═2e2ba646-5c34-11eb-1250-f7cd9e2b5764
-# ╠═0e5215f8-5c34-11eb-399a-0f45b885c428
+# ╟─d26bbfe2-7abc-11eb-22e0-b364ac769123
 # ╟─80e98170-55cf-11eb-1728-0b9be9ede10c
-# ╟─2e4c413e-55d0-11eb-0743-87da04abc000
-# ╟─629dc678-5c36-11eb-205b-3f69bd55edcf
+# ╠═2e4c413e-55d0-11eb-0743-87da04abc000
+# ╠═629dc678-5c36-11eb-205b-3f69bd55edcf
 # ╠═26a66ba2-5c36-11eb-2d6b-85be51d9486d
-# ╟─d9f5bfb0-55cd-11eb-1b0b-af39e7ae9d07
+# ╠═d9f5bfb0-55cd-11eb-1b0b-af39e7ae9d07
 # ╠═75a25b96-5c34-11eb-2260-23d7d48e67ac
-# ╟─ed9dc666-5c35-11eb-2abb-b332fea3eb30
-# ╟─f7397ce2-5c35-11eb-0222-694f145baad3
-# ╟─2be1c936-5cae-11eb-0511-55cac515b4de
-# ╟─562d2078-5cae-11eb-2934-974dbccdab74
-# ╟─5cb5ba8e-5cae-11eb-19bf-ebf44ea8f6a6
+# ╠═ed9dc666-5c35-11eb-2abb-b332fea3eb30
+# ╠═f7397ce2-5c35-11eb-0222-694f145baad3
+# ╠═2be1c936-5cae-11eb-0511-55cac515b4de
+# ╠═562d2078-5cae-11eb-2934-974dbccdab74
+# ╠═5cb5ba8e-5cae-11eb-19bf-ebf44ea8f6a6
 # ╠═8e6333ec-5cae-11eb-26c6-f3b094dab970
-# ╟─08513d6e-5cf9-11eb-10fb-29fd8cd2dd68
-# ╟─85df8462-5ca9-11eb-0b96-ed23e4415cb1
-# ╟─ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
-# ╟─43d3ce80-5d90-11eb-1b5f-bf36a9dea97d
+# ╠═08513d6e-5cf9-11eb-10fb-29fd8cd2dd68
+# ╠═85df8462-5ca9-11eb-0b96-ed23e4415cb1
+# ╠═ee082e2c-6716-11eb-1f0a-1fae0ed2f74a
+# ╠═43d3ce80-5d90-11eb-1b5f-bf36a9dea97d
 # ╠═01e8d45c-5d95-11eb-32a2-05703b43541a
-# ╟─c9e2fcf2-5d96-11eb-2561-53b190a409d0
-# ╟─55cf6280-55dd-11eb-117f-f1bf6a29565b
-# ╟─ef349bd0-55eb-11eb-0b53-999cd0ef6167
+# ╠═c9e2fcf2-5d96-11eb-2561-53b190a409d0
+# ╠═55cf6280-55dd-11eb-117f-f1bf6a29565b
+# ╠═ef349bd0-55eb-11eb-0b53-999cd0ef6167
 # ╠═586b3184-5daa-11eb-3868-cf88404f1bf9
-# ╟─86161db2-5db2-11eb-19b3-bbeeb5e98e3c
-# ╟─a85efa00-55cf-11eb-26ae-ada91c1a547d
-# ╟─b40b45ee-5ca4-11eb-3c06-ab084f0ded65
+# ╠═86161db2-5db2-11eb-19b3-bbeeb5e98e3c
+# ╠═a85efa00-55cf-11eb-26ae-ada91c1a547d
+# ╠═b40b45ee-5ca4-11eb-3c06-ab084f0ded65
 # ╠═92dc44fe-5c36-11eb-362e-5b973d643c25
-# ╟─7de3a734-5ca6-11eb-314a-b965bb97844e
-# ╟─e304e16e-5ca6-11eb-277a-cf504d496670
+# ╠═7de3a734-5ca6-11eb-314a-b965bb97844e
+# ╠═e304e16e-5ca6-11eb-277a-cf504d496670
 # ╠═eed2e39c-5ca6-11eb-0e5b-11de2ae16846
-# ╟─d9af9350-55eb-11eb-0d0e-e1932621ab4d
-# ╟─20a6b404-5da4-11eb-0664-c942ae7e07af
-# ╟─4fb87c40-55ee-11eb-3c0c-e998b5972411
+# ╠═d9af9350-55eb-11eb-0d0e-e1932621ab4d
+# ╠═20a6b404-5da4-11eb-0664-c942ae7e07af
+# ╠═4fb87c40-55ee-11eb-3c0c-e998b5972411
 # ╠═0eeabf0e-5da5-11eb-3ba4-f31c5481eb49
-# ╟─2b04a32a-5da4-11eb-2fb8-7fae9c509505
-# ╟─727655e6-5caa-11eb-1893-3fce87151446
-# ╟─3254f9f8-5cb0-11eb-0bef-1de90ded7c4c
+# ╠═2b04a32a-5da4-11eb-2fb8-7fae9c509505
+# ╠═727655e6-5caa-11eb-1893-3fce87151446
+# ╠═3254f9f8-5cb0-11eb-0bef-1de90ded7c4c
 # ╠═4336abb8-5cb0-11eb-2a99-07f1b6245f70
 # ╠═4483dfd0-55ef-11eb-31da-31658529f814
 # ╠═830b5508-5cac-11eb-241f-5103abeaee17
 # ╠═712a3276-5c36-11eb-2c1b-353247409db1
-# ╟─92d1188e-5bd9-11eb-0934-e59f8142ccde
-# ╟─9e03a302-5da5-11eb-3ef3-bba22ba018fc
+# ╠═92d1188e-5bd9-11eb-0934-e59f8142ccde
+# ╠═9e03a302-5da5-11eb-3ef3-bba22ba018fc
 # ╟─64cc285a-5da7-11eb-0351-0bce87f950df
 # ╠═77915aec-5da6-11eb-33b1-819e3ec8580d
 # ╟─b420b010-5da7-11eb-146f-7112f516560f
