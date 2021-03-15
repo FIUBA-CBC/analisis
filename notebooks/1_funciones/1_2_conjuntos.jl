@@ -4,6 +4,31 @@
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ 3b692fd0-85b1-11eb-1739-6d11326f0586
+begin
+	using Plots
+	using PlutoUI
+	plotly()
+end
+
+# ╔═╡ 9273a9e4-70b3-11eb-177b-a5e7c3e025ad
+begin	
+	x_est = collect(0:0.01:5)
+	y_estimado_1(x) = 5x
+	y_estimado_2(x) = 2x
+	x_est_lf = collect(0:0.2:5)
+
+	using Random
+	Random.seed!(1)
+	mediciones = 3*(x_est_lf) + Random.randn(length(x_est_lf))*2
+	
+    plot(x_est, y_estimado_1.(x_est), lab="f1(x) = 5x", color=:red)
+	plot!(x_est, y_estimado_2.(x_est), lab="f2(x) = 2x", color=:blue)
+	scatter!(x_est_lf, mediciones, lab="mediciones", color=:green)
+	xlabel!("x")
+	ylabel!("y")
+end
+
 # ╔═╡ 34c94b8e-70b1-11eb-1775-4392b3a4032a
 md"# Conjuntos"
 
@@ -17,7 +42,16 @@ md"En apuntes pasados ya estuvimos viendo algunos ejemplos de conjuntos. En el d
 md"Un ejemplo típico es el de las cuadráticas, donde la imagen solo cumple una parte del dominio."
 
 # ╔═╡ b1e86bf4-70b1-11eb-0fed-3322d236a1ff
-# gráfico de x²
+begin
+	x_cuad = collect(-5:0.01:5)
+	y_cuad(x) = x.^2
+	
+    p_cuad = plot(x_cuad, y_cuad(x_cuad), lab="y(x) = x²", color=:red)
+	xlabel!("x")
+	ylabel!("x²")
+    xlims!(-5,5)
+    ylims!(0,10)
+end
 
 # ╔═╡ bb4bfd5a-70b1-11eb-38c4-e36b2f2fc66f
 md"Para $f: \mathbb{R} \rightarrow \mathbb{R} / f(x) = x^2$ el dominio y el codominio son los números reales, pero la imagen son solo los reales positivos y el cero. Este conjunto, $\mathbb{R}^+_0$ es, como se intuye, un _subconjunto_ de los reales, y aprenderemos a notarlo más adelante en esta sección.
@@ -76,14 +110,33 @@ Esto se lee \"la imagen de $f$ es el conjunto de los números $n$ pertenecientes
 
 $$\text{Im} (f) = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23\}$$
 
-lo cual es muy largo y es impracticable para conjuntos más grandes o infinitos. Además, al definir un \"criterio\", podríamos hacer un programa para que la computadora me diga si un elemento pertenece o no a un conjunto por más que sea infinito.
+lo cual es muy largo y es impracticable para conjuntos más grandes o infinitos. Además, al definir un \"criterio\", podríamos hacer un programa para que la computadora me diga si un elemento pertenece o no a un conjunto por más que sea infinito. Por ejemplo, si definimos el conjunto. 
+
+$$C = \{n \in \mathbb{N} :  10 \le n\}$$
+
+podemos crear la función `pertenece_al_conjunto_c(n)` que toma un `n` entero y devuelve true (verdadero) cuando pertenece y false (falso) si no pertenece, sin necesidad de enumerar todos los elementos, lo cual sería imposible.
 "
 
 # ╔═╡ 2f51d17c-70b2-11eb-0c06-6dcf65cd5580
-# ejemplo en julia
+pertenece_al_conjunto_c(x) = 10 <= x
+
+# ╔═╡ 1797499c-85b2-11eb-074c-07e0ce4dc06c
+pertenece_al_conjunto_c(-5)
+
+# ╔═╡ 35dc7b8e-85b2-11eb-279a-653cd745be7f
+pertenece_al_conjunto_c(9)
+
+# ╔═╡ 3f3375b6-85b2-11eb-1ebc-990600298754
+pertenece_al_conjunto_c(10)
+
+# ╔═╡ 40c57c26-85b2-11eb-1d3c-a5cde1dfec02
+pertenece_al_conjunto_c(1337)
+
+# ╔═╡ 43e0b51a-85b2-11eb-2b29-a93ab9292f97
+pertenece_al_conjunto_c(100000000)
 
 # ╔═╡ 34525a0a-70b2-11eb-0028-2d8d25e79a58
-md"En este último ejemplo vemos que la imagen de $f$ es un subconjunto de los naturales. Esto se nota del siguiente modo:
+md"En el ejemplo anterior veíamos que la imagen de $f$ es un subconjunto de los naturales. Esto se nota del siguiente modo:
 
 $$\text{Im}(f) \subset \mathbb{N}$$
 
@@ -160,7 +213,17 @@ Este tipo de cosas suelen aparecer como soluciones a sistemas de ecuaciones. Ima
 "
 
 # ╔═╡ dcc97300-70b2-11eb-18b9-71966ff843c9
-# gráfico
+begin
+	t_h = collect(-5:0.01:5)
+	h(t) = 1 - (t - 1)^2
+	
+    plot(t_h, h.(t_h), lab="h(t) = 1-(t-1)²", color=:red)
+	xlabel!("t")
+	ylabel!("h(t)")
+    xlims!(0,2)
+    ylims!(0,1.2)
+	plot!([3/4], seriestype="hline", lab="", color=:green, style="dot")
+end
 
 # ╔═╡ e22caa5e-70b2-11eb-13c2-f58e7c96adee
 md"
@@ -181,7 +244,15 @@ Aquí recordemos que si hacemos la raiz de algo al cuadrado, tenemos que poner e
 $$|t-1| \le \frac{1}{2}$$"
 
 # ╔═╡ f25e2da8-70b2-11eb-2531-d324a7e5d9a8
-# gráfico
+begin
+	abs_t(t) = abs(t-1)
+    plot(t_h, abs_t.(t_h), lab="|t-1|", color=:red)
+	xlabel!("t")
+	ylabel!("|t-1|")
+    xlims!(0,2)
+    ylims!(0,1.2)
+	plot!([1/2], seriestype="hline", lab="", color=:green, style="dot")
+end
 
 # ╔═╡ f68de6f2-70b2-11eb-258c-354cf799d776
 md"
@@ -220,7 +291,19 @@ md"
 Matemáticamente este tipo de problemas también es bastante típico de los sistemas de ecuaciones o inecuaciones cuando valen varios intervalos. Un caso típico son las funciones periódicas, como las trigonométricas:"
 
 # ╔═╡ 26bbd94c-70b3-11eb-394d-2fdecd7a1b82
-# gráfico de sen(x) con los positivos remarcados
+begin
+	x_pos = vcat(collect(0:0.01:π), collect(2π:0.01:3π))
+	x_neg = vcat(collect(-π:0.01:0), collect(π:0.01:2π))
+	y_cruce = -0.5
+	
+    plot(x_pos, sin.(x_pos), lab="sen(x) donde sen(x) > 0", color=:blue, 
+		legend=:bottomright)
+	plot!(x_neg, sin.(x_neg), lab="sen(x) donde sen(x) < 0", color=:red)
+    plot!([0], seriestype="hline", lab="",color=:black)
+    plot!([0], seriestype="vline", lab="",color=:black)
+	xlabel!("x")
+	ylabel!("f(x)")
+end
 
 # ╔═╡ 2c36684c-70b3-11eb-172a-517434e3f626
 md"
@@ -252,7 +335,33 @@ Si pertenecer a ese elemento significa cumplir una condición, su complemento so
 Recordemos el ejemplo que vimos de intersección. Queríamos ver en qué momentos el cohete estaría a una altura no filmable para apagar las cámaras. Pero probablemente querramos lo opuesto: saber en qué momentos podremos filmar. "
 
 # ╔═╡ 5434512e-70b3-11eb-1c46-f57b15828c4e
-# Gráficos comparados
+begin
+	t_arriba = collect(0.5:0.01:1.5)
+	t_abajo_1 = collect(0:0.01:0.5)
+	t_abajo_2 = collect(1.5:0.01:2.0)
+    plot(t_arriba, h.(t_arriba), color=:red, label="h(t) para h > 3/4")
+	plot!(t_abajo_1, h.(t_abajo_1), color=:grey, label="")
+	plot!(t_abajo_2, h.(t_abajo_2), color=:grey, label="")
+	title!("Arriba")
+	xlabel!("t")
+	ylabel!("h(t)")
+    xlims!(0,2)
+    ylims!(0,1.2)
+	plot!([3/4], seriestype="hline", lab="", color=:green, style="dot")
+end
+
+# ╔═╡ 6cd47cd6-85b7-11eb-089c-93885c4ea903
+begin
+	plot(t_arriba, h.(t_arriba), color=:grey, label="")
+	plot!(t_abajo_1, h.(t_abajo_1), color=:red, label="h(t) para h < 3/4")
+	plot!(t_abajo_2, h.(t_abajo_2), color=:red, label="")
+	xlabel!("t")
+	ylabel!("h(t)")
+	title!("Abajo")
+    xlims!(0,2)
+    ylims!(0,1.2)
+	plot!([3/4], seriestype="hline", lab="", color=:green, style="dot")
+end
 
 # ╔═╡ 58e45b74-70b3-11eb-292e-d1db7e3a74fc
 md"Si lo pensamos, $T$ era el conjunto de valores de tiempo donde no se podría filmar, y queremos los elementos que están afuera de ese conjunto, es decir, su complemento $\overline T$. Si quisiéramos, como ejercicio, podríamos hacer todas las cuentas desde el principio, partiendo de $1 - (t - 1)^2 < \frac{3}{4}$. 
@@ -298,16 +407,56 @@ $$min(A) = \{x \in A: \forall y \in A: x \neq y \Rightarrow y > x\}$$
 ¿Por qué son interesantes estos puntos? En esta materia nos interesarán estos puntos aplicados a funciones. Conocer el máximo de una función nos sirve en ejemplos como el tiro vertical que nombramos antes, para encontrar a qué altura máxima llega el cohete antes de comenzar su decenso."
 
 # ╔═╡ 8845120a-70b3-11eb-0b08-bfd017c18f65
-# graficar en Julia una parábola ejemplificando el concepto
+begin	
+    plot(x_cuad, y_cuad(x_cuad), lab="y(x) = x²", color=:red)
+	xlabel!("x")
+	ylabel!("x²")
+	scatter!([0], [0], label="mínimo", color=:green)
+	ylims!(-0.2, 1)
+	xlims!(-1,1)
+end
 
 # ╔═╡ 8cc1df84-70b3-11eb-3a36-3df76de9e0ff
 md"Frecuentemente, nosotros no solo queremos el máximo o el mínimo de la función, que se calculan sobre la imagen, sino que nos interesa el punto del dominio $x$ para el cual $f(x)$ es mínimo o máximo. ¿Por qué? Porque frecuentemente el dominio contiene a la o las variables que podemos cambiar. Si la función representa el costo de producir una caja en función de sus dimensiones, podremos elegirlas bien para ahorrar gastos en la producción. Si la función representa el error que una inteligencia artificial comete en una predicción, encontrar la predicción para la cual el error es mínimo mejorará la performance de esa AI."
 
-# ╔═╡ 9273a9e4-70b3-11eb-177b-a5e7c3e025ad
-# graficar error en función de una línea modelando puntos
+# ╔═╡ eccc1f90-85bc-11eb-1362-f76a0cfaa389
+md"Hicimos dos estimaciones distintas. Veamos qué tan bien funciona cada una." 
+
+# ╔═╡ 8848198c-85bc-11eb-3b79-eb6f4228a150
+# Error cuadrático medio
+error_cm(funcion, mediciones_x, mediciones_y) =
+begin
+	estimaciones = funcion.(mediciones_x)
+	sum((estimaciones - mediciones_y).^2)/length(estimaciones)
+end
+
+# ╔═╡ 654e4118-85bc-11eb-22ab-ddf2eac3e04e
+error_cm(y_estimado_1, x_est_lf, mediciones)
+
+# ╔═╡ d29020f2-85bc-11eb-0de6-61da0496f2e0
+error_cm(y_estimado_2, x_est_lf, mediciones)
+
+# ╔═╡ 1f03efd2-85bc-11eb-10b9-cbc665ed3e6b
+md"Podemos ver claramente que la segunda estimación es mejor que la primera, pero parecería que si subimos un poco más la pendiente podríamos generar una mejor. Para ver cuál es **la mejor** podemos graficar el error en función de la pendiente y buscar el mínimo:"
+
+# ╔═╡ f7d9c0a2-85bc-11eb-2b1a-45f9efa82172
+begin	
+	estimador_con_pendiente(p) = x -> p*x
+	pendientes = collect(0:0.03:6)
+	error_cm_para_mediciones(funcion) = error_cm(funcion, x_est_lf, mediciones)
+	estimadores = estimador_con_pendiente.(pendientes)
+	errores = error_cm_para_mediciones.(estimadores)
+    plot(pendientes, errores, label="error(pendiente)")
+	scatter!([3], [error_cm_para_mediciones(estimador_con_pendiente(3))], 
+		label="Error para f(x)=3x")
+	xlabel!("pendiente")
+	ylabel!("error")
+end
 
 # ╔═╡ 9665f80e-70b3-11eb-2e39-c5abbe51e8da
-md"Como siempre, en ingeniería, nos interesa llegar a un resultado a fin de tomar las mejores decisiones. Por eso llamamos _optimizar_ a buscar el mínimo o el máximo de una función.
+md"Podemos ver que que la función que minimiza el error es $f(x)=3x$, es decir, la pendiente 3, con lo cual tenemos el mejor estimador posible.
+
+Como siempre, en ingeniería, nos interesa llegar a un resultado a fin de tomar las mejores decisiones. Por eso llamamos _optimizar_ a buscar el mínimo o el máximo de una función.
 "
 
 # ╔═╡ 9bb234a8-70b3-11eb-1e50-756505f95bb0
@@ -384,7 +533,14 @@ Veamos un caso interesante. ¿Tiene un mínimo la función $f: \mathbb{R}^+ \rig
 Grafiquemos para ver de qué se trata la pregunta."
 
 # ╔═╡ d73813da-70b3-11eb-2cc1-335a8db0e308
-# gráfico
+begin
+	x_inv = collect(0.01:0.01:20)
+	inversa(x) = 1/x
+    plot(x_inv, inversa.(x_inv), color=:red, label="f(x) = 1/x")
+	xlabel!("x")
+	ylabel!("1/x")
+	ylims!(0, 4)
+end
 
 # ╔═╡ da308fce-70b3-11eb-237e-3de4ca59e37d
 md"La respuesta, como se imaginarán, es _no, pero casi_. Claramente se puede ver que no tenemos ningún punto que sea menor a $0$. Pero entonces, ¿$0$ no es el mínimo? Recordemos la definición estricta de mínimo:
@@ -416,7 +572,23 @@ $$f: \mathbb{R} \rightarrow \mathbb{R} / f(x) =
 \right.$$"
 
 # ╔═╡ 0f0229fe-70b4-11eb-3a77-b1e50b9bd3a7
-# gráfico
+f_con_meseta(x) = begin
+	if(x <= 1)
+		x
+	elseif(x >= 2)
+		3 - x
+	else
+		1
+	end
+end
+
+# ╔═╡ a08e9fec-85c5-11eb-04d3-3902bce7da52
+begin
+	x_meseta = collect(-1:0.01:3)
+    plot(x_meseta, f_con_meseta.(x_meseta), color=:red, label="f_con_meseta(x)")
+	xlabel!("x")
+	ylabel!("f_con_meseta(x)")
+end
 
 # ╔═╡ 13a108fe-70b4-11eb-11e4-8bd9206fcbbe
 md"
@@ -518,6 +690,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 - Conjuntos (Alguien recomendó \"book of proof\" de richard hammack)."
 
 # ╔═╡ Cell order:
+# ╟─3b692fd0-85b1-11eb-1739-6d11326f0586
 # ╟─34c94b8e-70b1-11eb-1775-4392b3a4032a
 # ╟─5fedab20-70b1-11eb-2ab7-fd9463ced740
 # ╠═a74b1bce-70b1-11eb-0b22-ef4dfbbebd07
@@ -529,6 +702,11 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─e01e3a30-70b1-11eb-2aaa-d101b975658b
 # ╟─df615b04-70b1-11eb-00f4-87872e446742
 # ╠═2f51d17c-70b2-11eb-0c06-6dcf65cd5580
+# ╠═1797499c-85b2-11eb-074c-07e0ce4dc06c
+# ╠═35dc7b8e-85b2-11eb-279a-653cd745be7f
+# ╠═3f3375b6-85b2-11eb-1ebc-990600298754
+# ╠═40c57c26-85b2-11eb-1d3c-a5cde1dfec02
+# ╠═43e0b51a-85b2-11eb-2b29-a93ab9292f97
 # ╟─34525a0a-70b2-11eb-0028-2d8d25e79a58
 # ╟─5220da64-70b2-11eb-3aa6-a99d50dd3cb5
 # ╟─72d450da-70b2-11eb-0354-61dd5772357f
@@ -538,7 +716,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╠═dcc97300-70b2-11eb-18b9-71966ff843c9
 # ╟─e22caa5e-70b2-11eb-13c2-f58e7c96adee
 # ╠═f25e2da8-70b2-11eb-2531-d324a7e5d9a8
-# ╠═f68de6f2-70b2-11eb-258c-354cf799d776
+# ╟─f68de6f2-70b2-11eb-258c-354cf799d776
 # ╠═047b9eee-70b3-11eb-12be-3990f3564113
 # ╟─0cdb1f56-70b3-11eb-0b32-d52aa52cc43e
 # ╟─216e6928-70b3-11eb-1a4e-6d47309ef23c
@@ -546,12 +724,19 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─2c36684c-70b3-11eb-172a-517434e3f626
 # ╟─3cad7008-70b3-11eb-29b5-db9538d40cee
 # ╠═5434512e-70b3-11eb-1c46-f57b15828c4e
+# ╠═6cd47cd6-85b7-11eb-089c-93885c4ea903
 # ╟─58e45b74-70b3-11eb-292e-d1db7e3a74fc
 # ╠═5f47fde0-70b3-11eb-236a-d9e25bdb7ce6
 # ╟─71901d66-70b3-11eb-3e69-87c693c97378
 # ╠═8845120a-70b3-11eb-0b08-bfd017c18f65
 # ╟─8cc1df84-70b3-11eb-3a36-3df76de9e0ff
 # ╠═9273a9e4-70b3-11eb-177b-a5e7c3e025ad
+# ╟─eccc1f90-85bc-11eb-1362-f76a0cfaa389
+# ╠═8848198c-85bc-11eb-3b79-eb6f4228a150
+# ╠═654e4118-85bc-11eb-22ab-ddf2eac3e04e
+# ╠═d29020f2-85bc-11eb-0de6-61da0496f2e0
+# ╟─1f03efd2-85bc-11eb-10b9-cbc665ed3e6b
+# ╠═f7d9c0a2-85bc-11eb-2b1a-45f9efa82172
 # ╟─9665f80e-70b3-11eb-2e39-c5abbe51e8da
 # ╟─9bb234a8-70b3-11eb-1e50-756505f95bb0
 # ╠═ab6724b0-70b3-11eb-0f00-a50234b2a1db
@@ -563,6 +748,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─da308fce-70b3-11eb-237e-3de4ca59e37d
 # ╟─e78bb7e6-70b3-11eb-2171-13723c777b3c
 # ╠═0f0229fe-70b4-11eb-3a77-b1e50b9bd3a7
+# ╠═a08e9fec-85c5-11eb-04d3-3902bce7da52
 # ╟─13a108fe-70b4-11eb-11e4-8bd9206fcbbe
 # ╟─2714571a-70b4-11eb-1a68-99c08bf041c3
 # ╠═2d9eeb7c-70b4-11eb-12ac-c3a40d6a05a9
