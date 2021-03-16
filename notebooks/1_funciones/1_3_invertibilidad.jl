@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.20
+# v0.12.21
 
 using Markdown
 using InteractiveUtils
@@ -17,7 +17,7 @@ end
 begin
 	using Plots
 	using PlutoUI
-	plotly()
+	plotlyjs()
 end
 
 # ╔═╡ 57c122b6-5394-11eb-3970-75f46fb55ac4
@@ -206,8 +206,7 @@ La función lineal es muy fácil para operar. Para otras será importante conoce
 # ╔═╡ 487bb478-5d10-11eb-2583-63ee832c3956
 # TODO: estaría bueno explicar esto matemáticamente (cómo obtener todos los puntos que pasan por cierto valor de una trigonométrica a partir de las inversas.
 
-cos_points(x_range, y, ω) = 
-begin
+function cos_points(x_range, y, ω)
 	T = 2π/ω
 	# Cada período tendrá dos cruces
 	primer_cruce = acos(y)/ω
@@ -624,8 +623,8 @@ end
 md"Sabiendo esto, si sabemos que queremos calcular $sen(x)$ en una posición cercana al $0$, podemos utilizar $x$ para el cálculo, así como podemos usar $1 - x^2$ para el $cos(x)$ en ese mismo entorno."
 
 # ╔═╡ Cell order:
-# ╟─0de4bef2-5916-11eb-03cd-396932d588c2
-# ╟─57c122b6-5394-11eb-3970-75f46fb55ac4
+# ╠═0de4bef2-5916-11eb-03cd-396932d588c2
+# ╠═57c122b6-5394-11eb-3970-75f46fb55ac4
 # ╠═0e7900f2-5917-11eb-0eec-bdddb19e77d2
 # ╠═91290ffc-5394-11eb-27a0-179e75f62ae7
 # ╟─906f8a00-5394-11eb-07f3-7f9633d5b1bb
@@ -642,8 +641,8 @@ md"Sabiendo esto, si sabemos que queremos calcular $sen(x)$ en una posición cer
 # ╟─188135a6-5395-11eb-3d2e-274357cbcb24
 # ╟─1e75c7c4-5395-11eb-3f7f-21c8dc5d8982
 # ╟─291aa2d0-5395-11eb-0938-b355089f8303
-# ╠═3675ca40-5395-11eb-0fa4-958a41909abe
 # ╟─487bb478-5d10-11eb-2583-63ee832c3956
+# ╠═3675ca40-5395-11eb-0fa4-958a41909abe
 # ╟─3e567aca-5395-11eb-13c2-4722d715ef17
 # ╠═cb3d8298-5dd7-11eb-271b-7f97d4b9a24c
 # ╟─4f7f9412-5395-11eb-125e-b944e3e51439
