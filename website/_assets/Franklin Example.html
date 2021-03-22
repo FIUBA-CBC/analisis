@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="Franklin%20Example_files/katex.css">
+     
+   <link rel="stylesheet" href="Franklin%20Example_files/github.css">
+   
+  <link rel="stylesheet" href="Franklin%20Example_files/franklin.css">
+<link rel="stylesheet" href="Franklin%20Example_files/poole_hyde.css">
+<link rel="stylesheet" href="Franklin%20Example_files/custom.css">
+<!-- style adjustments -->
+<style>
+  html {font-size: 17px;}
+  .franklin-content {position: relative; padding-left: 8%; padding-right: 5%; line-height: 1.35em;}
+  @media (min-width: 940px) {
+    .franklin-content {width: 100%; margin-left: auto; margin-right: auto;}
+  }
+  @media (max-width: 768px) {
+    .franklin-content {padding-left: 6%; padding-right: 6%;}
+  }
+</style>
+<link rel="icon" href="http://localhost:8000/assets/favicon.png">
+
+   <title>Franklin Example</title>  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <br>
+      <img src="Franklin%20Example_files/Logo_Fiuba.png" style="width: 200px; height: auto; display: inline">
+      <img src="Franklin%20Example_files/Logo_Julia.png" style="margin-left:1em; width: 80px; height: auto; display: inline">
+      <div style="opacity: 0.85; font-weight: bold; margin-bottom: 0.5em">MIT 18.S191/6.S083/22.S092 | Fall 2020</div>
+      <h1 style="font-size:1em; opacity: 0.95;"><a href="http://localhost:8000/">Introduction to Computational Thinking</a></h1>
+      <div style="line-height:18px; font-size: 15px; opacity: 0.85">by <a href="http://math.mit.edu/~edelman">Alan Edelman</a>, <a href="http://sistemas.fciencias.unam.mx/~dsanders/">David P. Sanders</a>, <a href="https://www.3blue1brown.com/about">Grant Sanderson</a>, &amp; <a href="https://eapsweb.mit.edu/people/jars">James Schloss</a>, <a href="https://web.mit.edu/nse/people/faculty/forget.html">Benoit Forget</a></div>
+    </div>
+    <br>
+    <style>
+    </style>
+    <nav class="sidebar-nav" style="opacity: 0.9">
+      <a class="sidebar-nav-item active" href="http://localhost:8000/">Course home</a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/installation/">Software installation</a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/cheatsheets/">Cheatsheets</a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw0/"><b>Homework 0</b></a>
+      <br>
+      <small style="text-transform: uppercase; font-size: 0.75em">Course content</small>
+      <div class="week">week 1</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture1/"><b>Lecture 1</b> - <em>Images and Abstraction</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture2/"><b>Lecture 2</b> - <em>Convolutions</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw1/"><b>Homework 1</b></a>
+      <div class="week">week 2</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture3/"><b>Lecture 3</b> - <em>Dynamic programming, Views and GPUs</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture4/"><b>Lecture 4</b> - <em>Live coding seam carving</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw2/"><b>Homework 2</b></a>
+      <div class="week">week 3</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture5/"><b>Lecture 5</b> - <em>Structure and Dispatch</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture6/"><b>Lecture 6</b> - <em>Understanding data</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw3/"><b>Homework 3</b></a>
+      <div class="week">week 4</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture7/"><b>Lecture 7</b> - <em>Introspection, COVID Data visualization</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture8/"><b>Lecture 8</b> - <em>Probability via computation</em></a>
+      <div class="week">week 5</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture9/"><b>Lecture 9</b> - <em>Computational thinking, graphs are matrices, the expression problem</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture10/"><b>Lecture 10</b> - <em>Graphs and disease spread</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw4/"><b>Homework 4</b></a>
+      <div class="week">week 6</div> <a class="sidebar-nav-item " href="http://localhost:8000/lecture11/"><b>Lecture 11</b> - <em>Epidemic modeling &amp; Documenting code</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture12/"><b>Lecture 12</b> - <em>Macroscopic models: discrete vs continuous</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw5/"><b>Homework 5</b></a>
+      <div class="week">week 7</div>
+      <em><small>No class on 10/13 as per <a href="https://registrar.mit.edu/calendar">MIT Calendar</a></small></em>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture13/"><b>Lecture 13</b> - <em>Graphs and Network Dynamics</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw6/"><b>Homework 6</b></a>
+      <div class="week">week 8</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture14/"><b>Lecture 14</b> - <em>Raytracing, your own parallelism, abstract arrays</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture15/"><b>Lecture 15</b> - <em>Billiard model and event-driven simulation</em></a>
+      <div class="week">week 9</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture16/"><b>Lecture 16</b> - <em>Raytracing in 3D</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture17/"><b>Lecture 17</b> - <em>Raytracing live-coding</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw7/"><b>Homework 7</b></a>
+      <div class="week">week 10</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture18/"><b>Lecture 18</b> - <em>Hierarchical Thinking, Greedy Algorithms, Jacobi's Method, and Multigrid</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture19/"><b>Lecture 19</b> - Floating Point Arithmetic<em></em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw8/"><b>Homework 8</b></a>
+      <div class="week">week 11</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture20/"><b>Lecture 20</b> - <em>Introduction to Climate Modeling, Nonlinear dynamics and Stability</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture21/"><b>Lecture 21</b> - <em>Nonlinear Climate Dynamics and Snowball Earth</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw9/"><b>Homework 9</b></a>
+      <div class="week">week 12</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture22/"><b>Lecture 22</b> - <em>Diffusion Equation and Time and Space evolution</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture23/"><b>Lecture 23</b> - <em>Heat Transfer by Ocean Currents</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/hw10/"><b>Homework 10</b></a>
+      <div class="week">week 13</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture24/"><b>Lecture 24</b> - <em>Ocean Modeling, Generic Programming</em></a>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture25/"><b>Lecture 25</b> - <em>An overview of modern climate modeling</em></a>
+      <div class="week">week 14</div>
+      <a class="sidebar-nav-item " href="http://localhost:8000/lecture26/"><b>Lecture 26</b> - <em>Discrete Fourier Transform </em></a>
+    </nav>
+
+  </div>
+</div>
+<div class="content container">
+
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="how_to_use_franklin"><a href="#how_to_use_franklin">How to use Franklin</a></h1>
+<p></p><div class="franklin-toc"><ol><li><a href="#the_base_with_markdown">The base with Markdown</a><ol><li><a href="#symbols_and_html_entities">Symbols and html entities</a></li></ol></li><li><a href="#basic_franklin_extensions">Basic Franklin extensions</a><ol><li><a href="#divs">Divs</a></li><li><a href="#latex_and_maths">LaTeX and Maths</a></li><li><a href="#a_quick_note_on_whitespaces">A quick note on whitespaces</a></li><li><a href="#raw_html">Raw HTML</a></li></ol></li><li><a href="#pages_and_structure">Pages and structure</a></li><li><a href="#references_not_really">References (not really)</a></li><li><a href="#header_and_footer">Header and Footer</a></li></ol></div> <p></p>
+<p>This section is meant as a refresher if you're new to Franklin. Have a
+ look at both how the website renders and the corresponding markdown (<code>index.md</code>). Modify at will to get a feeling for how things work!</p>
+<p>Ps: if you want to modify the header or footer or the general look of the website, adjust the files in</p>
+<ul>
+<li><p><code>src/_css/</code> and</p>
+</li>
+<li><p><code>src/_html_parts/</code>.</p>
+</li>
+</ul>
+<h2 id="the_base_with_markdown"><a href="#the_base_with_markdown">The base with Markdown</a></h2>
+<p>The <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">standard markdown syntax</a> can be used such as titles using <code>#</code>, lists:</p>
+<ul>
+<li><p>element with <strong>bold</strong></p>
+</li>
+<li><p>element with <em>emph</em></p>
+</li>
+</ul>
+<p>or code-blocks <code>inline</code> or with highlighting (note the <code>@def hascode = true</code> in the source to allow <a href="https://highlightjs.org/">highlight.js</a> to do its job):</p>
+<pre><code class="language-julia hljs"><span class="hljs-keyword">abstract type</span> Point <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">struct</span> PointR2{T&lt;:<span class="hljs-built_in">Real</span>} &lt;: Point
+    x::T
+    y::T
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">struct</span> PointR3{T&lt;:<span class="hljs-built_in">Real</span>} &lt;: Point
+    x::T
+    y::T
+    z::T
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">function</span> len(p::T) <span class="hljs-keyword">where</span> T&lt;:Point
+  sqrt(sum(getfield(p, η)^<span class="hljs-number">2</span> <span class="hljs-keyword">for</span> η ∈ fieldnames(T)))
+<span class="hljs-keyword">end</span></code></pre>
+<p>You can also quote stuff</p>
+<blockquote>
+<p>You must have chaos within you to ...</p>
+</blockquote>
+<p>or have tables:</p>
+<table><tbody><tr><th align="right">English</th><th align="right">Mandarin</th></tr><tr><td align="right">winnie the pooh</td><td align="right">维尼熊</td></tr></tbody></table>
+<p>Note that you may have to do a bit of CSS-styling to get these 
+elements to look the way you want them (the same holds for the whole 
+page in fact).</p>
+<h3 id="symbols_and_html_entities"><a href="#symbols_and_html_entities">Symbols and html entities</a></h3>
+<p>If you want a dollar sign you have to escape it like so: $, you can 
+also use html entities like so: → or π or, if you're using Juno for 
+instance, you can use <code>\pi[TAB]</code> to insert the symbol as is: π (it will be converted to a html entity).<sup id="fnref:1"><a href="#fndef:1" class="fnref">[1]</a></sup></p>
+<p>If you want to show a backslash, just use it like so: \ ; if you want to force a line break, use a <code>\\</code> like <br> so (this is on a new line).<sup id="fnref:blah"><a href="#fndef:blah" class="fnref">[2]</a></sup></p>
+<p>If you want to show a backtick, escape it like so: ` and if you want to show a tick in inline code use double backticks like <code>so ` ...</code>.</p>
+<p>Footnotes are nice too:</p>
+<p></p><table class="fndef" id="fndef:1">
+    <tbody><tr>
+        <td class="fndef-backref"><a href="#fnref:1">[1]</a></td>
+        <td class="fndef-content">this is the text for the first footnote, you can style all this looking at <code>.fndef</code> elements; note that the whole footnote definition is <em>expected to be on the same line</em>.</td>
+    </tr>
+</tbody></table>
+<table class="fndef" id="fndef:blah">
+    <tbody><tr>
+        <td class="fndef-backref"><a href="#fnref:blah">[2]</a></td>
+        <td class="fndef-content">and this is a longer footnote with 
+some blah from veggie ipsum: turnip greens yarrow ricebean rutabaga 
+endive cauliflower sea lettuce kohlrabi amaranth water spinach avocado 
+daikon napa cabbage asparagus winter purslane kale. Celery potato 
+scallion desert raisin horseradish spinach carrot soko.</td>
+    </tr>
+</tbody></table>
+<p></p>
+<h2 id="basic_franklin_extensions"><a href="#basic_franklin_extensions">Basic Franklin extensions</a></h2>
+<h3 id="divs"><a href="#divs">Divs</a></h3>
+<p>It is sometimes useful to have a short way to make a part of the page
+ belong to a div so that it can be styled separately. You can do this 
+easily with Franklin by using <code>@@divname ... @@</code>. For instance, you could want a blue background behind some text.</p>
+<div class="colbox-blue">Here we go! (this is styled in the css sheet with name "colbox-blue").</div>
+<p>Since it's just a <code>&lt;div&gt;</code> block, you can put this construction wherever you like and locally style your text.</p>
+<h3 id="latex_and_maths"><a href="#latex_and_maths">LaTeX and Maths</a></h3>
+<p>Essentially three things are imitated from LaTeX</p>
+<ol>
+<li><p>you can introduce definitions using <code>\newcommand</code></p>
+</li>
+<li><p>you can use hyper-references with <code>\eqref</code>, <code>\cite</code>, ...</p>
+</li>
+<li><p>you can show nice maths (via KaTeX)</p>
+</li>
+</ol>
+<p>The definitions can be introduced in the page or in the <code>config.md</code> (in which case they're available everywhere as opposed to just in that page). For instance, the commands <code>\scal</code> and <code>\R</code> are defined in the config file (see <code>src/config.md</code>) and can directly be used whereas the command <code>\E</code> is defined below (and therefore only available on this page):</p>
+<p>Now we can write something like</p>
+<a id="equation_blah" class="anchor"></a><span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>φ</mi><mo stretchy="false">(</mo><mi mathvariant="double-struck">E</mi><mrow><mo fence="true">[</mo><mi>X</mi><mo fence="true">]</mo></mrow><mo stretchy="false">)</mo><mo>≤</mo><mi mathvariant="double-struck">E</mi><mrow><mo fence="true">[</mo><mi>φ</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo fence="true">]</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">  \varphi(\mathbb E\left[ X\right]) \le \mathbb E\left[ \varphi(X)\right].  </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal">φ</span><span class="mopen">(</span><span class="mord mathbb">E</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;">[</span><span style="margin-right: 0.07847em;" class="mord mathnormal">X</span><span class="mclose delimcenter" style="top: 0em;">]</span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathbb">E</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;">[</span><span class="mord mathnormal">φ</span><span class="mopen">(</span><span style="margin-right: 0.07847em;" class="mord mathnormal">X</span><span class="mclose">)</span><span class="mclose delimcenter" style="top: 0em;">]</span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">.</span></span></span></span></span></span>
+<p>since we've given it the label <code>\label{equation blah}</code>, we can refer it like so: <span class="eqref">(<a href="#equation_blah">1</a>)</span> which can be convenient for pages that are math-heavy.</p>
+<p>In a similar vein you can cite references that would be at the bottom of the page: <span class="bibref">(<a href="#noether15">Noether (1915)</a>, <a href="#bezanson17">Bezanson et al. (2017)</a>)</span>.</p>
+<p><strong>Note</strong>: the LaTeX commands you define can also 
+incorporate standard markdown (though not in a math environment) so for 
+instance let's define a silly <code>\bolditalic</code> command.</p>
+<p>and use it <em><strong>here for example</strong></em>.</p>
+<p>Here's another quick one, a command to change the color:</p>
+<p>This is <span style="color: blue"> in blue</span> or <span style="color: #bf37bc"> in #bf37bc</span>.</p>
+<h3 id="a_quick_note_on_whitespaces"><a href="#a_quick_note_on_whitespaces">A quick note on whitespaces</a></h3>
+<p>For most commands you will use <code>#k</code> to refer to the <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span style="margin-right: 0.03148em;" class="mord mathnormal">k</span></span></span></span></span>-th
+ argument as in LaTeX. In order to reduce headaches, this forcibly 
+introduces a whitespace on the left of whatever is inserted which, 
+usually, changes nothing visible (e.g. in a math settings). However 
+there <em>may be</em> situations where you do not want this to happen 
+and you know that the insertion will not clash with anything else. In 
+that case, you should simply use <code>!#k</code> which will not introduce that whitespace. It's probably easier to see this in action:</p>
+<ul>
+<li><p>with: <code>/usr/local/bin/ script.jl</code>, there's a whitespace you don't want 🚫</p>
+</li>
+<li><p>without: <code>/usr/local/bin/script.jl</code> here there isn't ✅</p>
+</li>
+</ul>
+<h3 id="raw_html"><a href="#raw_html">Raw HTML</a></h3>
+<p>You can include raw HTML by just surrounding a block with <code>~~~</code>. Not much more to add. This may be useful for local custom layouts like having a photo next to a text in a specific way.</p>
+
+<div class="row">
+  <div class="container">
+    <img class="left" src="Franklin%20Example_files/rndimg.jpg">
+    <p>
+    Marine iguanas are truly splendid creatures. They're found on the 
+Gálapagos islands, have skin that basically acts as a solar panel, can 
+swim and may have the ability to adapt their body size depending on 
+whether there's food or not.
+    </p>
+    <p>
+    Evolution is cool.
+    </p>
+    <div style="clear: both"></div>      
+  </div>
+</div>
+
+<p><strong>Note 1</strong>: again, entire such blocks can be made into latex-like commands via <code>\newcommand{\mynewblock}[1]{...}</code>.</p>
+<p><strong>Note 2</strong>: whatever is in a raw HTML block is <em>not</em> further processed (so you can't have LaTeX in there for instance). A partial way around this is to use <code>@@...</code> blocks which <em>will</em>
+ be recursively parsed. The following code gives the same result as 
+above with the small difference that there is LaTeX being processed in 
+the inner div.</p>
+<div class="row"><div class="container"><div class="left"><img src="Franklin%20Example_files/rndimg.jpg" alt=""></div></div>
+<p>Marine iguanas are <strong>truly splendid</strong> creatures. They're not found in equations like <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mi>i</mi><mi>π</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\exp(-i\pi)+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mop">exp</span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">i</span><span style="margin-right: 0.03588em;" class="mord mathnormal">π</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span>. But they're still quite cool. 
+</p><div style="clear: both"></div>
+<p></p></div>
+<h2 id="pages_and_structure"><a href="#pages_and_structure">Pages and structure</a></h2>
+<p>Here are a few empty pages connecting to the menu links to show where
+ files can go and the resulting paths. (It's probably best if you look 
+at the source folder for this).</p>
+<ul>
+<li><p><a href="http://localhost:8000/menu1/">menu 1</a></p>
+</li>
+<li><p><a href="http://localhost:8000/menu2/">menu 2</a></p>
+</li>
+<li><p><a href="http://localhost:8000/menu3/">menu 3</a></p>
+</li>
+</ul>
+<h2 id="references_not_really"><a href="#references_not_really">References (not really)</a></h2>
+<ul>
+<li><p><a id="noether15" class="anchor"></a><strong>Noether</strong>,  Körper und Systeme rationaler Funktionen, 1915.</p>
+</li>
+<li><p><a id="bezanson17" class="anchor"></a><strong>Bezanson</strong>, <strong>Edelman</strong>, <strong>Karpinski</strong> and <strong>Shah</strong>, <a href="https://julialang.org/research/julia-fresh-approach-BEKS.pdf">Julia: a fresh approach to numerical computing</a>, SIAM review 2017.</p>
+</li>
+</ul>
+<h2 id="header_and_footer"><a href="#header_and_footer">Header and Footer</a></h2>
+<p>As you can see here at the bottom of the page, there is a footer 
+which you may want on all pages but for instance you may want the date 
+of last modification to be displayed. In a fashion heavily inspired by <a href="https://gohugo.io/">Hugo</a>, you can write things like</p>
+<pre><code class="language-html hljs xml">Last modified: {{ fill fd_mtime }}.</code></pre>
+<p>(cf. <code>src/_html_parts/page_foot.html</code>) which will then replace these braces with the content of a dictionary of variables at the key <code>fd_mtime</code>. This dictionary of variables is accessed locally by pages through <code>@def varname = value</code> and globally through the <code>config.md</code> page via the same syntax.</p>
+<p>There's a few other such functions of the form <code>{{fname p₁ p₂}}</code> as well as support for conditional blocks. If you wander through the <code>src/_html_parts/</code> folder and its content, you should be able to see those in action.</p>
+<div class="page-foot">
+  <div class="copyright">
+    © Septimia Zenobia. Last modified: February 19, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org/">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div>  <!-- div: content container -->
+    
+        <script src="Franklin%20Example_files/katex.js"></script>
+<script src="Franklin%20Example_files/auto-render.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+        <script src="Franklin%20Example_files/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  <!-- browser-reload script, automatically added by the LiveServer.jl -->
+<script>
+var ws_liveserver_M3sp9 = new WebSocket("ws://" + location.host + location.pathname);
+ws_liveserver_M3sp9.onmessage = function(msg) {
+    if (msg.data === "update") {
+        ws_liveserver_M3sp9.close();
+        location.reload();
+    };
+};
+</script>
+
+
+</body></html>
