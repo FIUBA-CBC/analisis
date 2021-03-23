@@ -36,7 +36,9 @@ md"# Conjuntos"
 md"En apuntes pasados ya estuvimos viendo algunos ejemplos de conjuntos. En el de introducción a funciones, las analizamos como máquinas que toman elementos de un conjunto, al cual llamamos _dominio_, y los transforman en elementos de otro, al cual llamamos _codominio_. Por ejemplo, recordemos la función contadora de letras, que recibía una palabra del idioma español y devolvía la cantidad de letras que tenía. En aquel ejemplo, el dominio son las palabras, y el codominio los números naturales. Como observamos en aquella ocasión, no todos los números naturales podían ser generados por esta máquina, ya que no hay palabras en el lenguaje español tan grandes como querramos. La palabra más larga del idioma es \"electroencefalografista\", con lo cual no habrá palabras de más de 23 letras, las posibles salidas de la máquina son números entre 1 y 23. Ese conjunto de resultados posibles (la _imagen_) es entonces un _subconjunto_ del codominio."
 
 # ╔═╡ eba3a900-897d-11eb-225d-c7aa9ee2d5a4
-md"![Figura 1](/user/lambda/analisis/conjuntos_2.png)"
+md"
+![Figura 1](/user/lambda/analisis/conjuntos_2.png)
+"
 
 
 # ╔═╡ ab15a4a4-70b1-11eb-38a6-5776a5796ff9
@@ -694,10 +696,10 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─3b692fd0-85b1-11eb-1739-6d11326f0586
 # ╟─34c94b8e-70b1-11eb-1775-4392b3a4032a
 # ╟─5fedab20-70b1-11eb-2ab7-fd9463ced740
-# ╟─eba3a900-897d-11eb-225d-c7aa9ee2d5a4
+# ╠═eba3a900-897d-11eb-225d-c7aa9ee2d5a4
 # ╟─ab15a4a4-70b1-11eb-38a6-5776a5796ff9
 # ╠═b1e86bf4-70b1-11eb-0fed-3322d236a1ff
-# ╟─bb4bfd5a-70b1-11eb-38c4-e36b2f2fc66f
+# ╠═bb4bfd5a-70b1-11eb-38c4-e36b2f2fc66f
 # ╠═ce00ce08-70b1-11eb-2244-8ff341cfd2da
 # ╟─d517e528-70b1-11eb-1c5c-bf7e4d27fd17
 # ╟─e01e3a30-70b1-11eb-2aaa-d101b975658b
@@ -712,13 +714,13 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─5220da64-70b2-11eb-3aa6-a99d50dd3cb5
 # ╟─72d450da-70b2-11eb-0354-61dd5772357f
 # ╟─85e6e57a-70b2-11eb-2485-91b7963071a0
-# ╟─b980329c-70b2-11eb-11d5-edcccbb78bac
+# ╠═b980329c-70b2-11eb-11d5-edcccbb78bac
 # ╟─bf63d29a-70b2-11eb-0201-814185021f0b
 # ╠═dcc97300-70b2-11eb-18b9-71966ff843c9
 # ╟─e22caa5e-70b2-11eb-13c2-f58e7c96adee
 # ╠═f25e2da8-70b2-11eb-2531-d324a7e5d9a8
 # ╟─f68de6f2-70b2-11eb-258c-354cf799d776
-# ╟─047b9eee-70b3-11eb-12be-3990f3564113
+# ╠═047b9eee-70b3-11eb-12be-3990f3564113
 # ╟─0cdb1f56-70b3-11eb-0b32-d52aa52cc43e
 # ╟─216e6928-70b3-11eb-1a4e-6d47309ef23c
 # ╠═26bbd94c-70b3-11eb-394d-2fdecd7a1b82
@@ -726,7 +728,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─3cad7008-70b3-11eb-29b5-db9538d40cee
 # ╠═5434512e-70b3-11eb-1c46-f57b15828c4e
 # ╠═6cd47cd6-85b7-11eb-089c-93885c4ea903
-# ╟─58e45b74-70b3-11eb-292e-d1db7e3a74fc
+# ╠═58e45b74-70b3-11eb-292e-d1db7e3a74fc
 # ╠═5f47fde0-70b3-11eb-236a-d9e25bdb7ce6
 # ╟─71901d66-70b3-11eb-3e69-87c693c97378
 # ╠═8845120a-70b3-11eb-0b08-bfd017c18f65
