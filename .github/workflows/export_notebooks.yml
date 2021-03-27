@@ -1,0 +1,66 @@
+name: Export Pluto notebooks & Deploy
+on:
+    push:
+        branches:
+            - export_to_static_notebooks
+    workflow_dispatch:
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Spring 21 source
+              uses: actions/checkout@v2
+
+            - name: Set up notebook state cache
+              uses: actions/cache@v2
+              with:
+                path: pluto_state_cache
+                key: ${{ runner.os }}-pluto_state_cache-v1-${{ hashFiles('**/Project.toml', '**/Manifest.toml') }}
+
+            - name: Install Julia
+              uses: julia-actions/setup-julia@v1
+              with:
+                  version: 1.6.0-rc1
+            - name: Run Pluto notebooks
+              run: julia --project=pluto-deployment-environment -e '
+                  import Pkg;
+                  Pkg.instantiate();
+
+                  import PlutoUtils;
+                  PlutoUtils.Export.github_action(; export_dir=".", cache_dir="pluto_state_cache", baked_state=false, offer_binder=true, binder_url="https://mybinder.org/build/gh/mitmath/18S191/e2dec90", bind_server_url="https://computationalthinking-sliderserver-do.plutojl.org");'
+            - name: Franklin
+              run: julia -e '
+                  using Pkg;
+                  Pkg.add([
+                  Pkg.PackageSpec(name="NodeJS", version="1.1.1"),
+                  Pkg.PackageSpec(name="JSON", version="0.21.1"),
+                  Pkg.PackageSpec(name="Franklin", version="0.10.28"),
+                  ]);
+                  using NodeJS;
+
+                  "== Run Franklin ==";
+                  cd("website");
+
+                  run(`$(npm_cmd()) install highlight.js`);
+                  using Franklin;
+                  optimize(;minify=false);
+                  mkpath("website");
+
+                  "== Place rendered notebooks in the website folder ==";
+                  cp("../notebooks", "__site/notebooks");
+
+                  "== Extra website config files ==";
+                  write("__site/index.html", """
+                  <!DOCTYPE html>
+                  <html>
+                  <head><meta charset="utf-8"><script>
+                  window.location.href=\"SITIO_ESTATICO\"</script></head>
+                  <body></body></html>""");'
+                  # write("__site/CNAME", "computationalthinking.mit.edu");'
+            - name: Build and Deploy
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  BRANCH: sitio_estatico
+                  FOLDER: website/__site
