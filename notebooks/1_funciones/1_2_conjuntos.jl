@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.20
+# v0.14.1
 
 using Markdown
 using InteractiveUtils
@@ -35,8 +35,11 @@ md"# Conjuntos"
 # ╔═╡ 5fedab20-70b1-11eb-2ab7-fd9463ced740
 md"En apuntes pasados ya estuvimos viendo algunos ejemplos de conjuntos. En el de introducción a funciones, las analizamos como máquinas que toman elementos de un conjunto, al cual llamamos _dominio_, y los transforman en elementos de otro, al cual llamamos _codominio_. Por ejemplo, recordemos la función contadora de letras, que recibía una palabra del idioma español y devolvía la cantidad de letras que tenía. En aquel ejemplo, el dominio son las palabras, y el codominio los números naturales. Como observamos en aquella ocasión, no todos los números naturales podían ser generados por esta máquina, ya que no hay palabras en el lenguaje español tan grandes como querramos. La palabra más larga del idioma es \"electroencefalografista\", con lo cual no habrá palabras de más de 23 letras, las posibles salidas de la máquina son números entre 1 y 23. Ese conjunto de resultados posibles (la _imagen_) es entonces un _subconjunto_ del codominio."
 
-# ╔═╡ a74b1bce-70b1-11eb-0b22-ef4dfbbebd07
-# diagrama de palabras a números
+# ╔═╡ eba3a900-897d-11eb-225d-c7aa9ee2d5a4
+md"
+![Figura 1](/user/lambda/analisis/conjuntos_2.png)
+"
+
 
 # ╔═╡ ab15a4a4-70b1-11eb-38a6-5776a5796ff9
 md"Un ejemplo típico es el de las cuadráticas, donde la imagen solo cumple una parte del dominio."
@@ -465,7 +468,9 @@ md"
 
 Veamos un problema más real de este estilo. Imaginemos que tenemos que fabricar cajas cuadradas a partir de una pieza de cartón de 10 cm de lado, la cual cortamos y plegamos para formar la caja.
 
-_insertar dibujo similar a [este](https://www.geogebra.org/resource/dzSPfvRZ/vzUqY8DCjv2JRHfE/material-dzSPfvRZ.png)_
+md"
+![Figura 6](/user/lambda/analisis/conjuntos_6.png)
+"
 
 Queremos fabricar la caja de mayor volumen posible con esas piezas de cartón. ¿Qué dimensiones deberá tener? 
 
@@ -693,10 +698,10 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─3b692fd0-85b1-11eb-1739-6d11326f0586
 # ╟─34c94b8e-70b1-11eb-1775-4392b3a4032a
 # ╟─5fedab20-70b1-11eb-2ab7-fd9463ced740
-# ╠═a74b1bce-70b1-11eb-0b22-ef4dfbbebd07
+# ╠═eba3a900-897d-11eb-225d-c7aa9ee2d5a4
 # ╟─ab15a4a4-70b1-11eb-38a6-5776a5796ff9
 # ╠═b1e86bf4-70b1-11eb-0fed-3322d236a1ff
-# ╟─bb4bfd5a-70b1-11eb-38c4-e36b2f2fc66f
+# ╠═bb4bfd5a-70b1-11eb-38c4-e36b2f2fc66f
 # ╠═ce00ce08-70b1-11eb-2244-8ff341cfd2da
 # ╟─d517e528-70b1-11eb-1c5c-bf7e4d27fd17
 # ╟─e01e3a30-70b1-11eb-2aaa-d101b975658b
@@ -725,7 +730,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─3cad7008-70b3-11eb-29b5-db9538d40cee
 # ╠═5434512e-70b3-11eb-1c46-f57b15828c4e
 # ╠═6cd47cd6-85b7-11eb-089c-93885c4ea903
-# ╟─58e45b74-70b3-11eb-292e-d1db7e3a74fc
+# ╠═58e45b74-70b3-11eb-292e-d1db7e3a74fc
 # ╠═5f47fde0-70b3-11eb-236a-d9e25bdb7ce6
 # ╟─71901d66-70b3-11eb-3e69-87c693c97378
 # ╠═8845120a-70b3-11eb-0b08-bfd017c18f65
@@ -738,7 +743,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─1f03efd2-85bc-11eb-10b9-cbc665ed3e6b
 # ╠═f7d9c0a2-85bc-11eb-2b1a-45f9efa82172
 # ╟─9665f80e-70b3-11eb-2e39-c5abbe51e8da
-# ╟─9bb234a8-70b3-11eb-1e50-756505f95bb0
+# ╠═9bb234a8-70b3-11eb-1e50-756505f95bb0
 # ╠═ab6724b0-70b3-11eb-0f00-a50234b2a1db
 # ╟─b1c08b64-70b3-11eb-1a28-cd1146e30704
 # ╟─be827554-70b3-11eb-0537-17e2ecd54cd9
