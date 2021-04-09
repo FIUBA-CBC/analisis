@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.21
+# v0.14.1
 
 using Markdown
 using InteractiveUtils
@@ -468,7 +468,9 @@ md"
 
 Veamos un problema más real de este estilo. Imaginemos que tenemos que fabricar cajas cuadradas a partir de una pieza de cartón de 10 cm de lado, la cual cortamos y plegamos para formar la caja.
 
-_insertar dibujo similar a [este](https://www.geogebra.org/resource/dzSPfvRZ/vzUqY8DCjv2JRHfE/material-dzSPfvRZ.png)_
+md"
+![Figura 6](/user/lambda/analisis/conjuntos_6.png)
+"
 
 Queremos fabricar la caja de mayor volumen posible con esas piezas de cartón. ¿Qué dimensiones deberá tener? 
 
@@ -741,7 +743,7 @@ De forma un poco más intuitiva, ¿Cuál es la consecuencia tangible de qué los
 # ╟─1f03efd2-85bc-11eb-10b9-cbc665ed3e6b
 # ╠═f7d9c0a2-85bc-11eb-2b1a-45f9efa82172
 # ╟─9665f80e-70b3-11eb-2e39-c5abbe51e8da
-# ╟─9bb234a8-70b3-11eb-1e50-756505f95bb0
+# ╠═9bb234a8-70b3-11eb-1e50-756505f95bb0
 # ╠═ab6724b0-70b3-11eb-0f00-a50234b2a1db
 # ╟─b1c08b64-70b3-11eb-1a28-cd1146e30704
 # ╟─be827554-70b3-11eb-0537-17e2ecd54cd9
